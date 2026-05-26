@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LSLC — Brand Mockups</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:#0a0a0a;color:#eee;
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:48px 24px;
+  -webkit-font-smoothing:antialiased;
+}
+.header{text-align:center;margin-bottom:56px}
+.brand{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#555;margin-bottom:16px}
+h1{font-size:32px;font-weight:300;color:#fff;letter-spacing:-.01em;margin-bottom:10px}
+.sub{font-size:14px;color:#666;line-height:1.55}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;width:100%;max-width:900px}
+.card{
+  display:block;text-decoration:none;
+  background:#111;border:1px solid #1c1c1c;padding:32px 28px;
+  transition:border-color .2s,background .2s;
+  position:relative;overflow:hidden;
+}
+.card:hover{border-color:#333;background:#141414}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+}
+.card.a::before{background:linear-gradient(90deg,#0D1B2A,#B8942E)}
+.card.b::before{background:linear-gradient(90deg,#0F3D3F,#D34A3D)}
+.card.c::before{background:linear-gradient(90deg,#0F0F0F,#E84E1B)}
+.card-tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#555;font-weight:500;margin-bottom:12px}
+.card h2{font-size:22px;font-weight:400;color:#fff;margin-bottom:8px;letter-spacing:-.01em}
+.card p{font-size:13px;color:#666;line-height:1.6;margin-bottom:20px}
+.card-arrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#444;display:flex;align-items:center;gap:8px;font-weight:500}
+.card-arrow::after{content:'→';color:#666}
+.card:hover .card-arrow{color:#aaa}
+.card:hover .card-arrow::after{color:#fff}
+.palette{display:flex;gap:4px;margin-bottom:16px}
+.dot{width:16px;height:16px;border-radius:50%}
+footer{margin-top:48px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#333}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">LSLC · Refresh · 2026</div>
+  <h1>Brand Direction Mockups</h1>
+  <p class="sub">Three brand directions for review. Click to open each full-screen prototype.</p>
+</div>
+
+<div class="cards">
+
+  <a class="card a" href="LSLC Brand Directions.html" target="_blank">
+    <div class="card-tag">File 01 · Three directions</div>
+    <div class="palette">
+      <div class="dot" style="background:#0D1B2A"></div>
+      <div class="dot" style="background:#B8942E"></div>
+      <div class="dot" style="background:#0F3D3F"></div>
+      <div class="dot" style="background:#D34A3D"></div>
+      <div class="dot" style="background:#E5DFD2"></div>
+      <div class="dot" style="background:#E84E1B"></div>
+    </div>
+    <h2>Brand Directions</h2>
+    <p>All three directions side-by-side: A · Admiralty Bench, B · Waterline, C · Bearing. Each includes mark, palette, type, website hero, event slides, social cards, and YMP sub-brand.</p>
+    <div class="card-arrow">Open prototype</div>
+  </a>
+
+  <a class="card c" href="LSLC Bearing Variations.html" target="_blank">
+    <div class="card-tag">File 02 · Direction C retunes</div>
+    <div class="palette">
+      <div class="dot" style="background:#E5DFD2"></div>
+      <div class="dot" style="background:#E84E1B"></div>
+      <div class="dot" style="background:#1A3FA8"></div>
+      <div class="dot" style="background:#0F0F0F;outline:1px solid #444;border-radius:50%"></div>
+      <div class="dot" style="background:#fff;outline:1px solid #B3351A;border-radius:50%"></div>
+    </div>
+    <h2>Bearing · Variations</h2>
+    <p>Four retunes of Direction C: C1 Signal (baseline), C2 Cobalt (admiralty blue), C3 Night Watch (inverted dark), C4 Plot (B&amp;W chart graticule). Photos integrated throughout.</p>
+    <div class="card-arrow">Open prototype</div>
+  </a>
+
+  <a class="card b" href="LSLC Register - Website.html" target="_blank">
+    <div class="card-tag">File 03 · Register website</div>
+    <div class="palette">
+      <div class="dot" style="background:#6B1818"></div>
+      <div class="dot" style="background:#F2E9D2"></div>
+      <div class="dot" style="background:#B08B2E"></div>
+      <div class="dot" style="background:#161616"></div>
+    </div>
+    <h2>Register · Website</h2>
+    <p>Full website mockup in the Register direction — Lloyd's Register of Shipping inspired with deep claret, warm cream, and a heraldic seal mark. Includes YMP sub-brand integration.</p>
+    <div class="card-arrow">Open prototype</div>
+  </a>
+
+</div>
+
+<footer>LSLC Refresh · Exported from Claude Design · May 2026</footer>
+
+</body>
+</html>
