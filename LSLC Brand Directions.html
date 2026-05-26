@@ -1,0 +1,2049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LSLC — Brand Directions</title>
+
+<!-- A: Admiralty Bench (current) -->
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- B: Waterline -->
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- C: Bearing -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Public Sans',system-ui,sans-serif;
+  background:#0a0a0a;
+  color:#eee;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ════════════════════════════════════════════
+   TAB SHELL
+════════════════════════════════════════════ */
+.shell{min-height:100vh;display:flex;flex-direction:column}
+.tabbar{
+  position:sticky;top:0;z-index:100;
+  background:#0a0a0a;border-bottom:1px solid #1c1c1c;
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;
+  padding:14px 28px;gap:24px;
+}
+.tabbar-brand{
+  font-family:'Public Sans',sans-serif;
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:#777;font-weight:500;
+}
+.tabbar-brand b{color:#eee;font-weight:600}
+.tabs{display:flex;gap:2px;justify-self:center}
+.tab{
+  background:transparent;border:1px solid #222;color:#888;
+  font-family:'Public Sans',sans-serif;
+  font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:500;padding:10px 22px;cursor:pointer;
+  transition:all .2s;display:flex;align-items:center;gap:10px;
+}
+.tab .tab-letter{
+  font-family:'Public Sans',sans-serif;font-size:10px;
+  background:#1a1a1a;padding:3px 6px;color:#666;font-weight:700;
+}
+.tab:hover{color:#ddd;border-color:#333}
+.tab.active{background:#fff;color:#0a0a0a;border-color:#fff}
+.tab.active .tab-letter{background:#0a0a0a;color:#fff}
+.tabbar-meta{
+  font-family:'Public Sans',sans-serif;
+  font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:#555;
+}
+
+.stage{flex:1;position:relative}
+.direction{display:none}
+.direction.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ════════════════════════════════════════════
+   PORTFOLIO FRAME (common chrome inside each direction)
+════════════════════════════════════════════ */
+.dir-intro{
+  padding:80px 64px 64px;
+  display:grid;grid-template-columns:auto 1fr auto;gap:48px;align-items:end;
+  border-bottom:1px solid;
+}
+.dir-letter{
+  font-size:180px;font-weight:300;line-height:.85;
+  letter-spacing:-.04em;
+}
+.dir-headings .dir-eyebrow{
+  font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:600;margin-bottom:14px;
+}
+.dir-headings .dir-name{
+  font-size:54px;font-weight:400;line-height:1;margin-bottom:14px;
+  letter-spacing:-.01em;
+}
+.dir-headings .dir-tagline{
+  font-size:15px;line-height:1.6;max-width:540px;
+}
+.dir-meta{
+  font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  text-align:right;line-height:1.8;
+}
+
+.dir-section{
+  padding:80px 64px;border-bottom:1px solid;
+  display:grid;grid-template-columns:240px 1fr;gap:64px;
+}
+.dir-section-label{
+  font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:600;
+}
+.dir-section-label .num{display:block;font-size:32px;font-weight:300;margin-bottom:8px;letter-spacing:0}
+.dir-section-label .hint{display:block;font-size:11px;letter-spacing:.04em;text-transform:none;font-weight:400;margin-top:10px;opacity:.6;line-height:1.5}
+
+/* ════════════════════════════════════════════
+   A · ADMIRALTY BENCH (current)
+════════════════════════════════════════════ */
+.dir-a{
+  --navy:#0D1B2A;
+  --navy2:#162236;
+  --navy3:#08121E;
+  --gold:#B8942E;
+  --lgold:#D4AF5A;
+  --cream:#F6F2EB;
+  --offwhite:#FAFAF7;
+  background:var(--cream);
+  color:var(--navy);
+  font-family:'Jost',sans-serif;
+}
+.dir-a .dir-intro{border-color:rgba(13,27,42,.1)}
+.dir-a .dir-section{border-color:rgba(13,27,42,.08)}
+.dir-a .dir-letter{font-family:'Lora',serif;color:var(--gold)}
+.dir-a .dir-headings .dir-eyebrow{color:var(--gold)}
+.dir-a .dir-headings .dir-name{font-family:'Lora',serif;font-style:italic;color:var(--navy)}
+.dir-a .dir-headings .dir-tagline{color:rgba(13,27,42,.65)}
+.dir-a .dir-meta{color:rgba(13,27,42,.5)}
+.dir-a .dir-section-label{color:var(--gold)}
+.dir-a .dir-section-label .num{font-family:'Lora',serif;color:var(--navy)}
+.dir-a .dir-section-label .hint{color:rgba(13,27,42,.6)}
+
+/* A · Mark showcase */
+.a-mark-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.a-mark-panel{padding:64px;display:flex;flex-direction:column;align-items:center;gap:32px;min-height:420px;justify-content:center}
+.a-mark-panel.light{background:var(--cream)}
+.a-mark-panel.dark{background:var(--navy)}
+.a-mark-panel svg{width:200px;height:200px}
+.a-mark-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:600}
+.a-mark-panel.light .a-mark-label{color:var(--gold)}
+.a-mark-panel.dark .a-mark-label{color:var(--lgold)}
+.a-mark-wordmark{text-align:center}
+.a-mark-wordmark .wm-name{font-family:'Lora',serif;font-size:24px;font-weight:600;letter-spacing:.04em;line-height:1.1;margin-bottom:8px}
+.a-mark-wordmark .wm-sub{font-size:9px;letter-spacing:.28em;text-transform:uppercase;opacity:.7}
+.a-mark-panel.dark .a-mark-wordmark .wm-name{color:#fff}
+.a-mark-panel.dark .a-mark-wordmark .wm-sub{color:var(--lgold)}
+
+/* A · Palette */
+.a-palette{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.a-swatch{padding:24px;min-height:180px;display:flex;flex-direction:column;justify-content:space-between}
+.a-swatch .sw-name{font-family:'Lora',serif;font-size:16px;font-weight:500;letter-spacing:0;line-height:1.2}
+.a-swatch .sw-hex{font-size:11px;letter-spacing:.1em;font-family:'Jost',sans-serif;opacity:.7;margin-top:4px}
+.a-swatch .sw-use{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;opacity:.6;margin-top:auto}
+.a-swatch.dark{color:var(--lgold)}.a-swatch.dark .sw-use{color:rgba(255,255,255,.5)}
+.a-swatch.light{color:var(--navy)}
+
+/* A · Type */
+.a-type{display:flex;flex-direction:column;gap:40px}
+.a-type-row{padding:32px;background:#fff;border-left:3px solid var(--gold)}
+.a-type-row .tr-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px}
+.a-type-row .tr-display{font-family:'Lora',serif;font-size:56px;font-weight:300;line-height:1.05;color:var(--navy)}
+.a-type-row .tr-display em{font-style:italic;color:var(--gold)}
+.a-type-row .tr-body{font-family:'Jost',sans-serif;font-size:14px;line-height:1.75;color:var(--navy);font-weight:300;max-width:680px;margin-top:8px}
+.a-type-row .tr-spec{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:rgba(13,27,42,.55);margin-top:14px}
+
+/* A · Website hero */
+.a-web{background:var(--navy3);overflow:hidden;position:relative;border:1px solid rgba(184,148,46,.16)}
+.a-web-nav{
+  background:rgba(13,27,42,.97);height:54px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;border-bottom:1px solid rgba(184,148,46,.18);
+}
+.a-web-navlogo{display:flex;align-items:center;gap:10px}
+.a-web-navlogo svg{width:32px;height:32px}
+.a-web-navlogo .nl-text{font-family:'Lora',serif;font-size:13px;font-weight:600;color:#fff;letter-spacing:.05em}
+.a-web-navlogo .nl-text small{display:block;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:.2em;color:var(--lgold);text-transform:uppercase;margin-top:2px}
+.a-web-navlinks{display:flex;gap:24px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.65);font-weight:500}
+.a-web-navcta{background:var(--gold);color:var(--navy);padding:6px 16px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.a-web-hero{position:relative;min-height:500px;display:grid;grid-template-columns:1.4fr 1fr;align-items:center;padding:64px 48px;background:linear-gradient(120deg,#08121e 0%, #0d1b2a 60%, #162236 100%);overflow:hidden}
+.a-web-hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1600&q=80');
+  background-size:cover;background-position:center;
+  opacity:.18;mix-blend-mode:lighten;
+}
+.a-web-hero-radar{position:absolute;right:-100px;top:50%;transform:translateY(-50%);width:560px;height:560px;opacity:.32}
+.a-web-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:18px;position:relative;z-index:2;display:flex;align-items:center;gap:10px}
+.a-web-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold)}
+.a-web-title{font-family:'Lora',serif;font-size:54px;font-weight:300;line-height:1.05;color:#fff;margin-bottom:20px;position:relative;z-index:2;letter-spacing:-.01em}
+.a-web-title em{font-style:italic;color:var(--lgold)}
+.a-web-desc{font-size:13px;line-height:1.7;color:rgba(255,255,255,.6);max-width:480px;margin-bottom:28px;position:relative;z-index:2;font-weight:300}
+.a-web-actions{display:flex;gap:12px;position:relative;z-index:2}
+.a-web-btn{padding:11px 22px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.a-web-btn.gold{background:var(--gold);color:var(--navy)}
+.a-web-btn.outline{border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.75);background:transparent}
+.a-web-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;position:relative;z-index:2;background:rgba(184,148,46,.14)}
+.a-web-stat{background:rgba(8,18,30,.6);padding:22px 18px;border:1px solid rgba(184,148,46,.14)}
+.a-web-stat-n{font-family:'Lora',serif;font-size:38px;font-weight:300;color:var(--gold);line-height:1;margin-bottom:4px}
+.a-web-stat-l{font-size:9.5px;letter-spacing:.12em;color:rgba(255,255,255,.5);text-transform:uppercase}
+
+/* A · Webinar slides */
+.a-slides{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.a-slide{
+  aspect-ratio:16/9;background:var(--navy);position:relative;overflow:hidden;
+  border:1px solid rgba(184,148,46,.16);
+}
+.a-slide-tag{position:absolute;top:18px;left:20px;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600;z-index:3}
+.a-slide.title{display:flex;flex-direction:column;justify-content:center;align-items:center;padding:48px;text-align:center}
+.a-slide.title::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at center,rgba(184,148,46,.08),transparent 60%)}
+.a-slide.title svg{width:110px;height:110px;margin-bottom:22px;position:relative;z-index:2}
+.a-slide.title .st-eyebrow{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px;z-index:2;position:relative}
+.a-slide.title .st-title{font-family:'Lora',serif;font-size:30px;font-weight:300;line-height:1.15;color:#fff;z-index:2;position:relative;letter-spacing:-.01em;margin-bottom:8px}
+.a-slide.title .st-title em{font-style:italic;color:var(--lgold)}
+.a-slide.title .st-sub{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);z-index:2;position:relative}
+.a-slide.title .st-meta{position:absolute;bottom:24px;left:0;right:0;display:flex;justify-content:space-between;padding:0 24px;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.a-slide.content{padding:42px 44px;display:flex;flex-direction:column}
+.a-slide.content .sc-section{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
+.a-slide.content .sc-title{font-family:'Lora',serif;font-size:22px;font-weight:400;color:#fff;line-height:1.2;margin-bottom:18px;letter-spacing:-.005em}
+.a-slide.content .sc-title em{font-style:italic;color:var(--lgold)}
+.a-slide.content .sc-body{font-size:11px;line-height:1.7;color:rgba(255,255,255,.65);margin-bottom:18px;max-width:78%;font-weight:300}
+.a-slide.content .sc-quote{background:rgba(184,148,46,.07);border-left:2px solid var(--gold);padding:12px 16px;font-family:'Lora',serif;font-style:italic;font-size:11.5px;line-height:1.55;color:rgba(255,255,255,.85);margin-bottom:auto}
+.a-slide.content .sc-quote cite{display:block;margin-top:8px;font-family:'Jost',sans-serif;font-style:normal;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--lgold);font-weight:500}
+.a-slide.content .sc-foot{display:flex;justify-content:space-between;padding-top:14px;border-top:1px solid rgba(184,148,46,.14);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:14px}
+
+/* A · Social cards */
+.a-social{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:start}
+.a-social-li{aspect-ratio:1200/628;background:var(--navy);position:relative;overflow:hidden;border:1px solid rgba(184,148,46,.16);display:grid;grid-template-columns:1.2fr 1fr;align-items:center;padding:36px}
+.a-social-li::before{content:'';position:absolute;inset:0;background:linear-gradient(110deg,#08121e 0%,#0d1b2a 60%,transparent 100%)}
+.a-social-li::after{content:'';position:absolute;right:-40px;top:50%;transform:translateY(-50%);width:340px;height:340px;background:radial-gradient(circle,rgba(184,148,46,.18),transparent 60%);z-index:1}
+.a-social-li .sli-tag{position:absolute;top:24px;left:32px;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600;z-index:3}
+.a-social-li .sli-body{position:relative;z-index:2}
+.a-social-li .sli-title{font-family:'Lora',serif;font-size:28px;font-weight:300;color:#fff;line-height:1.15;margin-bottom:10px;letter-spacing:-.01em}
+.a-social-li .sli-title em{font-style:italic;color:var(--lgold)}
+.a-social-li .sli-meta{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.a-social-li .sli-mark{position:relative;z-index:3;display:flex;justify-content:flex-end;align-items:center}
+.a-social-li .sli-mark svg{width:140px;height:140px}
+.a-social-ig{aspect-ratio:1/1;background:var(--navy);position:relative;overflow:hidden;border:1px solid rgba(184,148,46,.16);padding:32px;display:flex;flex-direction:column;justify-content:space-between}
+.a-social-ig::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at center,rgba(184,148,46,.1),transparent 60%)}
+.a-social-ig svg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:240px;height:240px;opacity:.6}
+.a-social-ig .sig-tag{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600;position:relative;z-index:2}
+.a-social-ig .sig-title{position:relative;z-index:2;font-family:'Lora',serif;font-size:22px;font-weight:300;color:#fff;line-height:1.2;letter-spacing:-.005em}
+.a-social-ig .sig-title em{font-style:italic;color:var(--lgold)}
+.a-social-ig .sig-foot{position:relative;z-index:2;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+
+/* ════════════════════════════════════════════
+   B · WATERLINE
+   The Plimsoll load-line on every commercial vessel's
+   hull, abstracted into a brand system. Deep atlantic
+   teal alternating with warm chalk — "above the water"
+   and "below the water" — joined by a single signal
+   plimsoll-red and a thin red rule that crosses every
+   composition. Bricolage Grotesque + Manrope.
+════════════════════════════════════════════ */
+.dir-b{
+  --atlantic:#0F3D3F;
+  --atlantic-deep:#082626;
+  --atlantic-mid:#1A5A5C;
+  --chalk:#EFECE3;
+  --spray:#FAFAF7;
+  --sand:#DCD3BD;
+  --mist:#B4C2BF;
+  --plimsoll:#D34A3D;
+  --plimsoll-deep:#9F3024;
+  --hull:#161616;
+  background:var(--chalk);
+  color:var(--hull);
+  font-family:'Inter',sans-serif;
+}
+.dir-b .dir-intro{border-color:rgba(22,22,22,.12);position:relative}
+.dir-b .dir-intro::after{
+  content:'';position:absolute;left:64px;right:64px;bottom:0;height:1px;background:var(--plimsoll);
+}
+.dir-b .dir-section{border-color:rgba(22,22,22,.09)}
+.dir-b .dir-letter{
+  font-family:'Spectral',serif;font-weight:400;font-style:italic;
+  color:var(--atlantic);font-size:220px;letter-spacing:-.015em;line-height:.8;
+}
+.dir-b .dir-headings .dir-eyebrow{
+  font-family:'Inter',sans-serif;font-weight:700;
+  color:var(--plimsoll);font-size:10px;letter-spacing:.32em;text-transform:uppercase;
+  display:flex;align-items:center;gap:12px;
+}
+.dir-b .dir-headings .dir-eyebrow::before{
+  content:'';width:24px;height:1px;background:var(--plimsoll);
+}
+.dir-b .dir-headings .dir-name{
+  font-family:'Spectral',serif;font-weight:500;color:var(--atlantic);
+  font-size:74px;line-height:.95;letter-spacing:-.018em;
+}
+.dir-b .dir-headings .dir-name em{font-style:italic;color:var(--plimsoll);font-weight:500}
+.dir-b .dir-headings .dir-tagline{
+  font-family:'Inter',sans-serif;color:var(--hull);font-size:15px;line-height:1.55;font-weight:400;max-width:560px;
+}
+.dir-b .dir-headings .dir-tagline em{color:var(--plimsoll);font-style:normal;font-weight:600}
+.dir-b .dir-meta{
+  font-family:'Inter',sans-serif;color:var(--atlantic);font-size:10px;
+  letter-spacing:.26em;text-transform:uppercase;font-weight:700;line-height:1.9;text-align:right;
+}
+.dir-b .dir-section-label{
+  font-family:'Inter',sans-serif;font-weight:700;color:var(--plimsoll);
+  font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+}
+.dir-b .dir-section-label .num{
+  font-family:'Spectral',serif;font-weight:400;color:var(--atlantic);
+  font-size:48px;letter-spacing:-.01em;margin-bottom:6px;display:block;font-style:italic;
+}
+.dir-b .dir-section-label .hint{
+  font-family:'Inter',sans-serif;font-weight:400;color:var(--hull);
+  font-size:12.5px;letter-spacing:0;line-height:1.55;text-transform:none;margin-top:12px;display:block;
+}
+
+/* ── PHOTO PLATE (teal duotone + red waterline) ── */
+.b-photo{position:relative;overflow:hidden;background:var(--atlantic-deep)}
+.b-photo img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:grayscale(1) contrast(1.06) brightness(.92);
+}
+.b-photo::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(8,38,38,.85) 0%,rgba(15,61,63,.5) 50%,rgba(26,90,92,.55) 100%);
+  mix-blend-mode:multiply;pointer-events:none;
+}
+.b-photo::after{
+  content:'';position:absolute;left:0;right:0;top:62%;height:1px;background:var(--plimsoll);z-index:2;pointer-events:none;
+}
+.b-photo .b-photo-tag{
+  position:absolute;top:14px;left:14px;z-index:3;
+  font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--chalk);background:var(--plimsoll);padding:4px 10px;font-weight:700;
+}
+.b-photo .b-photo-coord{
+  position:absolute;top:14px;right:14px;z-index:3;
+  font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--chalk);font-weight:600;
+}
+.b-photo .b-photo-cap{
+  position:absolute;left:14px;right:14px;bottom:14px;z-index:3;
+  font-family:'Inter',sans-serif;font-size:10.5px;line-height:1.5;
+  color:var(--chalk);font-weight:400;
+  border-top:1px solid rgba(239,236,227,.35);padding-top:8px;
+  display:flex;justify-content:space-between;gap:14px;
+}
+.b-photo .b-photo-cap em{color:var(--plimsoll);font-style:normal;font-weight:600;text-transform:uppercase;letter-spacing:.18em;font-size:9px;flex-shrink:0}
+
+/* ── B1 · MARK ── */
+.b-mark-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.b-mark-panel{padding:64px 56px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:440px;gap:36px;position:relative}
+.b-mark-panel.chalk{background:var(--spray);color:var(--hull)}
+.b-mark-panel.atlantic{background:var(--atlantic);color:var(--chalk)}
+.b-mark-label{
+  font-family:'Inter',sans-serif;font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;
+  font-weight:700;color:var(--plimsoll);
+}
+.b-mark-panel.atlantic .b-mark-label{color:var(--plimsoll)}
+.b-plimsoll-mark{display:flex;flex-direction:column;align-items:center;gap:18px}
+.b-plimsoll-mark svg{width:88px;height:88px;flex-shrink:0}
+.b-plimsoll-text{text-align:center;display:flex;flex-direction:column;gap:6px;align-items:center}
+.b-plimsoll-name{
+  font-family:'Spectral',serif;font-weight:500;font-size:38px;line-height:.95;
+  letter-spacing:.06em;color:var(--atlantic);
+}
+.b-mark-panel.atlantic .b-plimsoll-name{color:var(--chalk)}
+.b-plimsoll-sub{
+  font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.32em;text-transform:uppercase;
+  font-weight:600;color:var(--hull);
+}
+.b-mark-panel.atlantic .b-plimsoll-sub{color:var(--mist)}
+.b-plimsoll-coord{
+  font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:600;color:var(--plimsoll);
+}
+
+/* ── B2 · PALETTE ── */
+.b-palette{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.b-swatch{padding:26px;min-height:200px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+.b-swatch .sw-no{
+  font-family:'Inter',sans-serif;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:700;color:var(--plimsoll);
+}
+.b-swatch .sw-name{
+  font-family:'Spectral',serif;font-weight:500;font-size:22px;letter-spacing:0;
+  line-height:1.1;margin-top:6px;
+}
+.b-swatch .sw-hex{
+  font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;
+  opacity:.75;margin-top:5px;font-weight:600;
+}
+.b-swatch .sw-use{
+  font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:600;opacity:.7;margin-top:auto;line-height:1.5;
+}
+.b-swatch.t-dark{color:var(--chalk)}
+.b-swatch.t-dark .sw-use{color:rgba(239,236,227,.7)}
+.b-swatch.t-light{color:var(--hull)}
+.b-swatch.t-signal{color:var(--chalk)}
+.b-swatch.t-signal .sw-no{color:var(--hull)}
+
+/* ── B3 · TYPE ── */
+.b-type{display:flex;flex-direction:column;gap:2px}
+.b-type-row{
+  padding:38px 42px;background:var(--spray);position:relative;
+  display:grid;grid-template-columns:170px 1fr;gap:36px;align-items:start;
+}
+.b-type-row::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--plimsoll)}
+.b-tr-meta{display:flex;flex-direction:column;gap:6px;border-right:1px solid rgba(22,22,22,.16);padding-right:28px}
+.b-tr-meta-label{
+  font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--plimsoll);font-weight:700;
+}
+.b-tr-meta-name{
+  font-family:'Spectral',serif;font-weight:500;font-size:18px;color:var(--atlantic);
+  letter-spacing:0;line-height:1.1;font-style:italic;
+}
+.b-tr-meta-spec{
+  font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.04em;
+  color:var(--hull);opacity:.7;line-height:1.5;margin-top:4px;font-weight:500;
+}
+.b-tr-display{
+  font-family:'Spectral',serif;font-weight:500;font-size:80px;
+  line-height:.95;letter-spacing:-.02em;color:var(--atlantic);
+}
+.b-tr-display em{font-style:italic;color:var(--plimsoll);font-weight:500}
+.b-tr-italic{
+  font-family:'Spectral',serif;font-style:italic;font-weight:400;
+  font-size:24px;line-height:1.42;color:var(--hull);max-width:780px;letter-spacing:0;
+}
+.b-tr-italic em{font-style:italic;color:var(--plimsoll);font-weight:500}
+.b-tr-body{
+  font-family:'Inter',sans-serif;font-size:14px;line-height:1.7;color:var(--hull);
+  font-weight:400;max-width:680px;
+}
+.b-tr-body em{font-style:normal;color:var(--plimsoll);font-weight:600}
+
+/* ── B4 · WEBSITE ── */
+.b-web{background:var(--chalk);overflow:hidden;border:1px solid rgba(22,22,22,.14)}
+
+/* Nav: atlantic band with plimsoll mark + plimsoll-red CTA */
+.b-web-nav{
+  background:var(--atlantic);height:64px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;border-bottom:3px solid var(--plimsoll);
+}
+.b-web-navlogo{display:flex;align-items:center;gap:14px;color:var(--chalk)}
+.b-web-navlogo svg{width:36px;height:36px;color:var(--chalk)}
+.b-web-navlogo .nl-text{
+  font-family:'Spectral',serif;font-weight:500;font-size:24px;
+  letter-spacing:.08em;
+}
+.b-web-navlogo .nl-sub{
+  display:block;font-family:'Inter',sans-serif;font-size:8px;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--mist);font-weight:600;margin-top:2px;
+}
+.b-web-navlinks{
+  display:flex;gap:24px;
+  font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--chalk);font-weight:600;
+}
+.b-web-navcta{
+  background:var(--plimsoll);color:var(--chalk);padding:9px 18px;
+  font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:700;
+}
+
+/* Bearing strip (the "waterline" — datum strip across the top) */
+.b-web-bar{
+  background:var(--atlantic-deep);color:var(--chalk);padding:9px 28px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  font-weight:600;border-bottom:1px solid var(--plimsoll);
+}
+.b-web-bar b{color:var(--plimsoll);font-weight:700}
+.b-web-bar .bar-l,.b-web-bar .bar-r{display:flex;align-items:center;gap:10px}
+.b-web-bar .pulse{width:6px;height:6px;background:var(--plimsoll);border-radius:50%}
+
+/* Hero: chalk ground with lead column + photo, atlantic strip at bottom */
+.b-web-hero{
+  padding:54px 36px;display:grid;grid-template-columns:1.4fr 1fr;gap:48px;
+  background:var(--chalk);position:relative;border-bottom:1px solid var(--plimsoll);
+}
+.b-web-hero::after{
+  /* the waterline rule + diamond endpoints */
+  content:'';position:absolute;left:36px;right:36px;bottom:-1px;height:1px;background:var(--plimsoll);
+}
+.b-web-lead{display:flex;flex-direction:column}
+.b-lead-eyebrow{
+  font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--plimsoll);font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:12px;
+}
+.b-lead-eyebrow::before{content:'';width:24px;height:1px;background:var(--plimsoll)}
+.b-web-lead h1{
+  font-family:'Spectral',serif;font-weight:400;font-size:92px;
+  line-height:.96;letter-spacing:-.018em;color:var(--atlantic);
+  margin-bottom:22px;
+}
+.b-web-lead h1 em{font-style:italic;color:var(--plimsoll);font-weight:400}
+.b-web-lead .b-stand{
+  font-family:'Inter',sans-serif;font-size:16px;line-height:1.55;color:var(--hull);
+  max-width:520px;margin-bottom:28px;font-weight:400;
+}
+.b-web-lead .b-stand em{font-style:normal;color:var(--plimsoll);font-weight:600}
+.b-web-lead .b-actions{display:flex;gap:10px}
+.b-web-lead .b-btn{
+  padding:13px 22px;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;font-weight:700;display:inline-flex;align-items:center;gap:10px;
+}
+.b-web-lead .b-btn.solid{background:var(--atlantic);color:var(--chalk)}
+.b-web-lead .b-btn.solid::after{content:'→';color:var(--plimsoll);font-weight:400;font-size:14px}
+.b-web-lead .b-btn.outline{background:transparent;color:var(--atlantic);border:1px solid var(--atlantic)}
+
+.b-web-aside{display:flex;flex-direction:column;gap:14px}
+.b-web-bigphoto{height:240px;position:relative}
+.b-web-bigphoto.b-photo .b-photo-cap{font-size:10px}
+.b-web-tile{
+  background:var(--spray);padding:18px 20px;border-top:3px solid var(--atlantic);position:relative;
+}
+.b-web-tile.atlantic{background:var(--atlantic);color:var(--chalk);border-top-color:var(--plimsoll)}
+.b-web-tile .tile-h{
+  font-family:'Inter',sans-serif;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--plimsoll);font-weight:700;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;
+}
+.b-web-tile.atlantic .tile-h{color:var(--plimsoll)}
+.b-web-tile .tile-h .tile-tag{font-size:8.5px;background:var(--plimsoll);color:var(--chalk);padding:2px 8px;letter-spacing:.18em}
+.b-web-tile .tile-title{
+  font-family:'Spectral',serif;font-weight:500;font-size:21px;line-height:1.15;
+  letter-spacing:-.005em;color:var(--atlantic);margin-bottom:6px;
+}
+.b-web-tile.atlantic .tile-title{color:var(--chalk)}
+.b-web-tile .tile-meta{
+  font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;color:var(--hull);
+  font-weight:500;line-height:1.5;opacity:.75;
+}
+.b-web-tile.atlantic .tile-meta{color:var(--mist);opacity:1}
+
+/* Bottom stats strip (atlantic — "below the waterline") */
+.b-web-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--plimsoll);
+}
+.b-stat{
+  background:var(--atlantic);color:var(--chalk);padding:24px 22px;
+  display:flex;flex-direction:column;gap:6px;
+}
+.b-stat-n{
+  font-family:'Spectral',serif;font-weight:400;font-size:48px;
+  letter-spacing:-.015em;line-height:.95;color:var(--chalk);
+}
+.b-stat-n em{font-style:italic;color:var(--plimsoll);font-weight:400}
+.b-stat-l{
+  font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mist);font-weight:600;line-height:1.5;
+}
+
+/* ── B5 · SLIDES ── */
+.b-slides{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.b-slide{aspect-ratio:16/9;position:relative;overflow:hidden;border:1px solid rgba(22,22,22,.2)}
+
+/* Title slide: atlantic ground ("below the waterline") */
+.b-slide.title{background:var(--atlantic);color:var(--chalk);padding:32px 36px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+.b-slide-top{
+  display:flex;justify-content:space-between;
+  font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--mist);font-weight:600;z-index:2;position:relative;
+}
+.b-slide-top .pulse{width:5px;height:5px;background:var(--plimsoll);border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
+.b-slide-mid{margin:auto 0;z-index:2;position:relative}
+.b-slide-mid .b-sm-cat{
+  font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--plimsoll);font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:10px;
+}
+.b-slide-mid .b-sm-cat::before{content:'';width:18px;height:1px;background:var(--plimsoll)}
+.b-slide-mid h2{
+  font-family:'Spectral',serif;font-weight:400;font-size:52px;
+  line-height:.98;letter-spacing:-.018em;color:var(--chalk);
+  margin-bottom:14px;
+}
+.b-slide-mid h2 em{font-style:italic;color:var(--plimsoll);font-weight:400}
+.b-slide-mid .b-sm-stand{
+  font-family:'Inter',sans-serif;font-size:12.5px;line-height:1.5;color:var(--mist);max-width:88%;font-weight:400;
+}
+.b-slide-foot{
+  display:flex;justify-content:space-between;align-items:end;z-index:2;position:relative;
+  padding-top:12px;border-top:1px solid var(--plimsoll);
+}
+.b-slide-foot .b-sf-mark{display:flex;align-items:center;gap:10px;color:var(--chalk)}
+.b-slide-foot .b-sf-mark svg{width:22px;height:22px}
+.b-slide-foot .b-sf-name{font-family:'Spectral',serif;font-weight:500;font-size:17px;letter-spacing:.08em;color:var(--chalk);}
+.b-slide-foot .b-sf-roster{
+  font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mist);font-weight:600;line-height:1.5;text-align:right;
+}
+.b-slide-foot .b-sf-roster b{color:var(--plimsoll);font-weight:700}
+
+/* Content slide: chalk ground ("above the waterline") with photo column */
+.b-slide.content{background:var(--chalk);color:var(--hull);padding:30px 32px;display:grid;grid-template-columns:1fr 1fr;gap:22px;position:relative}
+.b-slide.content::before{
+  content:'';position:absolute;left:32px;right:32px;top:0;height:3px;background:var(--plimsoll);
+}
+.b-slide.content .b-sc-top{
+  position:absolute;top:14px;left:32px;right:32px;display:flex;justify-content:space-between;
+  font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--hull);font-weight:600;opacity:.7;
+}
+.b-slide.content .b-sc-top b{color:var(--plimsoll);font-weight:700;opacity:1}
+.b-slide.content .b-sc-col{padding-top:18px;display:flex;flex-direction:column;z-index:2;position:relative}
+.b-slide.content .b-sc-cat{
+  font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--plimsoll);font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:10px;
+}
+.b-slide.content .b-sc-cat::before{content:'';width:16px;height:1px;background:var(--plimsoll)}
+.b-slide.content h3{
+  font-family:'Spectral',serif;font-weight:400;font-size:28px;
+  line-height:1.05;letter-spacing:-.012em;color:var(--atlantic);
+  margin-bottom:14px;
+}
+.b-slide.content h3 em{font-style:italic;color:var(--plimsoll);font-weight:400}
+.b-slide.content .b-sc-body{
+  font-family:'Inter',sans-serif;font-size:11.5px;line-height:1.6;color:var(--hull);font-weight:400;
+}
+.b-slide.content .b-sc-body p{margin-bottom:8px}
+.b-slide.content .b-sc-foot{
+  margin-top:auto;padding-top:10px;border-top:1px solid var(--plimsoll);
+  font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--hull);font-weight:600;display:flex;justify-content:space-between;opacity:.85;
+}
+.b-slide.content .b-sc-foot b{color:var(--plimsoll);font-weight:700;opacity:1}
+.b-slide.content .b-sc-plate{
+  padding-top:18px;display:flex;flex-direction:column;z-index:2;position:relative;
+}
+.b-slide.content .b-sc-plate .b-photo{flex:1;min-height:0}
+
+/* ── B6 · SOCIAL ── */
+.b-social{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:start}
+
+/* LinkedIn — atlantic (below waterline) */
+.b-social-li{
+  aspect-ratio:1200/628;background:var(--atlantic);color:var(--chalk);position:relative;
+  overflow:hidden;border:1px solid var(--atlantic);display:grid;grid-template-columns:1.05fr 1fr;
+}
+.b-social-li::after{
+  content:'';position:absolute;left:0;right:0;top:0;height:3px;background:var(--plimsoll);z-index:5;pointer-events:none;
+}
+.b-social-li .b-li-photo{position:relative;overflow:hidden}
+.b-social-li .b-li-photo .b-photo{height:100%}
+.b-social-li .b-li-txt{
+  padding:30px 32px;display:flex;flex-direction:column;justify-content:space-between;
+  position:relative;background:var(--atlantic);
+}
+.b-social-li .b-li-top{
+  display:flex;justify-content:space-between;
+  font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--mist);font-weight:600;
+}
+.b-social-li .b-li-top .pulse{width:6px;height:6px;background:var(--plimsoll);border-radius:50%;display:inline-block;margin-right:8px;vertical-align:middle}
+.b-social-li .b-li-mid{margin:auto 0}
+.b-social-li .b-li-cat{
+  font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--plimsoll);font-weight:700;margin-bottom:12px;
+}
+.b-social-li h2{
+  font-family:'Spectral',serif;font-weight:400;font-size:46px;line-height:.98;
+  letter-spacing:-.018em;color:var(--chalk);
+}
+.b-social-li h2 em{font-style:italic;color:var(--plimsoll);font-weight:400}
+.b-social-li .b-li-foot{
+  display:flex;justify-content:space-between;align-items:end;padding-top:10px;
+  border-top:1px solid var(--plimsoll);
+  font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mist);font-weight:600;
+}
+.b-social-li .b-li-foot .b-li-mark{display:flex;align-items:center;gap:8px}
+.b-social-li .b-li-foot .b-li-mark svg{width:20px;height:20px;color:var(--chalk)}
+.b-social-li .b-li-foot .b-li-name{
+  font-family:'Spectral',serif;font-weight:500;font-size:16px;
+  letter-spacing:.08em;color:var(--chalk);
+}
+
+/* Instagram — chalk (above waterline) */
+.b-social-ig{
+  aspect-ratio:1/1;background:var(--chalk);color:var(--hull);position:relative;
+  overflow:hidden;padding:30px;display:flex;flex-direction:column;justify-content:space-between;
+  border:1px solid rgba(22,22,22,.18);
+}
+.b-social-ig::before{
+  content:'';position:absolute;left:0;right:0;top:0;height:3px;background:var(--plimsoll);
+}
+.b-social-ig .b-ig-top{
+  display:flex;justify-content:space-between;
+  font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--hull);font-weight:600;opacity:.7;z-index:2;position:relative;
+}
+.b-social-ig .b-ig-top b{color:var(--plimsoll);font-weight:700;opacity:1}
+.b-social-ig .b-ig-mid{margin:auto 0;z-index:2;position:relative;padding:10px 0}
+.b-social-ig .b-ig-stat{
+  font-family:'Spectral',serif;font-weight:400;font-size:120px;line-height:.88;
+  letter-spacing:-.04em;color:var(--atlantic);margin-bottom:10px;
+}
+.b-social-ig .b-ig-stat em{font-style:italic;color:var(--plimsoll);font-weight:400}
+.b-social-ig .b-ig-label{
+  font-family:'Inter',sans-serif;font-size:17px;line-height:1.25;color:var(--hull);
+  max-width:90%;font-weight:500;
+}
+.b-social-ig .b-ig-label em{font-style:normal;color:var(--plimsoll);font-weight:700}
+.b-social-ig .b-ig-foot{
+  display:flex;justify-content:space-between;align-items:end;z-index:2;position:relative;
+  font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--hull);font-weight:600;opacity:.85;padding-top:10px;
+  border-top:1px solid var(--plimsoll);
+}
+.b-social-ig .b-ig-mark{display:flex;align-items:center;gap:6px;opacity:1}
+.b-social-ig .b-ig-mark svg{width:18px;height:18px;color:var(--atlantic)}
+.b-social-ig .b-ig-name{
+  font-family:'Spectral',serif;font-weight:500;font-size:15px;
+  letter-spacing:.08em;color:var(--atlantic);
+}
+
+
+
+/* ════════════════════════════════════════════
+   C · BEARING
+════════════════════════════════════════════ */
+.dir-c{
+  --stone:#E5DFD2;
+  --stone2:#D8D2C3;
+  --stone3:#F2EFE8;
+  --ink:#0F0F0F;
+  --ink2:#1C1C1A;
+  --mist:#B8B5AC;
+  --signal:#E84E1B;
+  --signal2:#FF6A2E;
+  --cobalt:#1A3FA8;
+  --snow:#FAFAF7;
+  background:var(--stone);
+  color:var(--ink);
+  font-family:'Space Grotesk',sans-serif;
+}
+.dir-c .dir-intro{border-color:rgba(15,15,15,.12)}
+.dir-c .dir-section{border-color:rgba(15,15,15,.1)}
+.dir-c .dir-letter{font-family:'Space Grotesk',sans-serif;color:var(--signal);font-weight:500;font-size:200px;letter-spacing:-.06em}
+.dir-c .dir-headings .dir-eyebrow{color:var(--signal);font-family:'Space Mono',monospace;font-weight:400}
+.dir-c .dir-headings .dir-name{font-family:'Space Grotesk',sans-serif;color:var(--ink);font-weight:500;letter-spacing:-.03em;text-transform:lowercase}
+.dir-c .dir-headings .dir-tagline{color:rgba(15,15,15,.7);font-size:15px;line-height:1.55}
+.dir-c .dir-meta{color:rgba(15,15,15,.55);font-family:'Space Mono',monospace;font-weight:400;letter-spacing:.06em}
+.dir-c .dir-section-label{color:var(--signal);font-family:'Space Mono',monospace;letter-spacing:.16em}
+.dir-c .dir-section-label .num{font-family:'Space Grotesk',sans-serif;color:var(--ink);font-weight:500;letter-spacing:-.03em}
+.dir-c .dir-section-label .hint{color:rgba(15,15,15,.6);font-family:'Space Grotesk',sans-serif}
+
+/* C · Mark */
+.c-mark-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.c-mark-panel{padding:64px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:420px;gap:36px;position:relative}
+.c-mark-panel.light{background:var(--stone3)}
+.c-mark-panel.dark{background:var(--ink)}
+.c-mark-label{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:400;color:var(--signal)}
+.c-mark{display:flex;align-items:center;gap:20px}
+.c-mark svg{width:96px;height:96px;flex-shrink:0}
+.c-mark .cm-text{display:flex;flex-direction:column;gap:6px}
+.c-mark .cm-name{font-family:'Space Grotesk',sans-serif;font-size:54px;font-weight:600;letter-spacing:-.05em;line-height:.9;color:var(--ink)}
+.c-mark-panel.dark .cm-name{color:var(--stone3)}
+.c-mark .cm-sub{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(15,15,15,.65);font-weight:400}
+.c-mark-panel.dark .cm-sub{color:rgba(232,78,27,.95)}
+.c-mark .cm-coord{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(15,15,15,.45);font-weight:400}
+.c-mark-panel.dark .cm-coord{color:rgba(184,181,172,.75)}
+
+/* C · Palette */
+.c-palette{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.c-swatch{padding:24px;min-height:200px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+.c-swatch .sw-code{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;opacity:.7;font-weight:400}
+.c-swatch .sw-name{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:500;letter-spacing:-.02em;line-height:1;text-transform:lowercase}
+.c-swatch .sw-hex{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.04em;opacity:.7;margin-top:4px;font-weight:400}
+.c-swatch .sw-use{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:400;opacity:.6;margin-top:auto;line-height:1.5}
+.c-swatch.dark{color:var(--stone3)}
+.c-swatch.dark .sw-use{color:rgba(242,239,232,.7)}
+.c-swatch.dark .sw-code{color:var(--signal)}
+.c-swatch.light{color:var(--ink)}
+.c-swatch.light .sw-code{color:var(--signal)}
+.c-swatch.signal{color:var(--snow)}
+.c-swatch.signal .sw-use{color:rgba(255,255,255,.85)}
+.c-swatch.signal .sw-code{color:var(--ink)}
+
+/* C · Type */
+.c-type{display:flex;flex-direction:column;gap:2px}
+.c-type-row{padding:36px;background:var(--stone3);position:relative;display:grid;grid-template-columns:120px 1fr;gap:32px;align-items:start}
+.c-type-row .tr-meta{display:flex;flex-direction:column;gap:6px;border-right:1px solid rgba(15,15,15,.15);padding-right:24px}
+.c-type-row .tr-meta-label{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--signal);font-weight:400}
+.c-type-row .tr-meta-name{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:500;color:var(--ink);letter-spacing:-.01em}
+.c-type-row .tr-meta-spec{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.04em;color:rgba(15,15,15,.55);line-height:1.5}
+.c-type-row .tr-sample-display{font-family:'Space Grotesk',sans-serif;font-size:72px;font-weight:600;line-height:.95;letter-spacing:-.04em;color:var(--ink);text-transform:lowercase}
+.c-type-row .tr-sample-display .sig{color:var(--signal)}
+.c-type-row .tr-sample-body{font-family:'Space Grotesk',sans-serif;font-size:14px;line-height:1.7;color:var(--ink2);font-weight:400;max-width:680px;margin-top:14px}
+.c-type-row .tr-sample-mono{font-family:'Space Mono',monospace;font-size:13px;line-height:1.6;color:var(--ink2);max-width:680px;font-weight:400}
+.c-type-row .tr-sample-mono .sig{color:var(--signal)}
+
+/* C · Web */
+.c-web{background:var(--stone);overflow:hidden;border:1px solid rgba(15,15,15,.14)}
+.c-web-nav{background:var(--stone3);border-bottom:1px solid var(--ink);height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px}
+.c-web-navlogo{display:flex;align-items:center;gap:12px;font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:600;color:var(--ink);letter-spacing:-.03em;text-transform:lowercase}
+.c-web-navlogo svg{width:28px;height:28px}
+.c-web-navlinks{display:flex;gap:24px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);font-weight:400}
+.c-web-navcta{background:var(--signal);color:var(--snow);padding:8px 16px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;display:flex;align-items:center;gap:8px}
+.c-web-navcta::before{content:'';width:6px;height:6px;background:var(--snow);border-radius:50%}
+.c-web-coord{padding:8px 28px;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);font-weight:400;border-bottom:1px solid rgba(15,15,15,.12);background:var(--stone)}
+.c-web-coord span{display:flex;align-items:center;gap:8px}
+.c-web-coord .pulse{width:6px;height:6px;background:var(--signal);border-radius:50%;display:inline-block}
+.c-web-hero{padding:64px 36px;display:grid;grid-template-columns:1.5fr 1fr;gap:48px;align-items:end;position:relative;min-height:480px}
+.c-web-hero::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--ink);opacity:.15}
+.c-web-lead .c-section{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--signal);font-weight:400;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.c-web-lead .c-section::before{content:'';width:18px;height:1px;background:var(--signal)}
+.c-web-lead h1{font-family:'Space Grotesk',sans-serif;font-size:88px;font-weight:500;line-height:.92;color:var(--ink);letter-spacing:-.045em;margin-bottom:24px;text-transform:lowercase}
+.c-web-lead h1 .sig{color:var(--signal);font-weight:600}
+.c-web-lead h1 .accent{position:relative;display:inline-block}
+.c-web-lead h1 .accent::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:3px;background:var(--signal)}
+.c-web-lead .c-stand{font-family:'Space Grotesk',sans-serif;font-size:17px;line-height:1.5;color:var(--ink2);max-width:540px;margin-bottom:30px;font-weight:400}
+.c-web-lead .c-actions{display:flex;gap:12px;align-items:center}
+.c-web-lead .c-btn{padding:14px 26px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;display:inline-flex;align-items:center;gap:10px}
+.c-web-lead .c-btn.signal{background:var(--ink);color:var(--snow)}
+.c-web-lead .c-btn.signal::after{content:'↗';color:var(--signal);font-weight:400}
+.c-web-lead .c-btn.outline{background:transparent;border:1px solid var(--ink);color:var(--ink)}
+.c-web-aside{display:flex;flex-direction:column;gap:14px}
+.c-web-bigmark{display:flex;align-items:center;justify-content:flex-end;margin-bottom:14px}
+.c-web-bigmark svg{width:160px;height:160px}
+.c-web-tile{background:var(--snow);padding:18px 20px;border:1px solid rgba(15,15,15,.14)}
+.c-web-tile.dark{background:var(--ink);color:var(--snow);border-color:var(--ink)}
+.c-web-tile .ct-h{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--signal);font-weight:400;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
+.c-web-tile .ct-h .ct-tag{font-size:8.5px;border:1px solid var(--signal);padding:2px 6px;letter-spacing:.14em}
+.c-web-tile .ct-title{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:500;line-height:1.15;letter-spacing:-.02em;margin-bottom:6px;text-transform:lowercase}
+.c-web-tile .ct-meta{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.06em;color:rgba(15,15,15,.55);line-height:1.5}
+.c-web-tile.dark .ct-meta{color:rgba(255,255,255,.55)}
+.c-web-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(15,15,15,.12);border-top:1px solid rgba(15,15,15,.12)}
+.c-web-strip .cs-cell{background:var(--stone);padding:24px 22px;display:flex;flex-direction:column;gap:6px}
+.c-web-strip .cs-n{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:600;letter-spacing:-.04em;line-height:.95;color:var(--ink)}
+.c-web-strip .cs-n .sig{color:var(--signal)}
+.c-web-strip .cs-l{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(15,15,15,.6);font-weight:400;line-height:1.4}
+
+/* C · Slides */
+.c-slides{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.c-slide{aspect-ratio:16/9;position:relative;overflow:hidden;border:1px solid rgba(15,15,15,.18)}
+.c-slide.title{background:var(--stone3);padding:36px 40px;display:flex;flex-direction:column;justify-content:space-between}
+.c-slide.title::after{content:'';position:absolute;left:36px;right:36px;bottom:30%;height:1px;background:var(--signal);opacity:.5}
+.c-slide-top{display:flex;justify-content:space-between;align-items:start;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(15,15,15,.55);font-weight:400;z-index:2;position:relative}
+.c-slide-top .cs-coord{display:flex;align-items:center;gap:8px}
+.c-slide-top .cs-coord .pulse{width:5px;height:5px;background:var(--signal);border-radius:50%}
+.c-slide-mid{margin:auto 0;z-index:2;position:relative}
+.c-slide-mid .cm-section{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--signal);font-weight:400;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.c-slide-mid .cm-section::before{content:'';width:16px;height:1px;background:var(--signal)}
+.c-slide-mid h2{font-family:'Space Grotesk',sans-serif;font-size:46px;font-weight:500;line-height:.95;letter-spacing:-.04em;color:var(--ink);margin-bottom:14px;text-transform:lowercase}
+.c-slide-mid h2 .sig{color:var(--signal);font-weight:600}
+.c-slide-mid .cm-stand{font-family:'Space Grotesk',sans-serif;font-size:13.5px;line-height:1.45;color:var(--ink2);max-width:90%}
+.c-slide-foot-c{display:flex;justify-content:space-between;align-items:end;z-index:2;position:relative;padding-top:14px;border-top:1px solid rgba(15,15,15,.18)}
+.c-slide-foot-c .cf-mark{display:flex;align-items:center;gap:8px}
+.c-slide-foot-c .cf-mark svg{width:22px;height:22px}
+.c-slide-foot-c .cf-mark .cf-name{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;letter-spacing:-.02em;color:var(--ink);text-transform:lowercase}
+.c-slide-foot-c .cf-roster{font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(15,15,15,.6);text-align:right;line-height:1.5}
+.c-slide-foot-c .cf-roster b{color:var(--signal);font-weight:400}
+.c-slide.content{background:var(--ink);color:var(--snow);padding:36px 40px;display:grid;grid-template-rows:auto 1fr auto;gap:18px}
+.c-slide.content .cc-top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:400}
+.c-slide.content .cc-top b{color:var(--signal)}
+.c-slide.content .cc-section{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--signal);font-weight:400;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.c-slide.content .cc-section::before{content:'';width:14px;height:1px;background:var(--signal)}
+.c-slide.content h3{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:500;line-height:1.05;letter-spacing:-.025em;color:var(--snow);margin-bottom:14px;text-transform:lowercase}
+.c-slide.content h3 .sig{color:var(--signal);font-weight:600}
+.c-slide.content .cc-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:start}
+.c-slide.content .cc-body{font-family:'Space Grotesk',sans-serif;font-size:11.5px;line-height:1.55;color:rgba(255,255,255,.78);font-weight:400}
+.c-slide.content .cc-body p{margin-bottom:9px}
+.c-slide.content .cc-data{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.15)}
+.c-slide.content .cc-row{background:var(--ink);padding:10px 14px;display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.c-slide.content .cc-row .cc-row-l{font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:400}
+.c-slide.content .cc-row .cc-row-v{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;letter-spacing:-.02em;color:var(--signal)}
+.c-slide.content .cc-foot{display:flex;justify-content:space-between;align-items:end;padding-top:10px;border-top:1px solid rgba(255,255,255,.18);font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:400}
+.c-slide.content .cc-foot b{color:var(--signal)}
+
+/* C · Social */
+.c-social{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:start}
+.c-social-li{aspect-ratio:1200/628;background:var(--ink);color:var(--snow);position:relative;overflow:hidden;border:1px solid var(--ink);padding:32px}
+.c-social-li::before{content:'';position:absolute;left:32px;right:32px;top:50%;height:1px;background:var(--signal);opacity:.4}
+.c-social-li .csl-grid{display:grid;grid-template-rows:auto 1fr auto;gap:14px;height:100%;position:relative;z-index:2}
+.c-social-li .csl-top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:400}
+.c-social-li .csl-top .pulse{display:inline-block;width:6px;height:6px;background:var(--signal);border-radius:50%;margin-right:8px;vertical-align:middle}
+.c-social-li .csl-mid{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:center}
+.c-social-li .csl-section{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--signal);font-weight:400;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.c-social-li .csl-section::before{content:'';width:16px;height:1px;background:var(--signal)}
+.c-social-li h2{font-family:'Space Grotesk',sans-serif;font-size:50px;font-weight:500;line-height:.92;letter-spacing:-.045em;color:var(--snow);text-transform:lowercase}
+.c-social-li h2 .sig{color:var(--signal);font-weight:600}
+.c-social-li .csl-aside{display:flex;flex-direction:column;align-items:end;gap:8px}
+.c-social-li .csl-aside svg{width:108px;height:108px}
+.c-social-li .csl-aside .csl-coord{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);text-align:right;line-height:1.5}
+.c-social-li .csl-foot{display:flex;justify-content:space-between;align-items:end;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:400}
+.c-social-li .csl-foot .csl-mast{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;letter-spacing:-.03em;color:var(--snow);text-transform:lowercase}
+.c-social-ig{aspect-ratio:1/1;background:var(--stone);position:relative;overflow:hidden;padding:28px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(15,15,15,.18)}
+.c-social-ig::before{content:'';position:absolute;left:28px;right:28px;top:55%;height:1px;background:var(--signal)}
+.c-social-ig .cig-top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(15,15,15,.55);font-weight:400;z-index:2;position:relative}
+.c-social-ig .cig-mid{z-index:2;position:relative;margin-top:auto;margin-bottom:auto;padding:10px 0}
+.c-social-ig .cig-stat{font-family:'Space Grotesk',sans-serif;font-size:120px;font-weight:600;line-height:.85;letter-spacing:-.07em;color:var(--signal);text-transform:lowercase;margin-bottom:8px}
+.c-social-ig .cig-label{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:500;line-height:1.15;letter-spacing:-.02em;color:var(--ink);text-transform:lowercase;max-width:90%}
+.c-social-ig .cig-foot{display:flex;justify-content:space-between;align-items:end;z-index:2;position:relative;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(15,15,15,.6)}
+.c-social-ig .cig-foot .cig-mast{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;letter-spacing:-.02em;color:var(--ink);text-transform:lowercase}
+
+/* ════════════════════════════════════════════
+   07 · YMP (per-direction sub-brand)
+   Same skeleton across A / B / C — only the visual
+   tokens (mark, type, palette) shift to inherit each
+   direction's DNA. YMP shows as a coherent sister.
+════════════════════════════════════════════ */
+.ymp-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.ymp-mark-panel{
+  padding:48px 36px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;gap:14px;min-height:440px;position:relative;
+}
+.ymp-wordmark{line-height:1}
+.ymp-sub{font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:600}
+.ymp-relate{
+  margin-top:18px;display:flex;flex-direction:column;gap:8px;padding-top:18px;
+  border-top:1px solid currentColor;width:100%;max-width:300px;text-align:left;
+}
+.ymp-rule{
+  font-size:11.5px;letter-spacing:.01em;line-height:1.5;display:grid;
+  grid-template-columns:auto 1fr;gap:10px;font-weight:400;
+}
+.ymp-rule .ymp-rule-k{
+  font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;
+  padding-top:1px;white-space:nowrap;
+}
+.ymp-poster{display:flex;flex-direction:column;min-height:440px;overflow:hidden;position:relative}
+.ymp-poster-photo{flex:1;overflow:hidden;position:relative;min-height:240px}
+.ymp-poster-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.ymp-poster-body{padding:26px 28px;display:flex;flex-direction:column;gap:10px}
+.ymp-poster-eyebrow{
+  font-size:10px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;
+  display:flex;align-items:center;gap:12px;
+}
+.ymp-poster-eyebrow::before{content:'';width:18px;height:1px;background:currentColor}
+.ymp-poster h3{font-size:34px;line-height:1.05;font-weight:500;letter-spacing:-.01em;margin:0}
+.ymp-poster-stand{font-size:14px;line-height:1.55;font-weight:400;max-width:90%}
+.ymp-poster-foot{
+  padding-top:12px;margin-top:auto;
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;
+  display:flex;justify-content:space-between;
+}
+
+/* ── A · YMP ── */
+.dir-a .ymp-mark-panel{background:var(--navy);color:rgba(255,255,255,.75);border:1px solid rgba(184,148,46,.18)}
+.dir-a .ymp-mark-panel svg{width:124px;height:124px}
+.dir-a .ymp-wordmark{font-family:'Lora',serif;font-style:italic;font-size:64px;color:#fff;font-weight:400;letter-spacing:.04em;margin-top:6px}
+.dir-a .ymp-mark-panel .ymp-sub{color:var(--lgold)}
+.dir-a .ymp-relate{border-top-color:rgba(184,148,46,.3)}
+.dir-a .ymp-rule .ymp-rule-k{color:var(--lgold)}
+.dir-a .ymp-poster{background:var(--cream);border:1px solid rgba(13,27,42,.12)}
+.dir-a .ymp-poster-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(13,27,42,.45),rgba(0,0,0,0) 60%);pointer-events:none}
+.dir-a .ymp-poster-eyebrow{color:var(--gold)}
+.dir-a .ymp-poster h3{font-family:'Lora',serif;color:var(--navy);font-weight:400}
+.dir-a .ymp-poster h3 em{font-style:italic;color:var(--gold)}
+.dir-a .ymp-poster-stand{font-family:'Jost',sans-serif;color:rgba(13,27,42,.7);font-weight:300}
+.dir-a .ymp-poster-foot{font-family:'Jost',sans-serif;color:rgba(13,27,42,.55);border-top:1px solid rgba(13,27,42,.14);font-weight:500}
+.dir-a .ymp-poster-foot b{color:var(--gold);font-weight:600}
+
+/* ── B · YMP ── */
+.dir-b .ymp-mark-panel{background:var(--atlantic);color:var(--mist);border-top:3px solid var(--plimsoll)}
+.dir-b .ymp-mark-panel svg{width:96px;height:96px}
+.dir-b .ymp-wordmark{font-family:'Spectral',serif;font-size:64px;color:var(--chalk);font-weight:500;letter-spacing:.08em;line-height:1}
+.dir-b .ymp-mark-panel .ymp-sub{color:var(--plimsoll)}
+.dir-b .ymp-relate{border-top-color:rgba(180,194,191,.3)}
+.dir-b .ymp-rule{font-family:'Inter',sans-serif}
+.dir-b .ymp-rule .ymp-rule-k{color:var(--plimsoll)}
+.dir-b .ymp-poster{background:var(--chalk);border:1px solid rgba(22,22,22,.16)}
+.dir-b .ymp-poster::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--plimsoll);z-index:3}
+.dir-b .ymp-poster-photo{background:var(--atlantic-deep)}
+.dir-b .ymp-poster-photo img{filter:grayscale(1) contrast(1.06) brightness(.92)}
+.dir-b .ymp-poster-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,38,38,.85) 0%,rgba(15,61,63,.5) 50%,rgba(26,90,92,.55) 100%);mix-blend-mode:multiply;pointer-events:none}
+.dir-b .ymp-poster-photo .ymp-waterline{position:absolute;left:0;right:0;top:62%;height:1px;background:var(--plimsoll);z-index:2}
+.dir-b .ymp-poster-eyebrow{color:var(--plimsoll);font-family:'Inter',sans-serif}
+.dir-b .ymp-poster h3{font-family:'Spectral',serif;color:var(--atlantic);font-weight:400;letter-spacing:-.015em}
+.dir-b .ymp-poster h3 em{font-style:italic;color:var(--plimsoll);font-weight:400}
+.dir-b .ymp-poster-stand{font-family:'Inter',sans-serif;color:var(--hull);font-weight:400}
+.dir-b .ymp-poster-foot{font-family:'Inter',sans-serif;color:var(--hull);border-top:1px solid rgba(22,22,22,.18);font-weight:600;opacity:.8}
+.dir-b .ymp-poster-foot b{color:var(--plimsoll);opacity:1;font-weight:700}
+
+/* ── C · YMP ── */
+.dir-c .ymp-mark-panel{background:var(--ink);color:var(--mist);border:1px solid rgba(15,15,15,.2)}
+.dir-c .ymp-mark-panel svg{width:108px;height:108px}
+.dir-c .ymp-wordmark{font-family:'Space Grotesk',sans-serif;font-size:74px;color:var(--stone3);font-weight:600;text-transform:lowercase;letter-spacing:-.04em;line-height:1}
+.dir-c .ymp-mark-panel .ymp-sub{color:var(--cobalt);font-family:'Space Mono',monospace;font-weight:400;text-transform:uppercase}
+.dir-c .ymp-relate{border-top-color:rgba(184,181,172,.3)}
+.dir-c .ymp-rule{font-family:'Space Mono',monospace;text-transform:uppercase;font-size:9.5px;letter-spacing:.14em;color:rgba(184,181,172,.85)}
+.dir-c .ymp-rule .ymp-rule-k{color:var(--cobalt)}
+.dir-c .ymp-poster{background:var(--stone3);border:1px solid rgba(15,15,15,.18)}
+.dir-c .ymp-poster::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--cobalt);z-index:3}
+.dir-c .ymp-poster-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(15,15,15,.5),rgba(0,0,0,0) 60%);pointer-events:none}
+.dir-c .ymp-poster-eyebrow{color:var(--cobalt);font-family:'Space Mono',monospace;font-weight:400}
+.dir-c .ymp-poster h3{font-family:'Space Grotesk',sans-serif;color:var(--ink);font-weight:500;letter-spacing:-.025em;text-transform:lowercase}
+.dir-c .ymp-poster h3 .sig{color:var(--cobalt);font-weight:600}
+.dir-c .ymp-poster-stand{font-family:'Space Grotesk',sans-serif;color:rgba(15,15,15,.7);font-weight:400}
+.dir-c .ymp-poster-foot{font-family:'Space Mono',monospace;color:rgba(15,15,15,.6);border-top:1px solid rgba(15,15,15,.18);font-weight:400}
+.dir-c .ymp-poster-foot b{color:var(--cobalt);font-weight:700}
+
+/* responsive */
+@media (max-width:980px){
+  .ymp-grid{grid-template-columns:1fr!important}
+}
+
+/* ════════════════════════════════════════════
+   FINE PRINT (end of each direction)
+════════════════════════════════════════════ */
+.dir-fineprint{
+  padding:40px 64px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;
+}
+.dir-fineprint.spaced{padding:60px 64px}
+
+/* responsive trim */
+@media (max-width:980px){
+  .dir-intro{grid-template-columns:1fr;gap:24px;padding:48px 24px}
+  .dir-letter{font-size:120px}
+  .dir-section{grid-template-columns:1fr;gap:24px;padding:48px 24px}
+  .a-mark-grid,.a-palette,.b-mark-grid,.b-palette,.c-mark-grid,.c-palette,.a-slides,.b-slides,.c-slides,.a-social,.b-social,.c-social{grid-template-columns:1fr!important}
+  .a-palette,.b-palette,.c-palette{grid-template-columns:repeat(2,1fr)!important}
+  .tabbar{grid-template-columns:1fr;gap:12px}
+  .tabbar-meta{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Reusable SVG defs: Bow Mark from existing brand -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- A · Existing Bow Mark, gold -->
+    <symbol id="bow-gold" viewBox="0 0 420 420">
+      <circle cx="210" cy="210" r="196" fill="none" stroke="#D4AF5A" stroke-width="1.2" opacity="0.22"></circle>
+      <circle cx="210" cy="210" r="152" fill="none" stroke="#D4AF5A" stroke-width="0.9" opacity="0.16"></circle>
+      <circle cx="210" cy="210" r="100" fill="none" stroke="#D4AF5A" stroke-width="0.7" opacity="0.11"></circle>
+      <line x1="14" y1="210" x2="406" y2="210" stroke="#D4AF5A" stroke-width="0.7" opacity="0.13"></line>
+      <line x1="210" y1="14" x2="210" y2="406" stroke="#D4AF5A" stroke-width="0.7" opacity="0.13"></line>
+      <line x1="210" y1="210" x2="226" y2="14" stroke="#D4AF5A" stroke-width="2.0" opacity="0.28"></line>
+      <circle cx="132" cy="124" r="5" fill="#D4AF5A" opacity="0.38"></circle>
+      <circle cx="278" cy="162" r="3.5" fill="#D4AF5A" opacity="0.26"></circle>
+      <circle cx="210" cy="210" r="7" fill="#D4AF5A" opacity="0.36"></circle>
+      <circle cx="210" cy="210" r="3" fill="#D4AF5A" opacity="0.72"></circle>
+      <line x1="210" y1="20" x2="210" y2="346" stroke="#D4AF5A" stroke-width="4.5" stroke-linecap="round"></line>
+      <path d="M210,90 Q200,230 92,378" stroke="#D4AF5A" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+      <path d="M210,134 Q204,238 148,360" stroke="#D4AF5A" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.62"></path>
+      <path d="M210,90 Q220,230 328,378" stroke="#D4AF5A" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+      <path d="M210,134 Q216,238 272,360" stroke="#D4AF5A" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.62"></path>
+      <line x1="98" y1="382" x2="76" y2="412" stroke="#D4AF5A" stroke-width="4.2" stroke-linecap="round"></line>
+      <line x1="122" y1="388" x2="102" y2="416" stroke="#D4AF5A" stroke-width="3.4" stroke-linecap="round" opacity="0.76"></line>
+      <line x1="150" y1="393" x2="134" y2="419" stroke="#D4AF5A" stroke-width="2.7" stroke-linecap="round" opacity="0.54"></line>
+      <line x1="182" y1="396" x2="170" y2="420" stroke="#D4AF5A" stroke-width="2.1" stroke-linecap="round" opacity="0.34"></line>
+      <line x1="322" y1="382" x2="344" y2="412" stroke="#D4AF5A" stroke-width="4.2" stroke-linecap="round"></line>
+      <line x1="298" y1="388" x2="318" y2="416" stroke="#D4AF5A" stroke-width="3.4" stroke-linecap="round" opacity="0.76"></line>
+      <line x1="270" y1="393" x2="286" y2="419" stroke="#D4AF5A" stroke-width="2.7" stroke-linecap="round" opacity="0.54"></line>
+      <line x1="238" y1="396" x2="250" y2="420" stroke="#D4AF5A" stroke-width="2.1" stroke-linecap="round" opacity="0.34"></line>
+    </symbol>
+    <!-- A · Existing Bow Mark, navy -->
+    <symbol id="bow-navy" viewBox="0 0 420 420">
+      <circle cx="210" cy="210" r="196" fill="none" stroke="#D4AF5A" stroke-width="1.2" opacity="0.32"></circle>
+      <circle cx="210" cy="210" r="152" fill="none" stroke="#D4AF5A" stroke-width="0.9" opacity="0.26"></circle>
+      <circle cx="210" cy="210" r="100" fill="none" stroke="#D4AF5A" stroke-width="0.7" opacity="0.18"></circle>
+      <line x1="14" y1="210" x2="406" y2="210" stroke="#D4AF5A" stroke-width="0.7" opacity="0.2"></line>
+      <line x1="210" y1="14" x2="210" y2="406" stroke="#D4AF5A" stroke-width="0.7" opacity="0.2"></line>
+      <line x1="210" y1="210" x2="226" y2="14" stroke="#D4AF5A" stroke-width="2.0" opacity="0.38"></line>
+      <circle cx="132" cy="124" r="5" fill="#D4AF5A" opacity="0.48"></circle>
+      <circle cx="278" cy="162" r="3.5" fill="#D4AF5A" opacity="0.36"></circle>
+      <circle cx="210" cy="210" r="7" fill="#D4AF5A" opacity="0.46"></circle>
+      <circle cx="210" cy="210" r="3" fill="#D4AF5A" opacity="0.82"></circle>
+      <line x1="210" y1="20" x2="210" y2="346" stroke="#0D1B2A" stroke-width="4.5" stroke-linecap="round"></line>
+      <path d="M210,90 Q200,230 92,378" stroke="#0D1B2A" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+      <path d="M210,134 Q204,238 148,360" stroke="#0D1B2A" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.62"></path>
+      <path d="M210,90 Q220,230 328,378" stroke="#0D1B2A" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+      <path d="M210,134 Q216,238 272,360" stroke="#0D1B2A" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.62"></path>
+      <line x1="98" y1="382" x2="76" y2="412" stroke="#0D1B2A" stroke-width="4.2" stroke-linecap="round"></line>
+      <line x1="122" y1="388" x2="102" y2="416" stroke="#0D1B2A" stroke-width="3.4" stroke-linecap="round" opacity="0.76"></line>
+      <line x1="150" y1="393" x2="134" y2="419" stroke="#0D1B2A" stroke-width="2.7" stroke-linecap="round" opacity="0.54"></line>
+      <line x1="182" y1="396" x2="170" y2="420" stroke="#0D1B2A" stroke-width="2.1" stroke-linecap="round" opacity="0.34"></line>
+      <line x1="322" y1="382" x2="344" y2="412" stroke="#0D1B2A" stroke-width="4.2" stroke-linecap="round"></line>
+      <line x1="298" y1="388" x2="318" y2="416" stroke="#0D1B2A" stroke-width="3.4" stroke-linecap="round" opacity="0.76"></line>
+      <line x1="270" y1="393" x2="286" y2="419" stroke="#0D1B2A" stroke-width="2.7" stroke-linecap="round" opacity="0.54"></line>
+      <line x1="238" y1="396" x2="250" y2="420" stroke="#0D1B2A" stroke-width="2.1" stroke-linecap="round" opacity="0.34"></line>
+    </symbol>
+
+    <!-- C · Bearing mark — light bg -->
+    <symbol id="bearing-light" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="44" fill="none" stroke="#0F0F0F" stroke-width="2"></circle>
+      <circle cx="50" cy="50" r="30" fill="none" stroke="#0F0F0F" stroke-width="0.8" opacity="0.35"></circle>
+      <line x1="6" y1="50" x2="94" y2="50" stroke="#0F0F0F" stroke-width="0.6" opacity="0.25"></line>
+      <line x1="50" y1="6" x2="50" y2="94" stroke="#0F0F0F" stroke-width="0.6" opacity="0.25"></line>
+      <line x1="14" y1="82" x2="86" y2="18" stroke="#E84E1B" stroke-width="3" stroke-linecap="square"></line>
+      <circle cx="86" cy="18" r="5" fill="#E84E1B"></circle>
+      <circle cx="50" cy="50" r="2.5" fill="#0F0F0F"></circle>
+    </symbol>
+    <!-- C · Bearing mark — dark bg -->
+    <symbol id="bearing-dark" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="44" fill="none" stroke="#FAFAF7" stroke-width="2"></circle>
+      <circle cx="50" cy="50" r="30" fill="none" stroke="#FAFAF7" stroke-width="0.8" opacity="0.35"></circle>
+      <line x1="6" y1="50" x2="94" y2="50" stroke="#FAFAF7" stroke-width="0.6" opacity="0.25"></line>
+      <line x1="50" y1="6" x2="50" y2="94" stroke="#FAFAF7" stroke-width="0.6" opacity="0.25"></line>
+      <line x1="14" y1="82" x2="86" y2="18" stroke="#E84E1B" stroke-width="3" stroke-linecap="square"></line>
+      <circle cx="86" cy="18" r="5" fill="#E84E1B"></circle>
+      <circle cx="50" cy="50" r="2.5" fill="#FAFAF7"></circle>
+    </symbol>
+    <!-- C · Bearing — cobalt variant for YMP -->
+    <symbol id="bearing-cobalt" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="44" fill="none" stroke="#FAFAF7" stroke-width="2"></circle>
+      <circle cx="50" cy="50" r="30" fill="none" stroke="#FAFAF7" stroke-width="0.8" opacity="0.35"></circle>
+      <line x1="6" y1="50" x2="94" y2="50" stroke="#FAFAF7" stroke-width="0.6" opacity="0.25"></line>
+      <line x1="50" y1="6" x2="50" y2="94" stroke="#FAFAF7" stroke-width="0.6" opacity="0.25"></line>
+      <line x1="14" y1="82" x2="86" y2="18" stroke="#1A3FA8" stroke-width="3" stroke-linecap="square"></line>
+      <circle cx="86" cy="18" r="5" fill="#1A3FA8"></circle>
+      <circle cx="50" cy="50" r="2.5" fill="#FAFAF7"></circle>
+    </symbol>
+
+    <!-- B · Mark · dark stroke (chalk ground)
+         Concentric rings + crosshair scaffolding (siblings of the Bow mark)
+         around the Plimsoll waterline + small load-line ticks above and below. -->
+    <symbol id="plimsoll-dark" viewBox="0 0 60 60">
+      <!-- outer ring -->
+      <circle cx="30" cy="30" r="26" fill="none" stroke="#0F3D3F" stroke-width="1.5"></circle>
+      <!-- faint inner ring -->
+      <circle cx="30" cy="30" r="18" fill="none" stroke="#0F3D3F" stroke-width="0.5" opacity="0.32"></circle>
+      <!-- crosshair scaffolding -->
+      <line x1="30" y1="2" x2="30" y2="58" stroke="#0F3D3F" stroke-width="0.4" opacity="0.28"></line>
+      <line x1="2" y1="30" x2="58" y2="30" stroke="#0F3D3F" stroke-width="0.4" opacity="0.28"></line>
+      <!-- THE WATERLINE — the heavy primary bar -->
+      <line x1="10" y1="30" x2="50" y2="30" stroke="#0F3D3F" stroke-width="2.4" stroke-linecap="square"></line>
+      <!-- plimsoll-red segment (the summer load line) -->
+      <line x1="22" y1="30" x2="38" y2="30" stroke="#D34A3D" stroke-width="2.4" stroke-linecap="square"></line>
+      <!-- load line ticks above -->
+      <line x1="26" y1="22" x2="34" y2="22" stroke="#0F3D3F" stroke-width="1.5"></line>
+      <line x1="27.5" y1="17" x2="32.5" y2="17" stroke="#0F3D3F" stroke-width="1.2" opacity="0.7"></line>
+      <!-- load line ticks below -->
+      <line x1="26" y1="38" x2="34" y2="38" stroke="#0F3D3F" stroke-width="1.5"></line>
+      <line x1="27.5" y1="43" x2="32.5" y2="43" stroke="#0F3D3F" stroke-width="1.2" opacity="0.7"></line>
+      <!-- centre dot in red -->
+      <circle cx="30" cy="30" r="1.6" fill="#D34A3D"></circle>
+    </symbol>
+    <!-- B · Mark · light stroke (atlantic ground) -->
+    <symbol id="plimsoll-light" viewBox="0 0 60 60">
+      <circle cx="30" cy="30" r="26" fill="none" stroke="#EFECE3" stroke-width="1.5"></circle>
+      <circle cx="30" cy="30" r="18" fill="none" stroke="#EFECE3" stroke-width="0.5" opacity="0.32"></circle>
+      <line x1="30" y1="2" x2="30" y2="58" stroke="#EFECE3" stroke-width="0.4" opacity="0.28"></line>
+      <line x1="2" y1="30" x2="58" y2="30" stroke="#EFECE3" stroke-width="0.4" opacity="0.28"></line>
+      <line x1="10" y1="30" x2="50" y2="30" stroke="#EFECE3" stroke-width="2.4" stroke-linecap="square"></line>
+      <line x1="22" y1="30" x2="38" y2="30" stroke="#D34A3D" stroke-width="2.4" stroke-linecap="square"></line>
+      <line x1="26" y1="22" x2="34" y2="22" stroke="#EFECE3" stroke-width="1.5"></line>
+      <line x1="27.5" y1="17" x2="32.5" y2="17" stroke="#EFECE3" stroke-width="1.2" opacity="0.7"></line>
+      <line x1="26" y1="38" x2="34" y2="38" stroke="#EFECE3" stroke-width="1.5"></line>
+      <line x1="27.5" y1="43" x2="32.5" y2="43" stroke="#EFECE3" stroke-width="1.2" opacity="0.7"></line>
+      <circle cx="30" cy="30" r="1.6" fill="#D34A3D"></circle>
+    </symbol>
+    <!-- B · Mark · compact (inline at small sizes) -->
+    <symbol id="plimsoll-mini" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.1"></circle>
+      <line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.4"></line>
+      <line x1="9" y1="12" x2="15" y2="12" stroke="#D34A3D" stroke-width="1.4"></line>
+      <line x1="10" y1="9" x2="14" y2="9" stroke="currentColor" stroke-width="0.9"></line>
+      <line x1="10" y1="15" x2="14" y2="15" stroke="currentColor" stroke-width="0.9"></line>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="shell">
+
+  <!-- TAB BAR -->
+  <nav class="tabbar">
+    <div class="tabbar-brand"><b>LSLC</b> · Brand Directions</div>
+    <div class="tabs">
+      <button type="button" class="tab active" data-dir="a"><span class="tab-letter">A</span>Admiralty Bench</button>
+      <button type="button" class="tab" data-dir="b"><span class="tab-letter">B</span>Waterline</button>
+      <button type="button" class="tab" data-dir="c"><span class="tab-letter">C</span>Bearing</button>
+    </div>
+    <div class="tabbar-meta">Three Directions · v1 · May 2026</div>
+  </nav>
+
+  <main class="stage">
+
+    <!-- ════════════════════════════════════
+         DIRECTION A · ADMIRALTY BENCH
+    ════════════════════════════════════ -->
+    <section class="direction dir-a active" id="dir-a" data-screen-label="A — Admiralty Bench">
+
+      <header class="dir-intro">
+        <div class="dir-letter">A</div>
+        <div class="dir-headings">
+          <div class="dir-eyebrow">Direction A · Current</div>
+          <h1 class="dir-name">Admiralty Bench</h1>
+          <p class="dir-tagline">Deep navy, candlelit gold, the mast and radar of a vessel under quiet command. The London chambers reading-room — pulled across into a maritime forum.</p>
+        </div>
+        <div class="dir-meta">
+          Reference set<br>
+          Lora · Jost<br>
+          Navy · Gold · Cream
+        </div>
+      </header>
+
+      <!-- A1 The Mark -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">01</span>
+          The Mark
+          <span class="hint">Mast, radar rings, wake. Two finishes for light and dark grounds.</span>
+        </div>
+        <div class="a-mark-grid">
+          <div class="a-mark-panel light">
+            <svg viewBox="0 0 420 420" aria-label="Bow Mark, Navy"><use href="#bow-navy"/></svg>
+            <div class="a-mark-wordmark">
+              <div class="wm-name" style="color:var(--navy)">London Shipping Law Centre</div>
+              <div class="wm-sub" style="color:var(--gold)">The Forum · Est. 1995</div>
+            </div>
+            <div class="a-mark-label">Navy on cream · Primary light</div>
+          </div>
+          <div class="a-mark-panel dark">
+            <svg viewBox="0 0 420 420" aria-label="Bow Mark, Gold"><use href="#bow-gold"/></svg>
+            <div class="a-mark-wordmark">
+              <div class="wm-name">London Shipping Law Centre</div>
+              <div class="wm-sub">The Forum · Est. 1995</div>
+            </div>
+            <div class="a-mark-label">Gold on navy · Primary dark</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- A2 Palette -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">02</span>
+          Palette
+          <span class="hint">Navy as primary ground, gold as accent. Cream and offwhite for documents.</span>
+        </div>
+        <div class="a-palette">
+          <div class="a-swatch dark" style="background:#0D1B2A"><div><div class="sw-name">Navy</div><div class="sw-hex">#0D1B2A</div></div><div class="sw-use">Primary · Header</div></div>
+          <div class="a-swatch dark" style="background:#08121E"><div><div class="sw-name">Deep Navy</div><div class="sw-hex">#08121E</div></div><div class="sw-use">Backgrounds</div></div>
+          <div class="a-swatch light" style="background:#B8942E"><div><div class="sw-name">Gold</div><div class="sw-hex">#B8942E</div></div><div class="sw-use">Accent · CTA</div></div>
+          <div class="a-swatch light" style="background:#D4AF5A"><div><div class="sw-name">Light Gold</div><div class="sw-hex">#D4AF5A</div></div><div class="sw-use">Display · Mark</div></div>
+          <div class="a-swatch light" style="background:#F6F2EB"><div><div class="sw-name">Cream</div><div class="sw-hex">#F6F2EB</div></div><div class="sw-use">Document · Light</div></div>
+          <div class="a-swatch light" style="background:#162236;color:#fff"><div><div class="sw-name" style="color:#fff">Card</div><div class="sw-hex" style="color:#D4AF5A">#162236</div></div><div class="sw-use" style="color:rgba(255,255,255,.55)">Panels</div></div>
+          <div class="a-swatch light" style="background:#FAFAF7"><div><div class="sw-name">Offwhite</div><div class="sw-hex">#FAFAF7</div></div><div class="sw-use">Body</div></div>
+          <div class="a-swatch light" style="background:#4A6070;color:#fff"><div><div class="sw-name" style="color:#fff">Muted</div><div class="sw-hex" style="color:rgba(255,255,255,.7)">#4A6070</div></div><div class="sw-use" style="color:rgba(255,255,255,.6)">Secondary text</div></div>
+        </div>
+      </section>
+
+      <!-- A3 Type -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">03</span>
+          Type
+          <span class="hint">Lora for headlines and event names — italic does the lifting. Jost for body and labels.</span>
+        </div>
+        <div class="a-type">
+          <div class="a-type-row">
+            <div class="tr-label">Lora · Display</div>
+            <div class="tr-display">Beyond <em>Straits</em></div>
+            <div class="tr-spec">Lora 300 / Lora 400 Italic · Headlines, event titles, pull quotes</div>
+          </div>
+          <div class="a-type-row">
+            <div class="tr-label">Jost · Body</div>
+            <div class="tr-body">The London Shipping Law Centre — founded 1995, inaugurated at the House of Lords 1997 — is the forum where shipping, commercial law and dispute resolution meet, with senior practitioners, judges and academics on a single platform.</div>
+            <div class="tr-spec">Jost 300 / 400 / 500 · Body, navigation, captions, UI</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- A4 Website Hero -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">04</span>
+          Website hero
+          <span class="hint">Above-the-fold. Photo behind a heavy navy wash, the radar drifting in from the right, gold accents and stat panels.</span>
+        </div>
+        <div class="a-web">
+          <div class="a-web-nav">
+            <div class="a-web-navlogo">
+              <svg viewBox="0 0 420 420"><use href="#bow-gold"/></svg>
+              <div class="nl-text">London Shipping Law Centre<small>The Forum · Est. 1995</small></div>
+            </div>
+            <div class="a-web-navlinks">
+              <span>Events</span><span>Members</span><span>Cadwallader</span><span>Essay</span><span>About</span>
+              <span class="a-web-navcta">Join</span>
+            </div>
+          </div>
+          <div class="a-web-hero">
+            <svg class="a-web-hero-radar" viewBox="0 0 420 420"><use href="#bow-gold"/></svg>
+            <div>
+              <div class="a-web-eyebrow">The Forum · Since 1995</div>
+              <h1 class="a-web-title">Shipping, commercial law<br><em>and dispute resolution.</em></h1>
+              <p class="a-web-desc">The senior platform for the maritime bar, leading shipowners, P&amp;I and the City — convened in London, broadcast worldwide. Thirty years of consequential conversations.</p>
+              <div class="a-web-actions">
+                <span class="a-web-btn gold">Upcoming events</span>
+                <span class="a-web-btn outline">Beyond Straits report</span>
+              </div>
+            </div>
+            <div class="a-web-stats">
+              <div class="a-web-stat"><div class="a-web-stat-n">30</div><div class="a-web-stat-l">Years convening</div></div>
+              <div class="a-web-stat"><div class="a-web-stat-n">10+</div><div class="a-web-stat-l">Events per year</div></div>
+              <div class="a-web-stat"><div class="a-web-stat-n">90m</div><div class="a-web-stat-l">Average forum</div></div>
+              <div class="a-web-stat"><div class="a-web-stat-n">1997</div><div class="a-web-stat-l">House of Lords</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- A5 Webinar slides -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">05</span>
+          Event slides
+          <span class="hint">Webinar / panel template. Title and a content frame with a pull quote.</span>
+        </div>
+        <div class="a-slides">
+          <div class="a-slide title">
+            <div class="a-slide-tag">LSLC · Forum</div>
+            <svg viewBox="0 0 420 420"><use href="#bow-gold"/></svg>
+            <div class="st-eyebrow">Expert Panel · 90 minutes</div>
+            <div class="st-title">Beyond <em>Straits</em><br>The Strait of Hormuz</div>
+            <div class="st-sub">Legal · Strategic · Commercial Consequences</div>
+            <div class="st-meta"><span>London · Hybrid</span><span>11 June 2026</span></div>
+          </div>
+          <div class="a-slide content">
+            <div class="a-slide-tag">LSLC · Forum</div>
+            <div class="sc-section">02 · English Law</div>
+            <div class="sc-title">Frustration, force majeure<br>&amp; <em>self-induced risk</em></div>
+            <div class="sc-body">London Arbitration 8/2026 confirms: where war-risk clauses already allocate the risk, the doctrine of frustration does not engage. Entering the Straits today carries self-induced frustration exposure under The Eugenia [1964].</div>
+            <div class="sc-quote">It is not good enough to tick the box. Genuine provenance intelligence has replaced tick-box due diligence.<cite>— Charles Webb, DMCC</cite></div>
+            <div class="sc-foot"><span>LSLC · Beyond Straits</span><span>Slide 04 / 18</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- A6 Social -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">06</span>
+          Social cards
+          <span class="hint">LinkedIn announce (1200 × 628) and Instagram quote card (1080²).</span>
+        </div>
+        <div class="a-social">
+          <div class="a-social-li">
+            <div class="sli-tag">LSLC · Forum</div>
+            <div class="sli-body">
+              <div class="sli-title">Beyond <em>Straits</em><br>Hormuz, after April.</div>
+              <div class="sli-meta">Floyd · Parry KC · Webb · Sheppard</div>
+            </div>
+            <div class="sli-mark">
+              <svg viewBox="0 0 420 420"><use href="#bow-gold"/></svg>
+            </div>
+          </div>
+          <div class="a-social-ig">
+            <svg viewBox="0 0 420 420"><use href="#bow-gold"/></svg>
+            <div class="sig-tag">LSLC · Quote Card</div>
+            <div class="sig-title">"The world has got <em>greedy and lazy</em> at the same time, and depends on a US Navy."</div>
+            <div class="sig-foot">Stephen · Panel Chair</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 YMP -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">07</span>
+          YMP
+          <span class="hint">Young Maritime Professionals — the next bench. Inherits the bow mark and Lora italic display; gold lightens for the junior register, navy is unchanged.</span>
+        </div>
+        <div class="ymp-grid">
+          <div class="ymp-mark-panel">
+            <svg viewBox="0 0 420 420"><use href="#bow-gold"/></svg>
+            <div class="ymp-wordmark"><em>YMP</em></div>
+            <div class="ymp-sub">Young Maritime Professionals</div>
+            <div class="ymp-relate">
+              <div class="ymp-rule"><span class="ymp-rule-k">Mark</span><span>Inherits the bow, set half-scale beside the YMP wordmark.</span></div>
+              <div class="ymp-rule"><span class="ymp-rule-k">Type</span><span>Same Lora italic; the YMP word always italic to distinguish.</span></div>
+              <div class="ymp-rule"><span class="ymp-rule-k">Accent</span><span>Gold lightens; navy is unchanged.</span></div>
+            </div>
+          </div>
+          <div class="ymp-poster">
+            <figure class="ymp-poster-photo">
+              <img src="https://images.unsplash.com/photo-1473042904451-00171c69419d?w=1400&q=80" alt="">
+            </figure>
+            <div class="ymp-poster-body">
+              <div class="ymp-poster-eyebrow">YMP · Annual · 2026</div>
+              <h3>The next <em>thirty years.</em></h3>
+              <p class="ymp-poster-stand">Trinity House, 12 September. Six panels on the disputes the incoming class will inherit, and the ones they intend to settle.</p>
+              <div class="ymp-poster-foot"><span>Trinity House · London</span><span><b>12.IX.2026</b></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="dir-fineprint spaced" style="border-top:1px solid rgba(13,27,42,.1);color:rgba(13,27,42,.5)">
+        <span>A · Admiralty Bench · Current</span>
+        <span>End of direction →</span>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════
+         DIRECTION B · WATERLINE
+    ════════════════════════════════════ -->
+    <section class="direction dir-b" id="dir-b" data-screen-label="B — Waterline">
+
+      <header class="dir-intro">
+        <div class="dir-letter">B</div>
+        <div class="dir-headings">
+          <div class="dir-eyebrow">Direction B · Plimsoll / Maritime Modern</div>
+          <h1 class="dir-name">Waterline</h1>
+          <p class="dir-tagline">The Plimsoll mark — stamped on every commercial hull at sea — abstracted into a brand system. <em>Atlantic teal</em> and <em>chalk</em>, separated by a single plimsoll-red rule that crosses every composition. Authority through engineering, not heritage.</p>
+        </div>
+        <div class="dir-meta">
+          Plimsoll / Maritime Modern<br>
+          Bricolage Grotesque · Manrope<br>
+          Atlantic · Chalk · Plimsoll
+        </div>
+      </header>
+
+      <!-- B1 The Mark -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">01</span>
+          The Mark
+          <span class="hint">The Plimsoll load-line disk — a circle bisected by the summer load-line — paired with the six load-line indicators (TF · F · T · S · W · WNA). The summer line itself is rendered in plimsoll red.</span>
+        </div>
+        <div class="b-mark-grid">
+          <div class="b-mark-panel chalk">
+            <div class="b-mark-label">Pl. I · Mark on Chalk</div>
+            <div class="b-plimsoll-mark">
+              <svg viewBox="0 0 60 60"><use href="#plimsoll-dark"/></svg>
+              <div class="b-plimsoll-text">
+                <div class="b-plimsoll-name">LSLC</div>
+                <div class="b-plimsoll-sub">London Shipping Law Centre</div>
+                <div class="b-plimsoll-coord">051.507° N · 000.128° W · est. 1995</div>
+              </div>
+            </div>
+          </div>
+          <div class="b-mark-panel atlantic">
+            <div class="b-mark-label">Pl. II · Mark on Atlantic</div>
+            <div class="b-plimsoll-mark">
+              <svg viewBox="0 0 60 60"><use href="#plimsoll-light"/></svg>
+              <div class="b-plimsoll-text">
+                <div class="b-plimsoll-name">LSLC</div>
+                <div class="b-plimsoll-sub">London Shipping Law Centre</div>
+                <div class="b-plimsoll-coord">051.507° N · 000.128° W · est. 1995</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- B2 Palette -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">02</span>
+          Palette
+          <span class="hint">Two grounds — chalk above the waterline, atlantic below — joined by one plimsoll-red rule. Mist and sand carry the supporting weight. Hull, ink-black, holds type.</span>
+        </div>
+        <div class="b-palette">
+          <div class="b-swatch t-dark" style="background:#0F3D3F"><div><div class="sw-no">01</div><div class="sw-name">Atlantic</div><div class="sw-hex">#0F3D3F</div></div><div class="sw-use">Below waterline · primary</div></div>
+          <div class="b-swatch t-dark" style="background:#082626"><div><div class="sw-no">02</div><div class="sw-name">Deep</div><div class="sw-hex">#082626</div></div><div class="sw-use">Depth · structure</div></div>
+          <div class="b-swatch t-light" style="background:#EFECE3"><div><div class="sw-no">03</div><div class="sw-name">Chalk</div><div class="sw-hex">#EFECE3</div></div><div class="sw-use">Above waterline · ground</div></div>
+          <div class="b-swatch t-signal" style="background:#D34A3D"><div><div class="sw-no">04</div><div class="sw-name">Plimsoll</div><div class="sw-hex">#D34A3D</div></div><div class="sw-use">Signal · the waterline</div></div>
+          <div class="b-swatch t-light" style="background:#FAFAF7"><div><div class="sw-no">05</div><div class="sw-name">Spray</div><div class="sw-hex">#FAFAF7</div></div><div class="sw-use">Cards · highlights</div></div>
+          <div class="b-swatch t-light" style="background:#B4C2BF"><div><div class="sw-no">06</div><div class="sw-name">Mist</div><div class="sw-hex">#B4C2BF</div></div><div class="sw-use">Muted · meta</div></div>
+          <div class="b-swatch t-light" style="background:#DCD3BD"><div><div class="sw-no">07</div><div class="sw-name">Sand</div><div class="sw-hex">#DCD3BD</div></div><div class="sw-use">Secondary ground</div></div>
+          <div class="b-swatch t-dark" style="background:#161616"><div><div class="sw-no">08</div><div class="sw-name">Hull</div><div class="sw-hex">#161616</div></div><div class="sw-use">Type · ink-black</div></div>
+        </div>
+      </section>
+
+      <!-- B3 Type -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">03</span>
+          Type
+          <span class="hint">Bricolage Grotesque does the display work — variable, contemporary, set tight and in caps. Manrope does the body and the UI. No italics in body; emphasis runs through plimsoll-red instead.</span>
+        </div>
+        <div class="b-type">
+          <div class="b-type-row">
+            <div class="b-tr-meta">
+              <div class="b-tr-meta-label">Display</div>
+              <div class="b-tr-meta-name">Bricolage Grotesque</div>
+              <div class="b-tr-meta-spec">700 weight<br>variable opsz<br>−0.045em tracking</div>
+            </div>
+            <div>
+              <div class="b-tr-display">Beyond <em>Straits.</em></div>
+            </div>
+          </div>
+          <div class="b-type-row">
+            <div class="b-tr-meta">
+              <div class="b-tr-meta-label">Lede</div>
+              <div class="b-tr-meta-name">Manrope · Medium</div>
+              <div class="b-tr-meta-spec">500 weight<br>20–24px<br>1.4 leading</div>
+            </div>
+            <div>
+              <div class="b-tr-italic">A King's Counsel, a board director and a former US Marine officer on the <em>legal, strategic and commercial</em> consequences of the April closure of the Strait.</div>
+            </div>
+          </div>
+          <div class="b-type-row">
+            <div class="b-tr-meta">
+              <div class="b-tr-meta-label">Body</div>
+              <div class="b-tr-meta-name">Manrope</div>
+              <div class="b-tr-meta-spec">300 / 400 / 500 / 700<br>13–15px<br>1.7 leading</div>
+            </div>
+            <div>
+              <div class="b-tr-body">The London Shipping Law Centre — founded 1995, inaugurated at the House of Lords 1997 — is the senior forum where shipping, commercial law and dispute resolution convene on a single platform. Thirty years of consequential conversations; ten a year, every year; <em>the record</em> of London shipping.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- B4 Website hero -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">04</span>
+          Website hero
+          <span class="hint">Atlantic nav above a plimsoll-red waterline rule. Chalk hero "above the water" with the lede and lead photograph. Atlantic stats strip "below the water" with the data. The red rule is the dividing line.</span>
+        </div>
+        <div class="b-web">
+          <div class="b-web-nav">
+            <div class="b-web-navlogo">
+              <svg viewBox="0 0 60 60"><use href="#plimsoll-light"/></svg>
+              <div class="nl-text">LSLC<span class="nl-sub">London Shipping Law Centre</span></div>
+            </div>
+            <div class="b-web-navlinks">
+              <span>Forum</span><span>Cadwallader</span><span>YMP</span><span>Members</span><span>Archive</span>
+            </div>
+            <span class="b-web-navcta">Subscribe</span>
+          </div>
+          <div class="b-web-bar">
+            <span class="bar-l"><span class="pulse"></span>BEARING · 051.507° N · 000.128° W</span>
+            <span class="bar-r">EDITION · <b>21.V.MMXXVI</b> · BEYOND STRAITS</span>
+          </div>
+          <div class="b-web-hero">
+            <div class="b-web-lead">
+              <div class="b-lead-eyebrow">Lead · Expert panel · 90 min</div>
+              <h1>Hormuz,<br>after <em>April.</em></h1>
+              <p class="b-stand">A King's Counsel, a board director of the DMCC and a former US Marine officer read the <em>legal, strategic and commercial</em> consequences of the closure. Broadcast live from London. Replay open to members.</p>
+              <div class="b-actions">
+                <span class="b-btn solid">Watch the replay</span>
+                <span class="b-btn outline">Download the brief</span>
+              </div>
+            </div>
+            <div class="b-web-aside">
+              <figure class="b-photo b-web-bigphoto">
+                <span class="b-photo-tag">Pl. I · Lead</span>
+                <span class="b-photo-coord">04.MMXXVI</span>
+                <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1400&q=80" alt="">
+                <div class="b-photo-cap"><span>A laden VLCC under naval escort, April 2026.</span><em>LSLC</em></div>
+              </figure>
+              <div class="b-web-tile">
+                <div class="tile-h">Forum · Forthcoming<span class="tile-tag">11 Jun</span></div>
+                <div class="tile-title">Trade, Risk &amp; <em>Hedging</em></div>
+                <div class="tile-meta">FLOYD ZADKOVICH · HANUMAN<br>HYBRID · 18:30 · LDN</div>
+              </div>
+              <div class="b-web-tile atlantic">
+                <div class="tile-h">Cadwallader · MMXXVI<span class="tile-tag">24 Jun</span></div>
+                <div class="tile-title">Lord Thomas, 2026</div>
+                <div class="tile-meta">INNER TEMPLE HALL · BY INVITATION</div>
+              </div>
+            </div>
+          </div>
+          <div class="b-web-stats">
+            <div class="b-stat"><div class="b-stat-n">30<em>.</em></div><div class="b-stat-l">Years convening · since 1995</div></div>
+            <div class="b-stat"><div class="b-stat-n">10–15<em>%</em></div><div class="b-stat-l">Global oil shipping · dark fleet</div></div>
+            <div class="b-stat"><div class="b-stat-n">8<em>/</em>26</div><div class="b-stat-l">London Arbitration · referenced</div></div>
+            <div class="b-stat"><div class="b-stat-n">90<em>m</em></div><div class="b-stat-l">Average forum · hybrid</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- B5 Event slides -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">05</span>
+          Event slides
+          <span class="hint">Title slide is "below the waterline" — atlantic ground, chalk type, the red rule crossing horizontally. Content slide is "above the waterline" — chalk ground, lede column + photo column, again split by the red rule.</span>
+        </div>
+        <div class="b-slides">
+          <div class="b-slide title">
+            <div class="b-slide-top">
+              <span>EVENT · EX–08/26 · LEAD</span>
+              <span><span class="pulse"></span>LIVE · LDN · 2026.05.21</span>
+            </div>
+            <div class="b-slide-mid">
+              <div class="b-sm-cat">Lead · Expert Panel · 90 min</div>
+              <h2>Hormuz,<br>after <em>April.</em></h2>
+              <p class="b-sm-stand">A King's Counsel, a board director and a former US Marine officer on the legal, strategic and commercial consequences of the closure.</p>
+            </div>
+            <div class="b-slide-foot">
+              <div class="b-sf-mark">
+                <svg viewBox="0 0 60 60"><use href="#plimsoll-light"/></svg>
+                <span class="b-sf-name">LSLC</span>
+              </div>
+              <div class="b-sf-roster">
+                FLOYD · PARRY KC · WEBB · SHEPPARD<br>
+                <b>BEARING · 051.507° N · 000.128° W</b>
+              </div>
+            </div>
+          </div>
+          <div class="b-slide content">
+            <div class="b-sc-top">
+              <span>SECTION · 02 · ENGLISH LAW</span>
+              <span><b>EX–08/26</b> · SLIDE 04 / 18</span>
+            </div>
+            <div class="b-sc-col">
+              <div class="b-sc-cat">02 · English Law</div>
+              <h3>Frustration, force majeure &amp;<br><em>self-induced risk.</em></h3>
+              <div class="b-sc-body">
+                <p>London Arbitration 8/2026 confirms: where war-risk clauses already allocate the risk, the doctrine of frustration does not engage.</p>
+                <p>Vessels entering the Strait today carry self-induced exposure under The Eugenia [1964].</p>
+              </div>
+              <div class="b-sc-foot"><span>LSLC · <b>BEYOND STRAITS</b></span><span>BEARING · 051.507° N</span></div>
+            </div>
+            <div class="b-sc-plate">
+              <figure class="b-photo">
+                <span class="b-photo-tag">Pl. III</span>
+                <span class="b-photo-coord">DARK FLEET</span>
+                <img src="https://images.unsplash.com/photo-1505839673365-e3971f8d9184?w=1200&q=80" alt="">
+                <div class="b-photo-cap"><span>A dark-fleet aframax in the Gulf of Oman.</span><em>LSLC</em></div>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- B6 Social cards -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">06</span>
+          Social cards
+          <span class="hint">LinkedIn sits "below the waterline" — atlantic ground, photo on the left, type and mark on the right, the red rule crossing the whole card. Instagram sits "above the waterline" — chalk ground, one outsized number, the rule cutting underneath.</span>
+        </div>
+        <div class="b-social">
+          <div class="b-social-li">
+            <div class="b-li-photo">
+              <figure class="b-photo">
+                <span class="b-photo-tag">Pl. I · Lead</span>
+                <span class="b-photo-coord">04.MMXXVI</span>
+                <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1600&q=80" alt="">
+                <div class="b-photo-cap"><span>A laden VLCC under naval escort, April MMXXVI.</span><em>LSLC</em></div>
+              </figure>
+            </div>
+            <div class="b-li-txt">
+              <div class="b-li-top">
+                <span><span class="pulse"></span> LIVE · LSLC · LDN</span>
+                <span>EX–08/26</span>
+              </div>
+              <div class="b-li-mid">
+                <div class="b-li-cat">Lead · Expert Panel</div>
+                <h2>Hormuz,<br>after <em>April.</em></h2>
+              </div>
+              <div class="b-li-foot">
+                <span>FLOYD · PARRY KC · WEBB · SHEPPARD</span>
+                <span class="b-li-mark">
+                  <svg viewBox="0 0 60 60"><use href="#plimsoll-light"/></svg>
+                  <span class="b-li-name">LSLC</span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="b-social-ig">
+            <div class="b-ig-top">
+              <span>STAT · <b>BEYOND STRAITS</b></span>
+              <span>IG · 1:1</span>
+            </div>
+            <div class="b-ig-mid">
+              <div class="b-ig-stat">10–15<em>%</em></div>
+              <div class="b-ig-label">of global oil shipping is now <em>operating dark.</em></div>
+            </div>
+            <div class="b-ig-foot">
+              <span>BEYOND STRAITS · 2026</span>
+              <span class="b-ig-mark">
+                <svg viewBox="0 0 60 60"><use href="#plimsoll-dark"/></svg>
+                <span class="b-ig-name">LSLC</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 YMP -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">07</span>
+          YMP
+          <span class="hint">Above the waterline — the lighter load. Inherits the Plimsoll mark and Spectral display; plimsoll-red is held, atlantic deepens slightly to read as a sister surface.</span>
+        </div>
+        <div class="ymp-grid">
+          <div class="ymp-mark-panel">
+            <svg viewBox="0 0 60 60"><use href="#plimsoll-light"/></svg>
+            <div class="ymp-wordmark">YMP</div>
+            <div class="ymp-sub">Young Maritime Professionals</div>
+            <div class="ymp-relate">
+              <div class="ymp-rule"><span class="ymp-rule-k">Mark</span><span>The Plimsoll disk, paired with the YMP wordmark in Spectral.</span></div>
+              <div class="ymp-rule"><span class="ymp-rule-k">Type</span><span>Same Spectral + Inter; YMP set wide-tracked, all caps.</span></div>
+              <div class="ymp-rule"><span class="ymp-rule-k">Accent</span><span>Plimsoll red held; the waterline is the constant.</span></div>
+            </div>
+          </div>
+          <div class="ymp-poster">
+            <figure class="ymp-poster-photo">
+              <img src="https://images.unsplash.com/photo-1473042904451-00171c69419d?w=1400&q=80" alt="">
+              <div class="ymp-waterline"></div>
+            </figure>
+            <div class="ymp-poster-body">
+              <div class="ymp-poster-eyebrow">YMP · Annual · 2026</div>
+              <h3>The next <em>thirty years.</em></h3>
+              <p class="ymp-poster-stand">Trinity House, 12 September. Six panels on the disputes the incoming class will inherit, and the ones they intend to settle.</p>
+              <div class="ymp-poster-foot"><span>Trinity House · London</span><span><b>12.IX.2026</b></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="dir-fineprint spaced" style="border-top:1px solid rgba(22,22,22,.14);color:rgba(22,22,22,.55);font-family:'Inter',sans-serif;letter-spacing:.22em;font-weight:700">
+        <span>B · WATERLINE · Plimsoll / Maritime Modern</span>
+        <span>End of direction → C</span>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════
+         DIRECTION C · BEARING
+    ════════════════════════════════════ -->
+    <section class="direction dir-c" id="dir-c" data-screen-label="C — Bearing">
+
+      <header class="dir-intro">
+        <div class="dir-letter">C</div>
+        <div class="dir-headings">
+          <div class="dir-eyebrow">DIR-C · Bold / Contemporary</div>
+          <h1 class="dir-name">bearing</h1>
+          <p class="dir-tagline">Stone, ink and a single signal-orange line. Maritime modernist — the LSLC of the next thirty years, not the last. A bearing on a chart instead of a chambers crest. Coordinates instead of crests. Built for YMP without losing the bench.</p>
+        </div>
+        <div class="dir-meta">
+          51.5074° N · 0.1278° W<br>
+          Space Grotesk · Space Mono<br>
+          Stone · Ink · Signal
+        </div>
+      </header>
+
+      <!-- C1 Mark -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">01</span>
+          The Mark
+          <span class="hint">A bearing line crossing a circle, terminating in a signal dot. A vessel's course on a chart. The wordmark sits in lowercase Space Grotesk — confident, plain-spoken, current.</span>
+        </div>
+        <div class="c-mark-grid">
+          <div class="c-mark-panel light">
+            <div class="c-mark-label">[01] Bearing · light ground</div>
+            <div class="c-mark">
+              <svg viewBox="0 0 100 100"><use href="#bearing-light"/></svg>
+              <div class="cm-text">
+                <div class="cm-name">lslc</div>
+                <div class="cm-sub">London Shipping Law Centre</div>
+                <div class="cm-coord">051.507° N · 000.128° W · est. 1995</div>
+              </div>
+            </div>
+          </div>
+          <div class="c-mark-panel dark">
+            <div class="c-mark-label">[02] Bearing · dark ground</div>
+            <div class="c-mark">
+              <svg viewBox="0 0 100 100"><use href="#bearing-dark"/></svg>
+              <div class="cm-text">
+                <div class="cm-name">lslc</div>
+                <div class="cm-sub">London Shipping Law Centre</div>
+                <div class="cm-coord">051.507° N · 000.128° W · est. 1995</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- C2 Palette -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">02</span>
+          Palette
+          <span class="hint">Warm stone as the ground, deep ink for type, a single signal-orange for moments that matter. Cobalt reserved for data tags and links.</span>
+        </div>
+        <div class="c-palette">
+          <div class="c-swatch light" style="background:#E5DFD2"><div><div class="sw-code">[01]</div><div class="sw-name">stone</div><div class="sw-hex">#E5DFD2</div></div><div class="sw-use">primary ground</div></div>
+          <div class="c-swatch light" style="background:#F2EFE8"><div><div class="sw-code">[02]</div><div class="sw-name">snow</div><div class="sw-hex">#F2EFE8</div></div><div class="sw-use">cards · highlights</div></div>
+          <div class="c-swatch dark" style="background:#0F0F0F"><div><div class="sw-code">[03]</div><div class="sw-name">ink</div><div class="sw-hex">#0F0F0F</div></div><div class="sw-use">type · structure</div></div>
+          <div class="c-swatch signal" style="background:#E84E1B"><div><div class="sw-code">[04]</div><div class="sw-name">signal</div><div class="sw-hex">#E84E1B</div></div><div class="sw-use">accent · moments</div></div>
+          <div class="c-swatch dark" style="background:#1A3FA8"><div><div class="sw-code">[05]</div><div class="sw-name">cobalt</div><div class="sw-hex">#1A3FA8</div></div><div class="sw-use">data · links</div></div>
+          <div class="c-swatch light" style="background:#B8B5AC"><div><div class="sw-code">[06]</div><div class="sw-name">mist</div><div class="sw-hex">#B8B5AC</div></div><div class="sw-use">muted · meta</div></div>
+          <div class="c-swatch light" style="background:#D8D2C3"><div><div class="sw-code">[07]</div><div class="sw-name">sand</div><div class="sw-hex">#D8D2C3</div></div><div class="sw-use">secondary ground</div></div>
+          <div class="c-swatch dark" style="background:#1C1C1A"><div><div class="sw-code">[08]</div><div class="sw-name">char</div><div class="sw-hex">#1C1C1A</div></div><div class="sw-use">dark cards</div></div>
+        </div>
+      </section>
+
+      <!-- C3 Type -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">03</span>
+          Type
+          <span class="hint">One family does the lifting. Space Grotesk for display and body — geometric, slightly humanist, current. Space Mono carries the coordinates.</span>
+        </div>
+        <div class="c-type">
+          <div class="c-type-row">
+            <div class="tr-meta">
+              <div class="tr-meta-label">[display]</div>
+              <div class="tr-meta-name">Space Grotesk</div>
+              <div class="tr-meta-spec">500 · 600 · 700<br>−.04em tracking</div>
+            </div>
+            <div>
+              <div class="tr-sample-display">beyond <span class="sig">straits</span></div>
+            </div>
+          </div>
+          <div class="c-type-row">
+            <div class="tr-meta">
+              <div class="tr-meta-label">[body]</div>
+              <div class="tr-meta-name">Space Grotesk</div>
+              <div class="tr-meta-spec">300 · 400<br>1.55 leading</div>
+            </div>
+            <div>
+              <div class="tr-sample-body">The London Shipping Law Centre — founded 1995, inaugurated at the House of Lords 1997 — convenes the senior forum where shipping, commercial law and dispute resolution meet. Ten consequential conversations a year. Thirty years of record.</div>
+            </div>
+          </div>
+          <div class="c-type-row">
+            <div class="tr-meta">
+              <div class="tr-meta-label">[mono]</div>
+              <div class="tr-meta-name">Space Mono</div>
+              <div class="tr-meta-spec">400 · 700<br>data · UI · coords</div>
+            </div>
+            <div>
+              <div class="tr-sample-mono">EVENT · <span class="sig">EX–08/26</span><br>BEARING · 051.507° N · 000.128° W<br>DURATION · 90 MIN · HYBRID<br>STATUS · <span class="sig">● CONFIRMED</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- C4 Website -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">04</span>
+          Website hero
+          <span class="hint">A coordinate strip pinned to the top. Wordmark in lowercase. A big lowercase headline with one signalled word, an event stack on the right.</span>
+        </div>
+        <div class="c-web">
+          <div class="c-web-nav">
+            <div class="c-web-navlogo">
+              <svg viewBox="0 0 100 100"><use href="#bearing-light"/></svg>
+              lslc
+            </div>
+            <div class="c-web-navlinks">
+              <span>events</span><span>members</span><span>archive</span><span>cadwallader</span><span>ymp</span>
+            </div>
+            <span class="c-web-navcta">live · join</span>
+          </div>
+          <div class="c-web-coord">
+            <span>BEARING · 051.507° N · 000.128° W</span>
+            <span><span class="pulse"></span> ON AIR · BEYOND STRAITS · REPLAY</span>
+            <span>EDITION · 21.05.2026</span>
+          </div>
+          <div class="c-web-hero">
+            <div class="c-web-lead">
+              <div class="c-section">[lead] expert panel · 90 min</div>
+              <h1>hormuz,<br>after <span class="accent">april.</span></h1>
+              <p class="c-stand">A KC, a board director, and a former US Marine officer read the legal, strategic and commercial consequences of the closure. Broadcast live from London. Replay open.</p>
+              <div class="c-actions">
+                <span class="c-btn signal">replay the forum</span>
+                <span class="c-btn outline">download report</span>
+              </div>
+            </div>
+            <div class="c-web-aside">
+              <div class="c-web-bigmark">
+                <svg viewBox="0 0 100 100"><use href="#bearing-light"/></svg>
+              </div>
+              <div class="c-web-tile">
+                <div class="ct-h">[01] upcoming<span class="ct-tag">11 jun</span></div>
+                <div class="ct-title">trade, risk &amp; hedging</div>
+                <div class="ct-meta">FLOYD ZADKOVICH · HANUMAN<br>HYBRID · 18:30 · LDN</div>
+              </div>
+              <div class="c-web-tile dark">
+                <div class="ct-h">[02] cadwallader<span class="ct-tag">24 jun</span></div>
+                <div class="ct-title">lord thomas, 2026</div>
+                <div class="ct-meta">INNER TEMPLE HALL · INVITED</div>
+              </div>
+            </div>
+          </div>
+          <div class="c-web-strip">
+            <div class="cs-cell"><div class="cs-n">30<span class="sig">.</span></div><div class="cs-l">YEARS CONVENING · SINCE 1995</div></div>
+            <div class="cs-cell"><div class="cs-n">10<span class="sig">–</span>15<span class="sig">%</span></div><div class="cs-l">GLOBAL OIL SHIPPING · RUNNING DARK</div></div>
+            <div class="cs-cell"><div class="cs-n">8<span class="sig">/</span>26</div><div class="cs-l">LONDON ARBITRATION · REFERENCED</div></div>
+            <div class="cs-cell"><div class="cs-n">90<span class="sig">m</span></div><div class="cs-l">AVERAGE FORUM · HYBRID BROADCAST</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- C5 Slides -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">05</span>
+          Event slides
+          <span class="hint">A title slide on stone and a content slide on ink. Coordinates and section markers do the navigating; the headline does the rest.</span>
+        </div>
+        <div class="c-slides">
+          <div class="c-slide title">
+            <div class="c-slide-top">
+              <span>EVENT · EX–08/26 · LEAD</span>
+              <span class="cs-coord"><span class="pulse"></span>LIVE · LDN · 2026.05.21</span>
+            </div>
+            <div class="c-slide-mid">
+              <div class="cm-section">[lead] expert panel · 90 min</div>
+              <h2>hormuz,<br>after <span class="sig">april.</span></h2>
+              <p class="cm-stand">A KC, a board director and a former US Marine officer on the legal, strategic and commercial consequences of the closure.</p>
+            </div>
+            <div class="c-slide-foot-c">
+              <div class="cf-mark">
+                <svg viewBox="0 0 100 100"><use href="#bearing-light"/></svg>
+                <span class="cf-name">lslc</span>
+              </div>
+              <div class="cf-roster">
+                FLOYD · PARRY KC · WEBB · SHEPPARD<br>
+                <b>BEARING · 051.507° N · 000.128° W</b>
+              </div>
+            </div>
+          </div>
+          <div class="c-slide content">
+            <div class="cc-top">
+              <span>SECTION · 02 · ENGLISH LAW</span>
+              <span><b>EX–08/26</b> · SLIDE 04 / 18</span>
+            </div>
+            <div>
+              <div class="cc-section">[02] english law</div>
+              <h3>frustration, force majeure<br>&amp; <span class="sig">self-induced risk.</span></h3>
+              <div class="cc-grid">
+                <div class="cc-body">
+                  <p>London Arbitration 8/2026 confirms: where war-risk clauses already allocate the risk, the doctrine of frustration does not engage.</p>
+                  <p>Vessels entering the Straits today carry self-induced exposure under The Eugenia [1964]. The 2 May OFAC notice removes any remaining amnesty for IRGC toll payments.</p>
+                </div>
+                <div class="cc-data">
+                  <div class="cc-row"><span class="cc-row-l">LON ARB</span><span class="cc-row-v">8/2026</span></div>
+                  <div class="cc-row"><span class="cc-row-l">PRECEDENT</span><span class="cc-row-v">EUGENIA '64</span></div>
+                  <div class="cc-row"><span class="cc-row-l">OFAC · NOTICE</span><span class="cc-row-v">02.05.26</span></div>
+                  <div class="cc-row"><span class="cc-row-l">DARK FLEET</span><span class="cc-row-v">10–15%</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="cc-foot">
+              <span>BEARING · 051.507° N · 000.128° W</span>
+              <span><b>lslc</b> · BEYOND STRAITS</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- C6 Social -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">06</span>
+          Social cards
+          <span class="hint">LinkedIn as a coordinate sheet; Instagram as a single, scaled-up stat.</span>
+        </div>
+        <div class="c-social">
+          <div class="c-social-li">
+            <div class="csl-grid">
+              <div class="csl-top">
+                <span><span class="pulse"></span> LIVE · LSLC · LDN</span>
+                <span>EX–08/26 · 2026.05.21</span>
+              </div>
+              <div class="csl-mid">
+                <div>
+                  <div class="csl-section">[lead] expert panel · 90 min</div>
+                  <h2>hormuz,<br>after <span class="sig">april.</span></h2>
+                </div>
+                <div class="csl-aside">
+                  <svg viewBox="0 0 100 100"><use href="#bearing-dark"/></svg>
+                  <div class="csl-coord">051.507° N<br>000.128° W</div>
+                </div>
+              </div>
+              <div class="csl-foot">
+                <span>FLOYD · PARRY KC · WEBB · SHEPPARD</span>
+                <span class="csl-mast">lslc</span>
+              </div>
+            </div>
+          </div>
+          <div class="c-social-ig">
+            <div class="cig-top">
+              <span>[stat] · IG</span>
+              <span>EX–08/26</span>
+            </div>
+            <div class="cig-mid">
+              <div class="cig-stat">10–15%</div>
+              <div class="cig-label">of global oil shipping is now operating dark.</div>
+            </div>
+            <div class="cig-foot">
+              <span>BEYOND STRAITS · 2026</span>
+              <span class="cig-mast">lslc</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 YMP -->
+      <section class="dir-section">
+        <div class="dir-section-label">
+          <span class="num">07</span>
+          YMP
+          <span class="hint">The next bearing. Same chassis as the parent direction; the signal swaps from orange to cobalt to mark the junior register as a sister course on the same chart.</span>
+        </div>
+        <div class="ymp-grid">
+          <div class="ymp-mark-panel">
+            <svg viewBox="0 0 100 100"><use href="#bearing-cobalt"/></svg>
+            <div class="ymp-wordmark">ymp</div>
+            <div class="ymp-sub">Young Maritime Professionals</div>
+            <div class="ymp-relate">
+              <div class="ymp-rule"><span class="ymp-rule-k">MARK</span><span>BEARING LINE · COBALT TERMINUS · INSTEAD OF SIGNAL.</span></div>
+              <div class="ymp-rule"><span class="ymp-rule-k">TYPE</span><span>SAME SPACE GROTESK · LOWERCASE · −.04em TRACKING.</span></div>
+              <div class="ymp-rule"><span class="ymp-rule-k">ACCENT</span><span>COBALT #1A3FA8 — A SISTER COURSE ON THE SAME CHART.</span></div>
+            </div>
+          </div>
+          <div class="ymp-poster">
+            <figure class="ymp-poster-photo">
+              <img src="https://images.unsplash.com/photo-1473042904451-00171c69419d?w=1400&q=80" alt="">
+            </figure>
+            <div class="ymp-poster-body">
+              <div class="ymp-poster-eyebrow">[ymp] · annual · 2026</div>
+              <h3>the next <span class="sig">thirty years.</span></h3>
+              <p class="ymp-poster-stand">trinity house, 12.09.26. six panels on the disputes the incoming class will inherit, and the ones they intend to settle.</p>
+              <div class="ymp-poster-foot"><span>TRINITY HOUSE · LDN</span><span><b>12.IX.2026</b></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="dir-fineprint spaced" style="border-top:1px solid rgba(15,15,15,.12);color:rgba(15,15,15,.5);font-family:'Space Mono',monospace">
+        <span>C · BEARING · BOLD / CONTEMPORARY</span>
+        <span>END · BEARING · 051.507° N · 000.128° W</span>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.tab');
+  var directions = document.querySelectorAll('.direction');
+  function activate(key){
+    tabs.forEach(function(t){ t.classList.toggle('active', t.dataset.dir === key); });
+    directions.forEach(function(d){ d.classList.toggle('active', d.id === 'dir-' + key); });
+    // Reset scroll so each tab opens at top
+    window.scrollTo({ top: 0, behavior: 'instant' in document.documentElement ? 'instant' : 'auto' });
+    try { history.replaceState(null, '', '#' + key); } catch(e){}
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ activate(t.dataset.dir); });
+  });
+  // Open to hash if provided
+  var initial = (location.hash || '').replace('#','').toLowerCase();
+  if (['a','b','c'].indexOf(initial) >= 0) activate(initial);
+})();
+</script>
+
+</body>
+</html>

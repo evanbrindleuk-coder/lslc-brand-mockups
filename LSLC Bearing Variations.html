@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LSLC — Bearing · Variations</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  background:#0a0a0a;color:#eee;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ════════ TAB SHELL ════════ */
+.shell{min-height:100vh;display:flex;flex-direction:column}
+.tabbar{
+  position:sticky;top:0;z-index:100;
+  background:#0a0a0a;border-bottom:1px solid #1c1c1c;
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;
+  padding:14px 28px;gap:24px;
+}
+.tabbar-brand{
+  font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:#777;font-weight:400;
+}
+.tabbar-brand b{color:#eee;font-weight:700}
+.tabs{display:flex;gap:2px;justify-self:center}
+.tab{
+  background:transparent;border:1px solid #222;color:#888;
+  font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;font-weight:400;padding:10px 18px;cursor:pointer;
+  transition:all .2s;display:flex;align-items:center;gap:10px;
+}
+.tab .tag{font-size:9.5px;background:#1a1a1a;padding:3px 6px;color:#666;font-weight:700;letter-spacing:.1em}
+.tab:hover{color:#ddd;border-color:#333}
+.tab.active{background:#fff;color:#0a0a0a;border-color:#fff}
+.tab.active .tag{background:#0a0a0a;color:#fff}
+.tab .dot{width:8px;height:8px;display:inline-block;border-radius:50%}
+.tabbar-meta{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#555}
+
+.stage{flex:1;position:relative}
+.variant{display:none}
+.variant.active{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ════════ COMMON BEARING CHASSIS ════════
+   Each variant overrides --ground / --ground-2 / --ink / --signal etc. */
+.variant{
+  --ground:#E5DFD2;
+  --ground-2:#F2EFE8;
+  --ground-3:#D8D2C3;
+  --ink:#0F0F0F;
+  --ink-2:#1C1C1A;
+  --mist:#B8B5AC;
+  --signal:#E84E1B;
+  --signal-2:#FF6A2E;
+  --snow:#FAFAF7;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:'Space Grotesk',sans-serif;
+}
+
+/* Intro header */
+.v-intro{
+  padding:64px 56px 48px;
+  display:grid;grid-template-columns:auto 1fr auto;gap:42px;align-items:end;
+  border-bottom:1px solid rgba(15,15,15,.12);
+}
+.v-letter-wrap{display:flex;align-items:baseline;gap:6px}
+.v-letter{
+  font-family:'Space Grotesk',sans-serif;color:var(--signal);
+  font-weight:500;font-size:168px;letter-spacing:-.06em;line-height:.82;
+}
+.v-letter-num{
+  font-family:'Space Mono',monospace;font-size:14px;letter-spacing:.16em;
+  color:var(--signal);font-weight:400;
+}
+.v-headings .v-eyebrow{
+  font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--signal);font-weight:400;margin-bottom:14px;
+}
+.v-headings .v-name{
+  font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:500;
+  line-height:1;letter-spacing:-.03em;color:var(--ink);text-transform:lowercase;
+  margin-bottom:14px;
+}
+.v-headings .v-name .sig{color:var(--signal);font-weight:600}
+.v-headings .v-tagline{
+  color:rgba(15,15,15,.7);font-size:15px;line-height:1.55;max-width:580px;
+}
+.v-meta{
+  font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;text-align:right;line-height:1.8;color:rgba(15,15,15,.55);
+}
+
+/* Body sections */
+.v-section{
+  padding:64px 56px;border-bottom:1px solid rgba(15,15,15,.1);
+  display:grid;grid-template-columns:220px 1fr;gap:48px;
+}
+.v-section-label{
+  font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--signal);font-weight:400;
+}
+.v-section-label .num{
+  display:block;font-family:'Space Grotesk',sans-serif;color:var(--ink);
+  font-weight:500;font-size:28px;letter-spacing:-.03em;margin-bottom:6px;
+}
+.v-section-label .hint{
+  display:block;font-family:'Space Grotesk',sans-serif;color:rgba(15,15,15,.6);
+  font-size:11.5px;letter-spacing:0;text-transform:none;font-weight:400;
+  margin-top:10px;line-height:1.55;
+}
+
+/* ════════ MARK ════════ */
+.v-mark-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.v-mark-panel{
+  padding:48px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;min-height:340px;gap:28px;position:relative;
+}
+.v-mark-panel.light{background:var(--ground-2)}
+.v-mark-panel.dark{background:var(--ink)}
+.v-mark-label{
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;font-weight:400;color:var(--signal);
+}
+.v-mark{display:flex;align-items:center;gap:18px}
+.v-mark svg{width:84px;height:84px;flex-shrink:0}
+.v-mark .vm-text{display:flex;flex-direction:column;gap:4px}
+.v-mark .vm-name{
+  font-family:'Space Grotesk',sans-serif;font-size:46px;font-weight:600;
+  letter-spacing:-.05em;line-height:.9;color:var(--ink);text-transform:lowercase;
+}
+.v-mark-panel.dark .vm-name{color:var(--ground-2)}
+.v-mark .vm-sub{
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(15,15,15,.65);font-weight:400;
+}
+.v-mark-panel.dark .vm-sub{color:rgba(255,255,255,.7)}
+.v-mark .vm-coord{
+  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(15,15,15,.45);font-weight:400;
+}
+.v-mark-panel.dark .vm-coord{color:rgba(184,181,172,.7)}
+
+/* ════════ PALETTE STRIP ════════ */
+.v-palette{display:grid;grid-template-columns:repeat(6,1fr);gap:2px}
+.v-swatch{padding:20px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between}
+.v-swatch .sw-code{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;opacity:.7;font-weight:400}
+.v-swatch .sw-name{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:500;letter-spacing:-.02em;line-height:1;text-transform:lowercase}
+.v-swatch .sw-hex{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.04em;opacity:.7;margin-top:4px;font-weight:400}
+.v-swatch .sw-use{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:400;opacity:.6;margin-top:auto;line-height:1.5}
+.v-swatch.t-dark{color:var(--ground-2)}
+.v-swatch.t-dark .sw-use{color:rgba(242,239,232,.7)}
+.v-swatch.t-dark .sw-code{color:var(--signal)}
+.v-swatch.t-light{color:var(--ink)}
+.v-swatch.t-light .sw-code{color:var(--signal)}
+.v-swatch.t-snow{color:var(--snow)}
+.v-swatch.t-snow .sw-use{color:rgba(255,255,255,.85)}
+.v-swatch.t-snow .sw-code{color:var(--ink)}
+
+/* ════════ HERO ════════ */
+.v-web{background:var(--ground);overflow:hidden;border:1px solid rgba(15,15,15,.14)}
+.v-web-nav{
+  background:var(--ground-2);border-bottom:1px solid var(--ink);height:58px;
+  display:flex;align-items:center;justify-content:space-between;padding:0 24px;
+}
+.v-web-navlogo{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600;color:var(--ink);letter-spacing:-.03em;text-transform:lowercase}
+.v-web-navlogo svg{width:24px;height:24px}
+.v-web-navlinks{display:flex;gap:22px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);font-weight:400}
+.v-web-navcta{background:var(--signal);color:var(--snow);padding:7px 14px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;display:flex;align-items:center;gap:8px}
+.v-web-navcta::before{content:'';width:6px;height:6px;background:var(--snow);border-radius:50%}
+.v-web-coord{padding:7px 24px;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);font-weight:400;border-bottom:1px solid rgba(15,15,15,.12);background:var(--ground)}
+.v-web-coord span{display:flex;align-items:center;gap:8px}
+.v-web-coord .pulse{width:6px;height:6px;background:var(--signal);border-radius:50%;display:inline-block}
+
+.v-web-hero{padding:56px 32px;display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:end;position:relative;min-height:420px}
+.v-web-lead .v-leadlabel{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--signal);font-weight:400;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.v-web-lead .v-leadlabel::before{content:'';width:18px;height:1px;background:var(--signal)}
+.v-web-lead h1{font-family:'Space Grotesk',sans-serif;font-size:76px;font-weight:500;line-height:.92;color:var(--ink);letter-spacing:-.045em;margin-bottom:22px;text-transform:lowercase}
+.v-web-lead h1 .sig{color:var(--signal);font-weight:600}
+.v-web-lead h1 .accent{position:relative;display:inline-block}
+.v-web-lead h1 .accent::after{content:'';position:absolute;left:0;right:0;bottom:-5px;height:3px;background:var(--signal)}
+.v-web-lead .v-stand{font-family:'Space Grotesk',sans-serif;font-size:15.5px;line-height:1.5;color:var(--ink-2);max-width:520px;margin-bottom:26px;font-weight:400}
+.v-web-lead .v-actions{display:flex;gap:10px;align-items:center}
+.v-btn{padding:12px 22px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;display:inline-flex;align-items:center;gap:9px}
+.v-btn.solid{background:var(--ink);color:var(--snow)}
+.v-btn.solid::after{content:'\2197';color:var(--signal);font-weight:400}
+.v-btn.outline{background:transparent;border:1px solid var(--ink);color:var(--ink)}
+
+.v-web-aside{display:flex;flex-direction:column;gap:12px}
+.v-web-bigmark{display:flex;align-items:center;justify-content:flex-end;margin-bottom:8px}
+.v-web-bigmark svg{width:138px;height:138px}
+.v-web-tile{background:var(--snow);padding:16px 18px;border:1px solid rgba(15,15,15,.14)}
+.v-web-tile.dark{background:var(--ink);color:var(--snow);border-color:var(--ink)}
+.v-web-tile .vt-h{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--signal);font-weight:400;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
+.v-web-tile .vt-h .vt-tag{font-size:8.5px;border:1px solid var(--signal);padding:2px 6px;letter-spacing:.14em}
+.v-web-tile .vt-title{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:500;line-height:1.15;letter-spacing:-.02em;margin-bottom:5px;text-transform:lowercase}
+.v-web-tile .vt-meta{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.06em;color:rgba(15,15,15,.55);line-height:1.5}
+.v-web-tile.dark .vt-meta{color:rgba(255,255,255,.55)}
+
+.v-web-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(15,15,15,.12);border-top:1px solid rgba(15,15,15,.12)}
+.v-web-strip .vs-cell{background:var(--ground);padding:22px 20px;display:flex;flex-direction:column;gap:5px}
+.v-web-strip .vs-n{font-family:'Space Grotesk',sans-serif;font-size:38px;font-weight:600;letter-spacing:-.04em;line-height:.95;color:var(--ink)}
+.v-web-strip .vs-n .sig{color:var(--signal)}
+.v-web-strip .vs-l{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(15,15,15,.6);font-weight:400;line-height:1.4}
+
+/* ════════ SLIDES + SOCIAL ════════ */
+.v-slides{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.v-slide{aspect-ratio:16/9;position:relative;overflow:hidden;border:1px solid rgba(15,15,15,.18)}
+.v-slide.title{background:var(--ground-2);padding:32px 36px;display:flex;flex-direction:column;justify-content:space-between}
+.v-slide.title::after{content:'';position:absolute;left:32px;right:32px;bottom:30%;height:1px;background:var(--signal);opacity:.5}
+.v-slide-top{display:flex;justify-content:space-between;align-items:start;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(15,15,15,.55);font-weight:400;z-index:2;position:relative}
+.v-slide-top .vs-coord{display:flex;align-items:center;gap:8px}
+.v-slide-top .vs-coord .pulse{width:5px;height:5px;background:var(--signal);border-radius:50%}
+.v-slide-mid{margin:auto 0;z-index:2;position:relative}
+.v-slide-mid .vm-section{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--signal);font-weight:400;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.v-slide-mid .vm-section::before{content:'';width:16px;height:1px;background:var(--signal)}
+.v-slide-mid h2{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:500;line-height:.95;letter-spacing:-.04em;color:var(--ink);margin-bottom:12px;text-transform:lowercase}
+.v-slide-mid h2 .sig{color:var(--signal);font-weight:600}
+.v-slide-mid .vm-stand{font-family:'Space Grotesk',sans-serif;font-size:12.5px;line-height:1.45;color:var(--ink-2);max-width:90%}
+.v-slide-foot{display:flex;justify-content:space-between;align-items:end;z-index:2;position:relative;padding-top:12px;border-top:1px solid rgba(15,15,15,.18)}
+.v-slide-foot .vf-mark{display:flex;align-items:center;gap:7px}
+.v-slide-foot .vf-mark svg{width:20px;height:20px}
+.v-slide-foot .vf-mark .vf-name{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;letter-spacing:-.02em;color:var(--ink);text-transform:lowercase}
+.v-slide-foot .vf-roster{font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(15,15,15,.6);text-align:right;line-height:1.5}
+.v-slide-foot .vf-roster b{color:var(--signal);font-weight:400}
+
+.v-slide.content{background:var(--ink);color:var(--snow);padding:32px 36px;display:grid;grid-template-rows:auto 1fr auto;gap:16px}
+.v-slide.content .vcc-top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:400}
+.v-slide.content .vcc-top b{color:var(--signal)}
+.v-slide.content .vcc-section{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--signal);font-weight:400;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.v-slide.content .vcc-section::before{content:'';width:14px;height:1px;background:var(--signal)}
+.v-slide.content h3{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:500;line-height:1.05;letter-spacing:-.025em;color:var(--snow);margin-bottom:12px;text-transform:lowercase}
+.v-slide.content h3 .sig{color:var(--signal);font-weight:600}
+.v-slide.content .vcc-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:20px;align-items:start}
+.v-slide.content .vcc-body{font-family:'Space Grotesk',sans-serif;font-size:11px;line-height:1.55;color:rgba(255,255,255,.78);font-weight:400}
+.v-slide.content .vcc-body p{margin-bottom:8px}
+.v-slide.content .vcc-data{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.15)}
+.v-slide.content .vcc-row{background:var(--ink);padding:9px 12px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.v-slide.content .vcc-row .vcc-row-l{font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:400}
+.v-slide.content .vcc-row .vcc-row-v{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;letter-spacing:-.02em;color:var(--signal)}
+.v-slide.content .vcc-foot{display:flex;justify-content:space-between;align-items:end;padding-top:9px;border-top:1px solid rgba(255,255,255,.18);font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:400}
+.v-slide.content .vcc-foot b{color:var(--signal)}
+
+/* Social */
+.v-social{display:grid;grid-template-columns:1.5fr 1fr;gap:20px;align-items:start}
+.v-social-li{aspect-ratio:1200/628;background:var(--ink);color:var(--snow);position:relative;overflow:hidden;border:1px solid var(--ink);padding:28px}
+.v-social-li::before{content:'';position:absolute;left:28px;right:28px;top:50%;height:1px;background:var(--signal);opacity:.4}
+.v-social-li .vsl-grid{display:grid;grid-template-rows:auto 1fr auto;gap:12px;height:100%;position:relative;z-index:2}
+.v-social-li .vsl-top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:400}
+.v-social-li .vsl-top .pulse{display:inline-block;width:6px;height:6px;background:var(--signal);border-radius:50%;margin-right:8px;vertical-align:middle}
+.v-social-li .vsl-mid{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:center}
+.v-social-li .vsl-section{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--signal);font-weight:400;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.v-social-li .vsl-section::before{content:'';width:16px;height:1px;background:var(--signal)}
+.v-social-li h2{font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:500;line-height:.92;letter-spacing:-.045em;color:var(--snow);text-transform:lowercase}
+.v-social-li h2 .sig{color:var(--signal);font-weight:600}
+.v-social-li .vsl-aside{display:flex;flex-direction:column;align-items:end;gap:8px}
+.v-social-li .vsl-aside svg{width:96px;height:96px}
+.v-social-li .vsl-aside .vsl-coord{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);text-align:right;line-height:1.5}
+.v-social-li .vsl-foot{display:flex;justify-content:space-between;align-items:end;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:400}
+.v-social-li .vsl-foot .vsl-mast{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;letter-spacing:-.03em;color:var(--snow);text-transform:lowercase}
+
+.v-social-ig{aspect-ratio:1/1;background:var(--ground);position:relative;overflow:hidden;padding:26px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(15,15,15,.18)}
+.v-social-ig::before{content:'';position:absolute;left:26px;right:26px;top:55%;height:1px;background:var(--signal)}
+.v-social-ig .vig-top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(15,15,15,.55);font-weight:400;z-index:2;position:relative}
+.v-social-ig .vig-mid{z-index:2;position:relative;margin-top:auto;margin-bottom:auto;padding:8px 0}
+.v-social-ig .vig-stat{font-family:'Space Grotesk',sans-serif;font-size:108px;font-weight:600;line-height:.85;letter-spacing:-.07em;color:var(--signal);text-transform:lowercase;margin-bottom:8px}
+.v-social-ig .vig-label{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:500;line-height:1.15;letter-spacing:-.02em;color:var(--ink);text-transform:lowercase;max-width:92%}
+.v-social-ig .vig-foot{display:flex;justify-content:space-between;align-items:end;z-index:2;position:relative;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(15,15,15,.6)}
+.v-social-ig .vig-foot .vig-mast{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;letter-spacing:-.02em;color:var(--ink);text-transform:lowercase}
+
+.v-fineprint{
+  padding:36px 56px;display:flex;justify-content:space-between;align-items:center;
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(15,15,15,.5);border-top:1px solid rgba(15,15,15,.12);
+}
+
+/* ═══ Variant-specific overrides ═══ */
+
+/* C2 · Cobalt — swap signal to cobalt */
+.variant.v-cobalt{
+  --signal:#1A3FA8;
+  --signal-2:#2A56C5;
+}
+
+/* C3 · Night Watch — invert ground to ink */
+.variant.v-night{
+  --ground:#0F0F0F;
+  --ground-2:#1C1C1A;
+  --ground-3:#262624;
+  --ink:#F2EFE8;
+  --ink-2:#D8D2C3;
+  --signal:#E84E1B;
+  color:var(--ink);
+}
+.variant.v-night .v-intro{border-color:rgba(255,255,255,.1)}
+.variant.v-night .v-section{border-color:rgba(255,255,255,.08)}
+.variant.v-night .v-headings .v-tagline,
+.variant.v-night .v-web-lead .v-stand,
+.variant.v-night .v-slide-mid .vm-stand{color:rgba(242,239,232,.7)}
+.variant.v-night .v-meta{color:rgba(242,239,232,.55)}
+.variant.v-night .v-section-label .hint{color:rgba(242,239,232,.6)}
+.variant.v-night .v-mark-panel.light{background:var(--ground-2)}
+.variant.v-night .v-mark-panel.dark{background:#000}
+.variant.v-night .v-mark-panel.light .vm-name{color:var(--ground-2);color:#F2EFE8}
+.variant.v-night .v-mark .vm-sub{color:rgba(242,239,232,.7)}
+.variant.v-night .v-mark .vm-coord{color:rgba(242,239,232,.45)}
+.variant.v-night .v-web{background:var(--ground-2);border-color:rgba(255,255,255,.12)}
+.variant.v-night .v-web-nav{background:#000;border-bottom-color:rgba(242,239,232,.18)}
+.variant.v-night .v-web-coord{background:var(--ground-2);border-bottom-color:rgba(255,255,255,.1);color:rgba(242,239,232,.6)}
+.variant.v-night .v-web-tile{background:var(--ground-3);color:var(--ink);border-color:rgba(242,239,232,.1)}
+.variant.v-night .v-web-tile.dark{background:var(--signal);color:var(--snow);border-color:var(--signal)}
+.variant.v-night .v-web-tile.dark .vt-h{color:var(--snow)}
+.variant.v-night .v-web-tile.dark .vt-h .vt-tag{border-color:var(--snow)}
+.variant.v-night .v-web-tile.dark .vt-meta{color:rgba(255,255,255,.78)}
+.variant.v-night .v-web-strip{background:rgba(255,255,255,.1);border-top-color:rgba(255,255,255,.1)}
+.variant.v-night .v-web-strip .vs-cell{background:var(--ground-2)}
+.variant.v-night .v-web-strip .vs-l,
+.variant.v-night .v-slide-foot .vf-roster{color:rgba(242,239,232,.6)}
+.variant.v-night .v-btn.outline{border-color:var(--ink);color:var(--ink)}
+.variant.v-night .v-slide.title{background:var(--ground-2)}
+.variant.v-night .v-slide.title::after{opacity:.6}
+.variant.v-night .v-slide-top{color:rgba(242,239,232,.55)}
+.variant.v-night .v-slide-foot{border-top-color:rgba(255,255,255,.18)}
+.variant.v-night .v-social-ig{background:var(--ground-2);border-color:rgba(255,255,255,.18)}
+.variant.v-night .v-social-ig .vig-top,
+.variant.v-night .v-social-ig .vig-foot{color:rgba(242,239,232,.6)}
+.variant.v-night .v-social-ig .vig-label,
+.variant.v-night .v-social-ig .vig-foot .vig-mast{color:var(--ink)}
+.variant.v-night .v-fineprint{border-top-color:rgba(255,255,255,.1);color:rgba(242,239,232,.5)}
+
+/* C4 · Plot — chart graticule, signal demoted */
+.variant.v-plot{
+  --signal:#0F0F0F;
+  --signal-2:#0F0F0F;
+  --tick:#B3351A;
+}
+.variant.v-plot .v-letter,
+.variant.v-plot .v-headings .v-eyebrow,
+.variant.v-plot .v-section-label,
+.variant.v-plot .v-web-lead .v-leadlabel,
+.variant.v-plot .v-web-tile .vt-h,
+.variant.v-plot .v-slide-mid .vm-section,
+.variant.v-plot .v-slide.content .vcc-section,
+.variant.v-plot .v-social-li .vsl-section{color:var(--tick)}
+.variant.v-plot .v-web-lead h1 .sig,
+.variant.v-plot .v-slide-mid h2 .sig,
+.variant.v-plot .v-slide.content h3 .sig,
+.variant.v-plot .v-social-li h2 .sig,
+.variant.v-plot .v-web-strip .vs-n .sig,
+.variant.v-plot .v-headings .v-name .sig{color:var(--ink);font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px;text-decoration-color:var(--tick)}
+.variant.v-plot .v-mark-label{color:var(--tick)}
+.variant.v-plot .v-mark-panel.light{background:var(--ground-2);background-image:linear-gradient(rgba(15,15,15,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(15,15,15,.06) 1px,transparent 1px);background-size:24px 24px}
+.variant.v-plot .v-mark-panel.dark{background-image:linear-gradient(rgba(242,239,232,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(242,239,232,.08) 1px,transparent 1px);background-size:24px 24px}
+.variant.v-plot .v-web-nav{border-bottom-color:var(--ink)}
+.variant.v-plot .v-web-navcta{background:var(--ink)}
+.variant.v-plot .v-web-coord{background-image:repeating-linear-gradient(90deg,transparent 0 23px,rgba(15,15,15,.18) 23px 24px);background-position:0 100%;background-repeat:repeat-x;background-size:auto 6px;padding-bottom:11px}
+.variant.v-plot .v-web-coord .pulse{background:var(--tick)}
+.variant.v-plot .v-web-hero{background-image:linear-gradient(rgba(15,15,15,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(15,15,15,.04) 1px,transparent 1px);background-size:32px 32px}
+.variant.v-plot .v-web-lead h1 .accent::after{background:var(--tick)}
+.variant.v-plot .v-btn.solid::after{color:var(--tick)}
+.variant.v-plot .v-web-tile .vt-h .vt-tag{border-color:var(--ink);color:var(--ink)}
+.variant.v-plot .v-web-strip{background:var(--ink)}
+.variant.v-plot .v-slide.title::after{background:var(--ink);opacity:.25}
+.variant.v-plot .v-slide.title{background-image:linear-gradient(rgba(15,15,15,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(15,15,15,.05) 1px,transparent 1px);background-size:24px 24px}
+.variant.v-plot .v-slide-top .pulse{background:var(--tick)}
+.variant.v-plot .v-slide.content .vcc-row .vcc-row-v{color:var(--ground-2)}
+.variant.v-plot .v-social-li::before{background:var(--ink);opacity:.25}
+.variant.v-plot .v-social-li .vsl-top .pulse{background:var(--tick)}
+.variant.v-plot .v-social-ig::before{background:var(--ink);opacity:.25}
+.variant.v-plot .v-social-ig .vig-stat{color:var(--ink)}
+.variant.v-plot .v-social-ig .vig-stat .sig{color:var(--tick);font-weight:600}
+
+
+/* ════════════════════════════════════════════
+   PHOTO SLOTS (hero strip / title slide bg / social bg)
+════════════════════════════════════════════ */
+.v-hero-photo{
+  position:relative;overflow:hidden;height:148px;margin-bottom:10px;
+  border:1px solid rgba(15,15,15,.18);
+}
+.v-hero-photo .vhp-img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+}
+.v-hero-photo::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(15,15,15,0) 30%,rgba(15,15,15,.55) 100%);
+}
+.v-hero-photo .vhp-tag{
+  position:absolute;left:10px;bottom:10px;z-index:2;
+  font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:#FAFAF7;padding:3px 6px;background:rgba(15,15,15,.7);
+}
+.v-hero-photo .vhp-tick{
+  position:absolute;right:10px;top:10px;z-index:2;
+  width:8px;height:8px;border-radius:50%;background:var(--signal);
+  box-shadow:0 0 0 3px rgba(15,15,15,.4);
+}
+
+/* Title slide w/ photo */
+.v-slide.title .v-slide-bg{
+  position:absolute;inset:0;background-size:cover;background-position:center;z-index:0;
+}
+.v-slide.title .v-slide-bg img{width:100%;height:100%;object-fit:cover;display:block}
+.v-slide.title .v-slide-tint{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(108deg,rgba(15,15,15,.86) 0%,rgba(15,15,15,.55) 55%,rgba(15,15,15,.18) 100%);
+}
+.v-slide.title:has(.v-slide-bg) > .v-slide-top,
+.v-slide.title:has(.v-slide-bg) > .v-slide-mid,
+.v-slide.title:has(.v-slide-bg) > .v-slide-foot{position:relative;z-index:2}
+.v-slide.title:has(.v-slide-bg)::after{background:var(--signal);opacity:.7;z-index:2}
+.v-slide.title:has(.v-slide-bg) .v-slide-top{color:rgba(250,250,247,.7)}
+.v-slide.title:has(.v-slide-bg) .v-slide-mid h2{color:#FAFAF7}
+.v-slide.title:has(.v-slide-bg) .v-slide-mid .vm-stand{color:rgba(250,250,247,.8)}
+.v-slide.title:has(.v-slide-bg) .v-slide-foot{border-top-color:rgba(250,250,247,.22)}
+.v-slide.title:has(.v-slide-bg) .v-slide-foot .vf-mark .vf-name{color:#FAFAF7}
+.v-slide.title:has(.v-slide-bg) .v-slide-foot .vf-roster{color:rgba(250,250,247,.7)}
+.v-slide.title:has(.v-slide-bg) .v-slide-top .pulse{box-shadow:0 0 0 3px rgba(15,15,15,.4)}
+
+/* LinkedIn social w/ photo */
+.v-social-li .v-social-bg{
+  position:absolute;inset:0;background-size:cover;background-position:center;z-index:0;
+}
+.v-social-li .v-social-bg img{width:100%;height:100%;object-fit:cover;display:block}
+.v-social-li .v-social-tint{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(98deg,rgba(15,15,15,.94) 0%,rgba(15,15,15,.6) 50%,rgba(15,15,15,.25) 100%);
+}
+.v-social-li:has(.v-social-bg) > .vsl-grid{z-index:2;position:relative}
+.v-social-li:has(.v-social-bg)::before{z-index:3;opacity:.55}
+
+/* ── Per-variant photo treatments ── */
+
+/* C1 Signal — warm natural */
+.variant.v-signal .v-slide.title .v-slide-tint{
+  background:linear-gradient(108deg,rgba(15,15,15,.82) 0%,rgba(15,15,15,.45) 55%,rgba(232,78,27,.18) 100%);
+}
+.variant.v-signal .v-social-li .v-social-tint{
+  background:linear-gradient(98deg,rgba(15,15,15,.94) 0%,rgba(15,15,15,.6) 55%,rgba(232,78,27,.25) 100%);
+}
+
+/* C2 Cobalt — blue duotone */
+.variant.v-cobalt .v-hero-photo .vhp-img,
+.variant.v-cobalt .v-slide-bg img,
+.variant.v-cobalt .v-social-bg img{
+  filter:saturate(.75) brightness(.95);
+}
+.variant.v-cobalt .v-hero-photo::after{
+  background:linear-gradient(180deg,rgba(26,63,168,.1) 0%,rgba(15,15,15,.45) 60%,rgba(26,63,168,.55) 100%);
+}
+.variant.v-cobalt .v-slide.title .v-slide-tint{
+  background:linear-gradient(108deg,rgba(15,15,15,.85) 0%,rgba(26,63,168,.55) 55%,rgba(26,63,168,.3) 100%);
+}
+.variant.v-cobalt .v-social-li .v-social-tint{
+  background:linear-gradient(98deg,rgba(15,15,15,.92) 0%,rgba(26,63,168,.6) 55%,rgba(26,63,168,.4) 100%);
+}
+
+/* C3 Night Watch — high-contrast dramatic, orange highlights through */
+.variant.v-night .v-hero-photo .vhp-img,
+.variant.v-night .v-slide-bg img,
+.variant.v-night .v-social-bg img{
+  filter:brightness(.7) contrast(1.05) saturate(.85);
+}
+.variant.v-night .v-hero-photo::after{
+  background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,.7) 100%);
+}
+.variant.v-night .v-slide.title .v-slide-tint{
+  background:linear-gradient(108deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.5) 55%,rgba(232,78,27,.2) 100%);
+}
+.variant.v-night .v-social-li .v-social-tint{
+  background:linear-gradient(98deg,rgba(0,0,0,.95) 0%,rgba(0,0,0,.55) 60%,rgba(232,78,27,.18) 100%);
+}
+
+/* C4 Plot — full B&W, technical */
+.variant.v-plot .v-hero-photo .vhp-img,
+.variant.v-plot .v-slide-bg img,
+.variant.v-plot .v-social-bg img{
+  filter:grayscale(1) contrast(1.08) brightness(.92);
+}
+.variant.v-plot .v-hero-photo::after{
+  background:
+    repeating-linear-gradient(0deg,transparent 0 23px,rgba(255,255,255,.08) 23px 24px),
+    repeating-linear-gradient(90deg,transparent 0 23px,rgba(255,255,255,.08) 23px 24px),
+    linear-gradient(180deg,rgba(15,15,15,.1) 0%,rgba(15,15,15,.6) 100%);
+}
+.variant.v-plot .v-hero-photo .vhp-tick{background:#B3351A;box-shadow:0 0 0 3px rgba(15,15,15,.4)}
+.variant.v-plot .v-slide.title .v-slide-tint{
+  background:
+    repeating-linear-gradient(0deg,transparent 0 23px,rgba(250,250,247,.06) 23px 24px),
+    repeating-linear-gradient(90deg,transparent 0 23px,rgba(250,250,247,.06) 23px 24px),
+    linear-gradient(108deg,rgba(15,15,15,.85) 0%,rgba(15,15,15,.5) 55%,rgba(15,15,15,.25) 100%);
+}
+.variant.v-plot .v-social-li .v-social-tint{
+  background:
+    repeating-linear-gradient(0deg,transparent 0 23px,rgba(250,250,247,.06) 23px 24px),
+    repeating-linear-gradient(90deg,transparent 0 23px,rgba(250,250,247,.06) 23px 24px),
+    linear-gradient(98deg,rgba(15,15,15,.92) 0%,rgba(15,15,15,.55) 55%,rgba(15,15,15,.25) 100%);
+}
+.variant.v-plot .v-slide.title:has(.v-slide-bg)::after{background:#B3351A}
+
+
+/* Responsive */
+@media (max-width:980px){
+  .v-intro,.v-section{grid-template-columns:1fr;gap:20px;padding:40px 20px}
+  .v-letter{font-size:96px}
+  .v-mark-grid,.v-slides,.v-social{grid-template-columns:1fr!important}
+  .v-palette{grid-template-columns:repeat(3,1fr)!important}
+  .v-web-hero{grid-template-columns:1fr}
+  .v-web-strip{grid-template-columns:repeat(2,1fr)}
+  .tabbar{grid-template-columns:1fr;gap:10px}
+  .tabbar-meta{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Reusable bearing-mark SVG symbols (one set per variant for colour control) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Base mark generator pattern (we just write 8 variants inline below) -->
+    <!-- 01 · Signal · light bg -->
+    <symbol id="m-signal-l" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="44" fill="none" stroke="#0F0F0F" stroke-width="2"/>
+      <circle cx="50" cy="50" r="30" fill="none" stroke="#0F0F0F" stroke-width="0.8" opacity="0.35"/>
+      <line x1="6" y1="50" x2="94" y2="50" stroke="#0F0F0F" stroke-width="0.6" opacity="0.25"/>
+      <line x1="50" y1="6" x2="50" y2="94" stroke="#0F0F0F" stroke-width="0.6" opacity="0.25"/>
+      <line x1="14" y1="82" x2="86" y2="18" stroke="#E84E1B" stroke-width="3" stroke-linecap="square"/>
+      <circle cx="86" cy="18" r="5" fill="#E84E1B"/>
+      <circle cx="50" cy="50" r="2.5" fill="#0F0F0F"/>
+    </symbol>
+    <!-- 01 · Signal · dark bg -->
+    <symbol id="m-signal-d" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="44" fill="none" stroke="#FAFAF7" stroke-width="2"/>
+      <circle cx="50" cy="50" r="30" fill="none" stroke="#FAFAF7" stroke-width="0.8" opacity="0.35"/>
+      <line x1="6" y1="50" x2="94" y2="50" stroke="#FAFAF7" stroke-width="0.6" opacity="0.25"/>
+      <line x1="50" y1="6" x2="50" y2="94" stroke="#FAFAF7" stroke-width="0.6" opacity="0.25"/>
+      <line x1="14" y1="82" x2="86" y2="18" stroke="#E84E1B" stroke-width="3" stroke-linecap="square"/>
+      <circle cx="86" cy="18" r="5" fill="#E84E1B"/>
+      <circle cx="50" cy="50" r="2.5" fill="#FAFAF7"/>
+    </symbol>
+    <!-- 02 · Cobalt · light -->
+    <symbol id="m-cobalt-l" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="44" fill="none" stroke="#0F0F0F" stroke-width="2"/>
+      <circle cx="50" cy="50" r="30" fill="none" stroke="#0F0F0F" stroke-width="0.8" opacity="0.35"/>
+      <line x1="6" y1="50" x2="94" y2="50" stroke="#0F0F0F" stroke-width="0.6" opacity="0.25"/>
+      <line x1="50" y1="6" x2="50" y2="94" stroke="#0F0F0F" stroke-width="0.6" opacity="0.25"/>
+      <line x1="14" y1="82" x2="86" y2="18" stroke="#1A3FA8" stroke-width="3" stroke-linecap="square"/>
+      <circle cx="86" cy="18" r="5" fill="#1A3FA8"/>
+      <circle cx="50" cy="50" r="2.5" fill="#0F0F0F"/>
+    </symbol>
+    <!-- 02 · Cobalt · dark -->
+    <symbol id="m-cobalt-d" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="44" fill="none" stroke="#FAFAF7" stroke-width="2"/>
+      <circle cx="50" cy="50" r="30" fill="none" stroke="#FAFAF7" stroke-width="0.8" opacity="0.35"/>
+      <line x1="6" y1="50" x2="94" y2="50" stroke="#FAFAF7" stroke-width="0.6" opacity="0.25"/>
+      <line x1="50" y1="6" x2="50" y2="94" stroke="#FAFAF7" stroke-width="0.6" opacity="0.25"/>
+      <line x1="14" y1="82" x2="86" y2="18" stroke="#2A56C5" stroke-width="3" stroke-linecap="square"/>
+      <circle cx="86" cy="18" r="5" fill="#2A56C5"/>
+      <circle cx="50" cy="50" r="2.5" fill="#FAFAF7"/>
+    </symbol>
+    <!-- 03 · Night · all dark grounds — same as signal-d, but second variant on truly-black -->
+    <symbol id="m-night" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="44" fill="none" stroke="#F2EFE8" stroke-width="2"/>
+      <circle cx="50" cy="50" r="30" fill="none" stroke="#F2EFE8" stroke-width="0.8" opacity="0.4"/>
+      <line x1="6" y1="50" x2="94" y2="50" stroke="#F2EFE8" stroke-width="0.6" opacity="0.3"/>
+      <line x1="50" y1="6" x2="50" y2="94" stroke="#F2EFE8" stroke-width="0.6" opacity="0.3"/>
+      <line x1="14" y1="82" x2="86" y2="18" stroke="#E84E1B" stroke-width="3" stroke-linecap="square"/>
+      <circle cx="86" cy="18" r="5" fill="#E84E1B"/>
+      <circle cx="50" cy="50" r="2.5" fill="#F2EFE8"/>
+    </symbol>
+    <!-- 04 · Plot · graticule-heavy, ink-only line, red-tick endpoint -->
+    <symbol id="m-plot-l" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="44" fill="none" stroke="#0F0F0F" stroke-width="1.6"/>
+      <circle cx="50" cy="50" r="36" fill="none" stroke="#0F0F0F" stroke-width="0.5" opacity="0.5"/>
+      <circle cx="50" cy="50" r="26" fill="none" stroke="#0F0F0F" stroke-width="0.5" opacity="0.4"/>
+      <circle cx="50" cy="50" r="16" fill="none" stroke="#0F0F0F" stroke-width="0.5" opacity="0.3"/>
+      <line x1="6" y1="50" x2="94" y2="50" stroke="#0F0F0F" stroke-width="0.5" opacity="0.45"/>
+      <line x1="50" y1="6" x2="50" y2="94" stroke="#0F0F0F" stroke-width="0.5" opacity="0.45"/>
+      <line x1="20.5" y1="20.5" x2="79.5" y2="79.5" stroke="#0F0F0F" stroke-width="0.4" opacity="0.25"/>
+      <line x1="79.5" y1="20.5" x2="20.5" y2="79.5" stroke="#0F0F0F" stroke-width="0.4" opacity="0.25"/>
+      <line x1="14" y1="82" x2="86" y2="18" stroke="#0F0F0F" stroke-width="2.2" stroke-linecap="square"/>
+      <circle cx="86" cy="18" r="4.5" fill="none" stroke="#B3351A" stroke-width="2"/>
+      <circle cx="86" cy="18" r="1.5" fill="#B3351A"/>
+      <circle cx="50" cy="50" r="2" fill="#0F0F0F"/>
+    </symbol>
+    <symbol id="m-plot-d" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="44" fill="none" stroke="#F2EFE8" stroke-width="1.6"/>
+      <circle cx="50" cy="50" r="36" fill="none" stroke="#F2EFE8" stroke-width="0.5" opacity="0.5"/>
+      <circle cx="50" cy="50" r="26" fill="none" stroke="#F2EFE8" stroke-width="0.5" opacity="0.4"/>
+      <circle cx="50" cy="50" r="16" fill="none" stroke="#F2EFE8" stroke-width="0.5" opacity="0.3"/>
+      <line x1="6" y1="50" x2="94" y2="50" stroke="#F2EFE8" stroke-width="0.5" opacity="0.45"/>
+      <line x1="50" y1="6" x2="50" y2="94" stroke="#F2EFE8" stroke-width="0.5" opacity="0.45"/>
+      <line x1="20.5" y1="20.5" x2="79.5" y2="79.5" stroke="#F2EFE8" stroke-width="0.4" opacity="0.25"/>
+      <line x1="79.5" y1="20.5" x2="20.5" y2="79.5" stroke="#F2EFE8" stroke-width="0.4" opacity="0.25"/>
+      <line x1="14" y1="82" x2="86" y2="18" stroke="#F2EFE8" stroke-width="2.2" stroke-linecap="square"/>
+      <circle cx="86" cy="18" r="4.5" fill="none" stroke="#E84E1B" stroke-width="2"/>
+      <circle cx="86" cy="18" r="1.5" fill="#E84E1B"/>
+      <circle cx="50" cy="50" r="2" fill="#F2EFE8"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="shell">
+
+  <!-- TAB BAR -->
+  <nav class="tabbar">
+    <div class="tabbar-brand"><b>LSLC</b> · Bearing · Variations</div>
+    <div class="tabs">
+      <button type="button" class="tab active" data-v="signal"><span class="tag">C1</span><span class="dot" style="background:#E84E1B"></span>Signal</button>
+      <button type="button" class="tab" data-v="cobalt"><span class="tag">C2</span><span class="dot" style="background:#1A3FA8"></span>Cobalt</button>
+      <button type="button" class="tab" data-v="night"><span class="tag">C3</span><span class="dot" style="background:#0F0F0F;outline:1px solid #444"></span>Night Watch</button>
+      <button type="button" class="tab" data-v="plot"><span class="tag">C4</span><span class="dot" style="background:#fff;outline:1px solid #B3351A"></span>Plot</button>
+    </div>
+    <div class="tabbar-meta">Bearing · 4 retunes · v1 · May 2026</div>
+  </nav>
+
+  <main class="stage">
+
+    <!-- ════════════════════════════════════
+         C.01 · SIGNAL
+    ════════════════════════════════════ -->
+    <section class="variant v-signal active" data-v="signal" data-screen-label="C.01 — signal">
+      <header class="v-intro">
+        <div class="v-letter-wrap">
+          <div class="v-letter">C</div>
+          <div class="v-letter-num">.01</div>
+        </div>
+        <div class="v-headings">
+          <div class="v-eyebrow">RETUNE · 01 · BASELINE</div>
+          <h1 class="v-name">signal</h1>
+          <p class="v-tagline">Warm stone, deep ink, a single signal-orange line cutting the chart. The baseline you saw — plain-spoken, lowercase, current. The other three retune from here without leaving the chassis.</p>
+        </div>
+        <div class="v-meta">
+          51.5074° N · 0.1278° W<br>
+          STONE · INK · SIGNAL<br>
+          SIGNAL · #E84E1B
+        </div>
+      </header>
+
+      <!-- mark -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">01</span>The mark
+          <span class="hint">A bearing line crossing a circle, terminating in a signal dot. The wordmark sits in lowercase Space Grotesk.</span>
+        </div>
+        <div class="v-mark-grid">
+          <div class="v-mark-panel light">
+            <div class="v-mark-label">[01] light ground</div>
+            <div class="v-mark">
+              <svg viewBox="0 0 100 100"><use href="#m-signal-l"/></svg>
+              <div class="vm-text"><div class="vm-name">lslc</div><div class="vm-sub">London Shipping Law Centre</div><div class="vm-coord">051.507° N · 000.128° W · est. 1995</div></div>
+            </div>
+          </div>
+          <div class="v-mark-panel dark">
+            <div class="v-mark-label">[02] dark ground</div>
+            <div class="v-mark">
+              <svg viewBox="0 0 100 100"><use href="#m-signal-d"/></svg>
+              <div class="vm-text"><div class="vm-name">lslc</div><div class="vm-sub">London Shipping Law Centre</div><div class="vm-coord">051.507° N · 000.128° W · est. 1995</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- palette -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">02</span>Palette
+          <span class="hint">Stone ground, ink type, one signal-orange used sparingly for moments that matter.</span>
+        </div>
+        <div class="v-palette">
+          <div class="v-swatch t-light" style="background:#E5DFD2"><div><div class="sw-code">[01]</div><div class="sw-name">stone</div><div class="sw-hex">#E5DFD2</div></div><div class="sw-use">GROUND</div></div><div class="v-swatch t-light" style="background:#F2EFE8"><div><div class="sw-code">[02]</div><div class="sw-name">snow</div><div class="sw-hex">#F2EFE8</div></div><div class="sw-use">CARDS</div></div><div class="v-swatch t-dark" style="background:#0F0F0F"><div><div class="sw-code">[03]</div><div class="sw-name">ink</div><div class="sw-hex">#0F0F0F</div></div><div class="sw-use">TYPE</div></div><div class="v-swatch t-snow" style="background:#E84E1B"><div><div class="sw-code">[04]</div><div class="sw-name">signal</div><div class="sw-hex">#E84E1B</div></div><div class="sw-use">ACCENT</div></div><div class="v-swatch t-light" style="background:#D8D2C3"><div><div class="sw-code">[05]</div><div class="sw-name">sand</div><div class="sw-hex">#D8D2C3</div></div><div class="sw-use">2° GROUND</div></div><div class="v-swatch t-light" style="background:#B8B5AC"><div><div class="sw-code">[06]</div><div class="sw-name">mist</div><div class="sw-hex">#B8B5AC</div></div><div class="sw-use">META</div></div>
+        </div>
+      </section>
+
+      <!-- hero -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">03</span>Website hero
+          <span class="hint">Coordinate strip pinned to the top. Lowercase wordmark, one signalled word in the headline, an event stack on the right.</span>
+        </div>
+        <div class="v-web">
+          <div class="v-web-nav">
+            <div class="v-web-navlogo"><svg viewBox="0 0 100 100"><use href="#m-signal-l"/></svg>lslc</div>
+            <div class="v-web-navlinks"><span>events</span><span>members</span><span>archive</span><span>cadwallader</span><span>ymp</span></div>
+            <span class="v-web-navcta">live · join</span>
+          </div>
+          <div class="v-web-coord">
+            <span>BEARING · 051.507° N · 000.128° W</span>
+            <span><span class="pulse"></span> ON AIR · BEYOND STRAITS · REPLAY</span>
+            <span>EDITION · 21.05.2026</span>
+          </div>
+          <div class="v-web-hero">
+            <div class="v-web-lead">
+              <div class="v-leadlabel">[lead] expert panel · 90 min</div>
+              <h1>hormuz,<br>after <span class="accent">april.</span></h1>
+              <p class="v-stand">A KC, a board director, and a former US Marine officer read the legal, strategic and commercial consequences of the closure. Broadcast live from London. Replay open.</p>
+              <div class="v-actions">
+                <span class="v-btn solid">replay the forum</span>
+                <span class="v-btn outline">download report</span>
+              </div>
+            </div>
+            <div class="v-web-aside">
+              <div class="v-hero-photo">
+                <img class="vhp-img" src="https://images.unsplash.com/photo-1545194445-dddb8f4487c6?w=1400&q=80" alt="" loading="lazy">
+                <span class="vhp-tick"></span>
+                <span class="vhp-tag">FIG.A · STRAIT · 04.26</span>
+              </div>
+              <div class="v-web-tile">
+                <div class="vt-h">[01] upcoming<span class="vt-tag">11 jun</span></div>
+                <div class="vt-title">trade, risk &amp; hedging</div>
+                <div class="vt-meta">FLOYD ZADKOVICH · HANUMAN<br>HYBRID · 18:30 · LDN</div>
+              </div>
+              <div class="v-web-tile dark">
+                <div class="vt-h">[02] cadwallader<span class="vt-tag">24 jun</span></div>
+                <div class="vt-title">lord thomas, 2026</div>
+                <div class="vt-meta">INNER TEMPLE HALL · INVITED</div>
+              </div>
+            </div>
+          </div>
+          <div class="v-web-strip">
+            <div class="vs-cell"><div class="vs-n">30<span class="sig">.</span></div><div class="vs-l">YEARS · SINCE 1995</div></div><div class="vs-cell"><div class="vs-n">10<span class="sig">–</span>15<span class="sig">%</span></div><div class="vs-l">OIL SHIPPING · DARK</div></div><div class="vs-cell"><div class="vs-n">8<span class="sig">/</span>26</div><div class="vs-l">LON ARBITRATION</div></div><div class="vs-cell"><div class="vs-n">90<span class="sig">m</span></div><div class="vs-l">AVG FORUM · HYBRID</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- slides -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">04</span>Event slides
+          <span class="hint">A title on stone and a content slide on ink. Coordinates and section markers navigate; the headline does the rest.</span>
+        </div>
+        <div class="v-slides">
+          <div class="v-slide title">
+            <div class="v-slide-bg"><img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1600&q=80" alt="" loading="lazy"></div>
+            <div class="v-slide-tint"></div>
+            <div class="v-slide-top"><span>EVENT · EX–08/26 · LEAD</span><span class="vs-coord"><span class="pulse"></span>LIVE · LDN · 2026.05.21</span></div>
+            <div class="v-slide-mid">
+              <div class="vm-section">[lead] expert panel · 90 min</div>
+              <h2>hormuz,<br>after <span class="sig">april.</span></h2>
+              <p class="vm-stand">A KC, a board director and a former US Marine officer on the legal, strategic and commercial consequences of the closure.</p>
+            </div>
+            <div class="v-slide-foot">
+              <div class="vf-mark"><svg viewBox="0 0 100 100"><use href="#m-signal-l"/></svg><span class="vf-name">lslc</span></div>
+              <div class="vf-roster">FLOYD · PARRY KC · WEBB · SHEPPARD<br><b>BEARING · 051.507° N · 000.128° W</b></div>
+            </div>
+          </div>
+          <div class="v-slide content">
+            <div class="vcc-top"><span>SECTION · 02 · ENGLISH LAW</span><span><b>EX–08/26</b> · SLIDE 04 / 18</span></div>
+            <div>
+              <div class="vcc-section">[02] english law</div>
+              <h3>frustration, force majeure<br>&amp; <span class="sig">self-induced risk.</span></h3>
+              <div class="vcc-grid">
+                <div class="vcc-body"><p>London Arbitration 8/2026 confirms: where war-risk clauses already allocate the risk, the doctrine of frustration does not engage.</p><p>Vessels entering the Straits today carry self-induced exposure under The Eugenia [1964].</p></div>
+                <div class="vcc-data">
+                  <div class="vcc-row"><span class="vcc-row-l">LON ARB</span><span class="vcc-row-v">8/2026</span></div>
+                  <div class="vcc-row"><span class="vcc-row-l">PRECEDENT</span><span class="vcc-row-v">EUGENIA '64</span></div>
+                  <div class="vcc-row"><span class="vcc-row-l">OFAC</span><span class="vcc-row-v">02.05.26</span></div>
+                  <div class="vcc-row"><span class="vcc-row-l">DARK FLEET</span><span class="vcc-row-v">10–15%</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="vcc-foot"><span>BEARING · 051.507° N · 000.128° W</span><span><b>lslc</b> · BEYOND STRAITS</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- social -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">05</span>Social cards
+          <span class="hint">LinkedIn as a coordinate sheet; Instagram as a single scaled-up stat.</span>
+        </div>
+        <div class="v-social">
+          <div class="v-social-li">
+            <div class="v-social-bg"><img src="https://images.unsplash.com/photo-1505839673365-e3971f8d9184?w=1600&q=80" alt="" loading="lazy"></div>
+            <div class="v-social-tint"></div>
+            <div class="vsl-grid">
+              <div class="vsl-top"><span><span class="pulse"></span> LIVE · LSLC · LDN</span><span>EX–08/26 · 2026.05.21</span></div>
+              <div class="vsl-mid">
+                <div>
+                  <div class="vsl-section">[lead] expert panel · 90 min</div>
+                  <h2>hormuz,<br>after <span class="sig">april.</span></h2>
+                </div>
+                <div class="vsl-aside">
+                  <svg viewBox="0 0 100 100"><use href="#m-signal-d"/></svg>
+                  <div class="vsl-coord">051.507° N<br>000.128° W</div>
+                </div>
+              </div>
+              <div class="vsl-foot"><span>FLOYD · PARRY KC · WEBB · SHEPPARD</span><span class="vsl-mast">lslc</span></div>
+            </div>
+          </div>
+          <div class="v-social-ig">
+            <div class="vig-top"><span>[stat] · IG</span><span>EX–08/26</span></div>
+            <div class="vig-mid">
+              <div class="vig-stat">10–15%</div>
+              <div class="vig-label">of global oil shipping is now operating dark.</div>
+            </div>
+            <div class="vig-foot"><span>BEYOND STRAITS · 2026</span><span class="vig-mast">lslc</span></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="v-fineprint">
+        <span>C1 · SIGNAL · BASELINE</span>
+        <span>END · 051.507° N · 000.128° W</span>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         C.02 · COBALT
+    ════════════════════════════════════ -->
+    <section class="variant v-cobalt" data-v="cobalt" data-screen-label="C.02 — cobalt">
+      <header class="v-intro">
+        <div class="v-letter-wrap">
+          <div class="v-letter">C</div>
+          <div class="v-letter-num">.02</div>
+        </div>
+        <div class="v-headings">
+          <div class="v-eyebrow">RETUNE · 02 · CHROMA SWAP</div>
+          <h1 class="v-name">cobalt</h1>
+          <p class="v-tagline">Same chassis, signal swapped to admiralty blue. Reads more institutional and less alarmist — the colour of nautical chart paper, not emergency. Built for membership, scholarship, the deeper Cadwallader register.</p>
+        </div>
+        <div class="v-meta">
+          51.5074° N · 0.1278° W<br>
+          STONE · INK · COBALT<br>
+          COBALT · #1A3FA8
+        </div>
+      </header>
+
+      <!-- mark -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">01</span>The mark
+          <span class="hint">A bearing line crossing a circle, terminating in a signal dot. The wordmark sits in lowercase Space Grotesk.</span>
+        </div>
+        <div class="v-mark-grid">
+          <div class="v-mark-panel light">
+            <div class="v-mark-label">[01] light ground</div>
+            <div class="v-mark">
+              <svg viewBox="0 0 100 100"><use href="#m-cobalt-l"/></svg>
+              <div class="vm-text"><div class="vm-name">lslc</div><div class="vm-sub">London Shipping Law Centre</div><div class="vm-coord">051.507° N · 000.128° W · est. 1995</div></div>
+            </div>
+          </div>
+          <div class="v-mark-panel dark">
+            <div class="v-mark-label">[02] dark ground</div>
+            <div class="v-mark">
+              <svg viewBox="0 0 100 100"><use href="#m-cobalt-d"/></svg>
+              <div class="vm-text"><div class="vm-name">lslc</div><div class="vm-sub">London Shipping Law Centre</div><div class="vm-coord">051.507° N · 000.128° W · est. 1995</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- palette -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">02</span>Palette
+          <span class="hint">Stone and ink hold their roles. The signal moves from orange to a deep British cobalt — closer to the chart legend than the alarm.</span>
+        </div>
+        <div class="v-palette">
+          <div class="v-swatch t-light" style="background:#E5DFD2"><div><div class="sw-code">[01]</div><div class="sw-name">stone</div><div class="sw-hex">#E5DFD2</div></div><div class="sw-use">GROUND</div></div><div class="v-swatch t-light" style="background:#F2EFE8"><div><div class="sw-code">[02]</div><div class="sw-name">snow</div><div class="sw-hex">#F2EFE8</div></div><div class="sw-use">CARDS</div></div><div class="v-swatch t-dark" style="background:#0F0F0F"><div><div class="sw-code">[03]</div><div class="sw-name">ink</div><div class="sw-hex">#0F0F0F</div></div><div class="sw-use">TYPE</div></div><div class="v-swatch t-snow" style="background:#1A3FA8"><div><div class="sw-code">[04]</div><div class="sw-name">cobalt</div><div class="sw-hex">#1A3FA8</div></div><div class="sw-use">ACCENT</div></div><div class="v-swatch t-light" style="background:#D8D2C3"><div><div class="sw-code">[05]</div><div class="sw-name">sand</div><div class="sw-hex">#D8D2C3</div></div><div class="sw-use">2° GROUND</div></div><div class="v-swatch t-light" style="background:#B8B5AC"><div><div class="sw-code">[06]</div><div class="sw-name">mist</div><div class="sw-hex">#B8B5AC</div></div><div class="sw-use">META</div></div>
+        </div>
+      </section>
+
+      <!-- hero -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">03</span>Website hero
+          <span class="hint">Coordinate strip pinned to the top. Lowercase wordmark, one signalled word in the headline, an event stack on the right.</span>
+        </div>
+        <div class="v-web">
+          <div class="v-web-nav">
+            <div class="v-web-navlogo"><svg viewBox="0 0 100 100"><use href="#m-cobalt-l"/></svg>lslc</div>
+            <div class="v-web-navlinks"><span>events</span><span>members</span><span>archive</span><span>cadwallader</span><span>ymp</span></div>
+            <span class="v-web-navcta">live · join</span>
+          </div>
+          <div class="v-web-coord">
+            <span>BEARING · 051.507° N · 000.128° W</span>
+            <span><span class="pulse"></span> ON AIR · BEYOND STRAITS · REPLAY</span>
+            <span>EDITION · 21.05.2026</span>
+          </div>
+          <div class="v-web-hero">
+            <div class="v-web-lead">
+              <div class="v-leadlabel">[cadwallader] annual lecture · 2026</div>
+              <h1>thirty years,<br>one <span class="accent">register.</span></h1>
+              <p class="v-stand">Lord Thomas of Cwmgiedd delivers the 2026 Cadwallader. Three decades of London shipping arbitration read against the next thirty. Inner Temple Hall, by invitation; recording released to members.</p>
+              <div class="v-actions">
+                <span class="v-btn solid">request invitation</span>
+                <span class="v-btn outline">read the brief</span>
+              </div>
+            </div>
+            <div class="v-web-aside">
+              <div class="v-hero-photo">
+                <img class="vhp-img" src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1400&q=80" alt="" loading="lazy">
+                <span class="vhp-tick"></span>
+                <span class="vhp-tag">FIG.A · LDN · 06.26</span>
+              </div>
+              <div class="v-web-tile">
+                <div class="vt-h">[01] lecture<span class="vt-tag">24 jun</span></div>
+                <div class="vt-title">lord thomas, 2026</div>
+                <div class="vt-meta">INNER TEMPLE HALL · 18:30<br>BY INVITATION ONLY</div>
+              </div>
+              <div class="v-web-tile dark">
+                <div class="vt-h">[02] members<span class="vt-tag">11 jun</span></div>
+                <div class="vt-title">trade &amp; hedging panel</div>
+                <div class="vt-meta">HYBRID · ZADKOVICH · HANUMAN</div>
+              </div>
+            </div>
+          </div>
+          <div class="v-web-strip">
+            <div class="vs-cell"><div class="vs-n">30<span class="sig">.</span></div><div class="vs-l">YEARS · SINCE 1995</div></div><div class="vs-cell"><div class="vs-n">12<span class="sig">k</span>+</div><div class="vs-l">MEMBERS · 38 JURISDICTIONS</div></div><div class="vs-cell"><div class="vs-n">97<span class="sig">→</span>26</div><div class="vs-l">HoL INAUGURAL · CADWALLADER</div></div><div class="vs-cell"><div class="vs-n">1<span class="sig">/</span>YR</div><div class="vs-l">CADWALLADER · ANNUAL</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- slides -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">04</span>Event slides
+          <span class="hint">A title on stone and a content slide on ink. Coordinates and section markers navigate; the headline does the rest.</span>
+        </div>
+        <div class="v-slides">
+          <div class="v-slide title">
+            <div class="v-slide-bg"><img src="https://images.unsplash.com/photo-1473042904451-00171c69419d?w=1600&q=80" alt="" loading="lazy"></div>
+            <div class="v-slide-tint"></div>
+            <div class="v-slide-top"><span>EVENT · EX–08/26 · LEAD</span><span class="vs-coord"><span class="pulse"></span>LIVE · LDN · 2026.05.21</span></div>
+            <div class="v-slide-mid">
+              <div class="vm-section">[cadwallader] annual lecture · 2026</div>
+              <h2>thirty years,<br>one <span class="sig">register.</span></h2>
+              <p class="vm-stand">Lord Thomas of Cwmgiedd reads three decades of London shipping arbitration against the next thirty. The 2026 Cadwallader Lecture, Inner Temple Hall.</p>
+            </div>
+            <div class="v-slide-foot">
+              <div class="vf-mark"><svg viewBox="0 0 100 100"><use href="#m-cobalt-l"/></svg><span class="vf-name">lslc</span></div>
+              <div class="vf-roster">FLOYD · PARRY KC · WEBB · SHEPPARD<br><b>BEARING · 051.507° N · 000.128° W</b></div>
+            </div>
+          </div>
+          <div class="v-slide content">
+            <div class="vcc-top"><span>SECTION · 02 · ENGLISH LAW</span><span><b>EX–08/26</b> · SLIDE 04 / 18</span></div>
+            <div>
+              <div class="vcc-section">[02] english law</div>
+              <h3>london, as <span class="sig">forum.</span></h3>
+              <div class="vcc-grid">
+                <div class="vcc-body"><p>London arbitration retains its primacy not through habit but through the depth of its reasoned record. Eight in ten cross-border shipping disputes still elect English law and London seat.</p><p>The Cadwallader Lecture is the annual stocktake of that record.</p></div>
+                <div class="vcc-data">
+                  <div class="vcc-row"><span class="vcc-row-l">LON ARB</span><span class="vcc-row-v">8/2026</span></div>
+                  <div class="vcc-row"><span class="vcc-row-l">PRECEDENT</span><span class="vcc-row-v">EUGENIA '64</span></div>
+                  <div class="vcc-row"><span class="vcc-row-l">OFAC</span><span class="vcc-row-v">02.05.26</span></div>
+                  <div class="vcc-row"><span class="vcc-row-l">DARK FLEET</span><span class="vcc-row-v">10–15%</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="vcc-foot"><span>BEARING · 051.507° N · 000.128° W</span><span><b>lslc</b> · BEYOND STRAITS</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- social -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">05</span>Social cards
+          <span class="hint">LinkedIn as a coordinate sheet; Instagram as a single scaled-up stat.</span>
+        </div>
+        <div class="v-social">
+          <div class="v-social-li">
+            <div class="v-social-bg"><img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1600&q=80" alt="" loading="lazy"></div>
+            <div class="v-social-tint"></div>
+            <div class="vsl-grid">
+              <div class="vsl-top"><span><span class="pulse"></span> LIVE · LSLC · LDN</span><span>EX–08/26 · 2026.05.21</span></div>
+              <div class="vsl-mid">
+                <div>
+                  <div class="vsl-section">[cadwallader] annual lecture · 2026</div>
+                  <h2>lord thomas,<br>the <span class="sig">cadwallader.</span></h2>
+                </div>
+                <div class="vsl-aside">
+                  <svg viewBox="0 0 100 100"><use href="#m-cobalt-d"/></svg>
+                  <div class="vsl-coord">051.507° N<br>000.128° W</div>
+                </div>
+              </div>
+              <div class="vsl-foot"><span>FLOYD · PARRY KC · WEBB · SHEPPARD</span><span class="vsl-mast">lslc</span></div>
+            </div>
+          </div>
+          <div class="v-social-ig">
+            <div class="vig-top"><span>[stat] · IG</span><span>EX–08/26</span></div>
+            <div class="vig-mid">
+              <div class="vig-stat">30yr</div>
+              <div class="vig-label">of the cadwallader, three decades of record.</div>
+            </div>
+            <div class="vig-foot"><span>BEYOND STRAITS · 2026</span><span class="vig-mast">lslc</span></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="v-fineprint">
+        <span>C2 · COBALT · CHROMA SWAP</span>
+        <span>END · 051.507° N · 000.128° W</span>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         C.03 · NIGHT WATCH
+    ════════════════════════════════════ -->
+    <section class="variant v-night" data-v="night" data-screen-label="C.03 — night watch">
+      <header class="v-intro">
+        <div class="v-letter-wrap">
+          <div class="v-letter">C</div>
+          <div class="v-letter-num">.03</div>
+        </div>
+        <div class="v-headings">
+          <div class="v-eyebrow">RETUNE · 03 · GROUND INVERTED</div>
+          <h1 class="v-name">night watch</h1>
+          <p class="v-tagline">The same bearing, after dark. Ground flips to ink, type to stone; signal-orange stays — and reads twice as electric on black. The mode for live broadcasts, evening events, situations the room is watching unfold in real time.</p>
+        </div>
+        <div class="v-meta">
+          51.5074° N · 0.1278° W<br>
+          INK · STONE · SIGNAL<br>
+          INVERSION · LIVE MODE
+        </div>
+      </header>
+
+      <!-- mark -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">01</span>The mark
+          <span class="hint">A bearing line crossing a circle, terminating in a signal dot. The wordmark sits in lowercase Space Grotesk.</span>
+        </div>
+        <div class="v-mark-grid">
+          <div class="v-mark-panel light">
+            <div class="v-mark-label">[01] night · char</div>
+            <div class="v-mark">
+              <svg viewBox="0 0 100 100"><use href="#m-signal-d"/></svg>
+              <div class="vm-text"><div class="vm-name">lslc</div><div class="vm-sub">London Shipping Law Centre</div><div class="vm-coord">051.507° N · 000.128° W · est. 1995</div></div>
+            </div>
+          </div>
+          <div class="v-mark-panel dark">
+            <div class="v-mark-label">[02] night · true black</div>
+            <div class="v-mark">
+              <svg viewBox="0 0 100 100"><use href="#m-signal-d"/></svg>
+              <div class="vm-text"><div class="vm-name">lslc</div><div class="vm-sub">London Shipping Law Centre</div><div class="vm-coord">051.507° N · 000.128° W · est. 1995</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- palette -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">02</span>Palette
+          <span class="hint">A single inversion. Ink becomes the field; stone becomes the type. Signal-orange does not budge — its job here is to flag the live moment, and it does it louder.</span>
+        </div>
+        <div class="v-palette">
+          <div class="v-swatch t-dark" style="background:#0F0F0F"><div><div class="sw-code">[01]</div><div class="sw-name">ink</div><div class="sw-hex">#0F0F0F</div></div><div class="sw-use">GROUND</div></div><div class="v-swatch t-dark" style="background:#1C1C1A"><div><div class="sw-code">[02]</div><div class="sw-name">char</div><div class="sw-hex">#1C1C1A</div></div><div class="sw-use">DEPTH</div></div><div class="v-swatch t-dark" style="background:#000000"><div><div class="sw-code">[03]</div><div class="sw-name">black</div><div class="sw-hex">#000000</div></div><div class="sw-use">SPOTLIGHT</div></div><div class="v-swatch t-light" style="background:#F2EFE8"><div><div class="sw-code">[04]</div><div class="sw-name">stone</div><div class="sw-hex">#F2EFE8</div></div><div class="sw-use">TYPE</div></div><div class="v-swatch t-snow" style="background:#E84E1B"><div><div class="sw-code">[05]</div><div class="sw-name">signal</div><div class="sw-hex">#E84E1B</div></div><div class="sw-use">ACCENT</div></div><div class="v-swatch t-dark" style="background:#888880"><div><div class="sw-code">[06]</div><div class="sw-name">mist</div><div class="sw-hex">#888880</div></div><div class="sw-use">META</div></div>
+        </div>
+      </section>
+
+      <!-- hero -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">03</span>Website hero
+          <span class="hint">Coordinate strip pinned to the top. Lowercase wordmark, one signalled word in the headline, an event stack on the right.</span>
+        </div>
+        <div class="v-web">
+          <div class="v-web-nav">
+            <div class="v-web-navlogo"><svg viewBox="0 0 100 100"><use href="#m-signal-d"/></svg>lslc</div>
+            <div class="v-web-navlinks"><span>events</span><span>members</span><span>archive</span><span>cadwallader</span><span>ymp</span></div>
+            <span class="v-web-navcta">live · join</span>
+          </div>
+          <div class="v-web-coord">
+            <span>BEARING · 051.507° N · 000.128° W</span>
+            <span><span class="pulse"></span> ON AIR · BEYOND STRAITS · REPLAY</span>
+            <span>EDITION · 21.05.2026</span>
+          </div>
+          <div class="v-web-hero">
+            <div class="v-web-lead">
+              <div class="v-leadlabel">[live] · broadcasting now</div>
+              <h1>on air.<br>beyond <span class="accent">straits.</span></h1>
+              <p class="v-stand">Tonight from London, 19:30 BST. Floyd Zadkovich, Parry KC and a former US Marine officer on the Hormuz closure — legal, strategic, commercial. Watch live; submit questions on the line.</p>
+              <div class="v-actions">
+                <span class="v-btn solid">join the broadcast</span>
+                <span class="v-btn outline">submit a question</span>
+              </div>
+            </div>
+            <div class="v-web-aside">
+              <div class="v-hero-photo">
+                <img class="vhp-img" src="https://images.unsplash.com/photo-1518365050014-70fe7232897f?w=1400&q=80" alt="" loading="lazy">
+                <span class="vhp-tick"></span>
+                <span class="vhp-tag">FIG.A · LDN · 19:30 BST</span>
+              </div>
+              <div class="v-web-tile">
+                <div class="vt-h">[01] on air<span class="vt-tag">now</span></div>
+                <div class="vt-title">beyond straits</div>
+                <div class="vt-meta">LIVE · LDN · 19:30 BST<br>HYBRID · 2,000 WATCHING</div>
+              </div>
+              <div class="v-web-tile dark">
+                <div class="vt-h">[02] open line<span class="vt-tag">Q&amp;A</span></div>
+                <div class="vt-title">ask the panel</div>
+                <div class="vt-meta">OPEN UNTIL 21:00 BST</div>
+              </div>
+            </div>
+          </div>
+          <div class="v-web-strip">
+            <div class="vs-cell"><div class="vs-n">live<span class="sig">.</span></div><div class="vs-l">LDN · 19:30 BST · ON AIR</div></div><div class="vs-cell"><div class="vs-n">2<span class="sig">k</span>+</div><div class="vs-l">VIEWERS · 28 COUNTRIES</div></div><div class="vs-cell"><div class="vs-n">90<span class="sig">m</span></div><div class="vs-l">RUN-TIME · HYBRID</div></div><div class="vs-cell"><div class="vs-n">Q<span class="sig">&amp;</span>A</div><div class="vs-l">OPEN UNTIL 21:00</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- slides -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">04</span>Event slides
+          <span class="hint">A title on stone and a content slide on ink. Coordinates and section markers navigate; the headline does the rest.</span>
+        </div>
+        <div class="v-slides">
+          <div class="v-slide title">
+            <div class="v-slide-bg"><img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1600&q=80" alt="" loading="lazy"></div>
+            <div class="v-slide-tint"></div>
+            <div class="v-slide-top"><span>EVENT · EX–08/26 · LEAD</span><span class="vs-coord"><span class="pulse"></span>LIVE · LDN · 2026.05.21</span></div>
+            <div class="v-slide-mid">
+              <div class="vm-section">[live] · broadcasting now</div>
+              <h2>on air.<br>beyond <span class="sig">straits.</span></h2>
+              <p class="vm-stand">Live tonight from London. A panel reads the closure in real time. The room is watching.</p>
+            </div>
+            <div class="v-slide-foot">
+              <div class="vf-mark"><svg viewBox="0 0 100 100"><use href="#m-signal-d"/></svg><span class="vf-name">lslc</span></div>
+              <div class="vf-roster">FLOYD · PARRY KC · WEBB · SHEPPARD<br><b>BEARING · 051.507° N · 000.128° W</b></div>
+            </div>
+          </div>
+          <div class="v-slide content">
+            <div class="vcc-top"><span>SECTION · 02 · ENGLISH LAW</span><span><b>EX–08/26</b> · SLIDE 04 / 18</span></div>
+            <div>
+              <div class="vcc-section">[02] english law</div>
+              <h3>tonight, on <span class="sig">the line.</span></h3>
+              <div class="vcc-grid">
+                <div class="vcc-body"><p>Three live readings: the legal exposure, the strategic posture, the commercial cost. Questions taken from the floor and from the line for the final twenty minutes.</p><p>Recording released to members at 22:00 BST.</p></div>
+                <div class="vcc-data">
+                  <div class="vcc-row"><span class="vcc-row-l">LON ARB</span><span class="vcc-row-v">8/2026</span></div>
+                  <div class="vcc-row"><span class="vcc-row-l">PRECEDENT</span><span class="vcc-row-v">EUGENIA '64</span></div>
+                  <div class="vcc-row"><span class="vcc-row-l">OFAC</span><span class="vcc-row-v">02.05.26</span></div>
+                  <div class="vcc-row"><span class="vcc-row-l">DARK FLEET</span><span class="vcc-row-v">10–15%</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="vcc-foot"><span>BEARING · 051.507° N · 000.128° W</span><span><b>lslc</b> · BEYOND STRAITS</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- social -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">05</span>Social cards
+          <span class="hint">LinkedIn as a coordinate sheet; Instagram as a single scaled-up stat.</span>
+        </div>
+        <div class="v-social">
+          <div class="v-social-li">
+            <div class="v-social-bg"><img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1600&q=80" alt="" loading="lazy"></div>
+            <div class="v-social-tint"></div>
+            <div class="vsl-grid">
+              <div class="vsl-top"><span><span class="pulse"></span> LIVE · LSLC · LDN</span><span>EX–08/26 · 2026.05.21</span></div>
+              <div class="vsl-mid">
+                <div>
+                  <div class="vsl-section">[live] · broadcasting now</div>
+                  <h2>on air.<br>beyond <span class="sig">straits.</span></h2>
+                </div>
+                <div class="vsl-aside">
+                  <svg viewBox="0 0 100 100"><use href="#m-signal-d"/></svg>
+                  <div class="vsl-coord">051.507° N<br>000.128° W</div>
+                </div>
+              </div>
+              <div class="vsl-foot"><span>FLOYD · PARRY KC · WEBB · SHEPPARD</span><span class="vsl-mast">lslc</span></div>
+            </div>
+          </div>
+          <div class="v-social-ig">
+            <div class="vig-top"><span>[stat] · IG</span><span>EX–08/26</span></div>
+            <div class="vig-mid">
+              <div class="vig-stat">live</div>
+              <div class="vig-label">tonight from london. 19:30 bst.</div>
+            </div>
+            <div class="vig-foot"><span>BEYOND STRAITS · 2026</span><span class="vig-mast">lslc</span></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="v-fineprint">
+        <span>C3 · NIGHT WATCH · INVERTED</span>
+        <span>END · 051.507° N · 000.128° W</span>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         C.04 · PLOT
+    ════════════════════════════════════ -->
+    <section class="variant v-plot" data-v="plot" data-screen-label="C.04 — plot">
+      <header class="v-intro">
+        <div class="v-letter-wrap">
+          <div class="v-letter">C</div>
+          <div class="v-letter-num">.04</div>
+        </div>
+        <div class="v-headings">
+          <div class="v-eyebrow">RETUNE · 04 · GRATICULE / NO CHROMA</div>
+          <h1 class="v-name">plot</h1>
+          <p class="v-tagline">The most disciplined of the four. Signal-orange demoted from chroma to graphic rule — a thin red tick at the bearing terminus, a soft graticule under every panel. Pure ink on stone otherwise. Reads as a working chart, not a magazine cover.</p>
+        </div>
+        <div class="v-meta">
+          51.5074° N · 0.1278° W<br>
+          STONE · INK · GRATICULE<br>
+          TICK · #B3351A
+        </div>
+      </header>
+
+      <!-- mark -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">01</span>The mark
+          <span class="hint">A bearing line crossing a circle, terminating in a signal dot. The wordmark sits in lowercase Space Grotesk.</span>
+        </div>
+        <div class="v-mark-grid">
+          <div class="v-mark-panel light">
+            <div class="v-mark-label">[01] light ground</div>
+            <div class="v-mark">
+              <svg viewBox="0 0 100 100"><use href="#m-plot-l"/></svg>
+              <div class="vm-text"><div class="vm-name">lslc</div><div class="vm-sub">London Shipping Law Centre</div><div class="vm-coord">051.507° N · 000.128° W · est. 1995</div></div>
+            </div>
+          </div>
+          <div class="v-mark-panel dark">
+            <div class="v-mark-label">[02] dark ground</div>
+            <div class="v-mark">
+              <svg viewBox="0 0 100 100"><use href="#m-plot-d"/></svg>
+              <div class="vm-text"><div class="vm-name">lslc</div><div class="vm-sub">London Shipping Law Centre</div><div class="vm-coord">051.507° N · 000.128° W · est. 1995</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- palette -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">02</span>Palette
+          <span class="hint">No chroma in the palette. The signal is a tick on the bearing terminus — visible but never carrying weight. The chart graticule does the structuring instead.</span>
+        </div>
+        <div class="v-palette">
+          <div class="v-swatch t-light" style="background:#E5DFD2"><div><div class="sw-code">[01]</div><div class="sw-name">stone</div><div class="sw-hex">#E5DFD2</div></div><div class="sw-use">GROUND</div></div><div class="v-swatch t-light" style="background:#F2EFE8"><div><div class="sw-code">[02]</div><div class="sw-name">snow</div><div class="sw-hex">#F2EFE8</div></div><div class="sw-use">CARDS</div></div><div class="v-swatch t-dark" style="background:#0F0F0F"><div><div class="sw-code">[03]</div><div class="sw-name">ink</div><div class="sw-hex">#0F0F0F</div></div><div class="sw-use">TYPE · LINES</div></div><div class="v-swatch t-snow" style="background:#B3351A"><div><div class="sw-code">[04]</div><div class="sw-name">tick</div><div class="sw-hex">#B3351A</div></div><div class="sw-use">BEARING END</div></div><div class="v-swatch t-light" style="background:#D8D2C3"><div><div class="sw-code">[05]</div><div class="sw-name">sand</div><div class="sw-hex">#D8D2C3</div></div><div class="sw-use">GRATICULE</div></div><div class="v-swatch t-light" style="background:#B8B5AC"><div><div class="sw-code">[06]</div><div class="sw-name">mist</div><div class="sw-hex">#B8B5AC</div></div><div class="sw-use">META</div></div>
+        </div>
+      </section>
+
+      <!-- hero -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">03</span>Website hero
+          <span class="hint">Coordinate strip pinned to the top. Lowercase wordmark, one signalled word in the headline, an event stack on the right.</span>
+        </div>
+        <div class="v-web">
+          <div class="v-web-nav">
+            <div class="v-web-navlogo"><svg viewBox="0 0 100 100"><use href="#m-plot-l"/></svg>lslc</div>
+            <div class="v-web-navlinks"><span>events</span><span>members</span><span>archive</span><span>cadwallader</span><span>ymp</span></div>
+            <span class="v-web-navcta">live · join</span>
+          </div>
+          <div class="v-web-coord">
+            <span>BEARING · 051.507° N · 000.128° W</span>
+            <span><span class="pulse"></span> ON AIR · BEYOND STRAITS · REPLAY</span>
+            <span>EDITION · 21.05.2026</span>
+          </div>
+          <div class="v-web-hero">
+            <div class="v-web-lead">
+              <div class="v-leadlabel">[archive] · thirty years · 1995–2025</div>
+              <h1>every forum,<br>every <span class="accent">bearing.</span></h1>
+              <p class="v-stand">The full archive. Three hundred sessions, six hundred speakers, every transcript and recording, plotted against the cases that produced them. Searchable from today, free to members.</p>
+              <div class="v-actions">
+                <span class="v-btn solid">open the archive</span>
+                <span class="v-btn outline">browse by case</span>
+              </div>
+            </div>
+            <div class="v-web-aside">
+              <div class="v-hero-photo">
+                <img class="vhp-img" src="https://images.unsplash.com/photo-1545194445-dddb8f4487c6?w=1400&q=80" alt="" loading="lazy">
+                <span class="vhp-tick"></span>
+                <span class="vhp-tag">FIG.A · PLOTTED · 1995–25</span>
+              </div>
+              <div class="v-web-tile">
+                <div class="vt-h">[01] archive<span class="vt-tag">new</span></div>
+                <div class="vt-title">every transcript</div>
+                <div class="vt-meta">300+ SESSIONS · 1995–2025<br>SEARCHABLE · MEMBER ACCESS</div>
+              </div>
+              <div class="v-web-tile dark">
+                <div class="vt-h">[02] by case<span class="vt-tag">plot</span></div>
+                <div class="vt-title">eugenia → hormuz</div>
+                <div class="vt-meta">CHART THE PRECEDENT LINE</div>
+              </div>
+            </div>
+          </div>
+          <div class="v-web-strip">
+            <div class="vs-cell"><div class="vs-n">1995<span class="sig">→</span></div><div class="vs-l">PLOTTED · 30 YEARS</div></div><div class="vs-cell"><div class="vs-n">300<span class="sig">+</span></div><div class="vs-l">SESSIONS · LOGGED</div></div><div class="vs-cell"><div class="vs-n">600<span class="sig">·</span></div><div class="vs-l">SPEAKERS · CATALOGUED</div></div><div class="vs-cell"><div class="vs-n">38<span class="sig">/</span>JU</div><div class="vs-l">JURISDICTIONS REFERENCED</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- slides -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">04</span>Event slides
+          <span class="hint">A title on stone and a content slide on ink. Coordinates and section markers navigate; the headline does the rest.</span>
+        </div>
+        <div class="v-slides">
+          <div class="v-slide title">
+            <div class="v-slide-bg"><img src="https://images.unsplash.com/photo-1505839673365-e3971f8d9184?w=1600&q=80" alt="" loading="lazy"></div>
+            <div class="v-slide-tint"></div>
+            <div class="v-slide-top"><span>EVENT · EX–08/26 · LEAD</span><span class="vs-coord"><span class="pulse"></span>LIVE · LDN · 2026.05.21</span></div>
+            <div class="v-slide-mid">
+              <div class="vm-section">[archive] · thirty years · 1995–2025</div>
+              <h2>every forum,<br>every <span class="sig">bearing.</span></h2>
+              <p class="vm-stand">Three decades of LSLC plotted against the cases. A working chart of the record.</p>
+            </div>
+            <div class="v-slide-foot">
+              <div class="vf-mark"><svg viewBox="0 0 100 100"><use href="#m-plot-l"/></svg><span class="vf-name">lslc</span></div>
+              <div class="vf-roster">FLOYD · PARRY KC · WEBB · SHEPPARD<br><b>BEARING · 051.507° N · 000.128° W</b></div>
+            </div>
+          </div>
+          <div class="v-slide content">
+            <div class="vcc-top"><span>SECTION · 02 · ENGLISH LAW</span><span><b>EX–08/26</b> · SLIDE 04 / 18</span></div>
+            <div>
+              <div class="vcc-section">[02] english law</div>
+              <h3>precedent, as <span class="sig">a course.</span></h3>
+              <div class="vcc-grid">
+                <div class="vcc-body"><p>From The Eugenia [1964] to London Arbitration 8/2026, the line through the doctrine of frustration runs reasonably straight. The chart shows where it bends, where it holds, where it has been argued from both sides.</p><p>Every reference is plotted, dated, sourced.</p></div>
+                <div class="vcc-data">
+                  <div class="vcc-row"><span class="vcc-row-l">LON ARB</span><span class="vcc-row-v">8/2026</span></div>
+                  <div class="vcc-row"><span class="vcc-row-l">PRECEDENT</span><span class="vcc-row-v">EUGENIA '64</span></div>
+                  <div class="vcc-row"><span class="vcc-row-l">OFAC</span><span class="vcc-row-v">02.05.26</span></div>
+                  <div class="vcc-row"><span class="vcc-row-l">DARK FLEET</span><span class="vcc-row-v">10–15%</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="vcc-foot"><span>BEARING · 051.507° N · 000.128° W</span><span><b>lslc</b> · BEYOND STRAITS</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- social -->
+      <section class="v-section">
+        <div class="v-section-label">
+          <span class="num">05</span>Social cards
+          <span class="hint">LinkedIn as a coordinate sheet; Instagram as a single scaled-up stat.</span>
+        </div>
+        <div class="v-social">
+          <div class="v-social-li">
+            <div class="v-social-bg"><img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1600&q=80" alt="" loading="lazy"></div>
+            <div class="v-social-tint"></div>
+            <div class="vsl-grid">
+              <div class="vsl-top"><span><span class="pulse"></span> LIVE · LSLC · LDN</span><span>EX–08/26 · 2026.05.21</span></div>
+              <div class="vsl-mid">
+                <div>
+                  <div class="vsl-section">[archive] · thirty years · 1995–2025</div>
+                  <h2>every forum,<br>every <span class="sig">bearing.</span></h2>
+                </div>
+                <div class="vsl-aside">
+                  <svg viewBox="0 0 100 100"><use href="#m-plot-d"/></svg>
+                  <div class="vsl-coord">051.507° N<br>000.128° W</div>
+                </div>
+              </div>
+              <div class="vsl-foot"><span>FLOYD · PARRY KC · WEBB · SHEPPARD</span><span class="vsl-mast">lslc</span></div>
+            </div>
+          </div>
+          <div class="v-social-ig">
+            <div class="vig-top"><span>[stat] · IG</span><span>EX–08/26</span></div>
+            <div class="vig-mid">
+              <div class="vig-stat">300+</div>
+              <div class="vig-label">sessions plotted. thirty years on the chart.</div>
+            </div>
+            <div class="vig-foot"><span>BEYOND STRAITS · 2026</span><span class="vig-mast">lslc</span></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="v-fineprint">
+        <span>C4 · PLOT · GRATICULE / NO CHROMA</span>
+        <span>END · 051.507° N · 000.128° W</span>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.tab');
+  var variants = document.querySelectorAll('.variant');
+  function activate(key){
+    tabs.forEach(function(t){ t.classList.toggle('active', t.dataset.v === key); });
+    variants.forEach(function(v){ v.classList.toggle('active', v.dataset.v === key); });
+    window.scrollTo({ top: 0, behavior: 'instant' in document.documentElement ? 'instant' : 'auto' });
+    try { history.replaceState(null, '', '#' + key); } catch(e){}
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ activate(t.dataset.v); });
+  });
+  var initial = (location.hash || '').replace('#','').toLowerCase();
+  if (['signal','cobalt','night','plot'].indexOf(initial) >= 0) activate(initial);
+})();
+</script>
+
+</body>
+</html>
